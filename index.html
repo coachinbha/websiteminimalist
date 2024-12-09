@@ -103,6 +103,19 @@
             }
         }
 
+                .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .logo img {
+            max-height: 50px;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
         /* Existing styles from the previous document */
         h1, h2, h3 {
             font-weight: 900;
@@ -297,7 +310,9 @@
     <!-- Navigation -->
     <nav class="navigation" data-aos="fade-down">
         <div class="nav-container">
-            <a href="#" class="logo">Windsor Chess Lions</a>
+            <a href="https://windsorchesslions.com/" class="logo">
+                <img src="/home/inbha/Pictures/Contact.png" alt="Windsor Chess Lions Logo">
+            </a>
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
