@@ -368,6 +368,81 @@
                 position: relative;
             }
         }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-row {
+            grid-column: span 4;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: var(--accent-color);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .image-3-4 {
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+        }
+
+        .image-4-3 {
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .image-container:hover .image-3-4,
+        .image-container:hover .image-4-3 {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-row {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -470,6 +545,78 @@
     <footer data-aos="fade-up" data-aos-duration="1500">
         <p>&copy; 2024 Windsor Chess Academy. All Rights Reserved.</p>
     </footer>
+    <div class="gallery">
+        <div class="gallery-row">
+            <div class="image-container">
+                <img src="site1.jpg" alt="Chess Image 1" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site3.jpg" alt="Chess Image 3" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site5.jpg" alt="Chess Image 5" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site7.jpg" alt="Chess Image 7" class="image-4-3">
+            </div>
+        </div>
+        <div class="gallery-row">
+            <div class="image-container">
+                <img src="site2.jpg" alt="Chess Image 2" class="image-3-4">
+            </div>
+            <div class="image-container">
+                <img src="site4.jpg" alt="Chess Image 4" class="image-3-4">
+            </div>
+            <div class="image-container">
+                <img src="site6.jpg" alt="Chess Image 6" class="image-3-4">
+            </div>
+            <div class="image-container">
+                <img src="site8.jpg" alt="Chess Image 8" class="image-3-4">
+            </div>
+        </div>
+        <div class="gallery-row">
+            <div class="image-container">
+                <img src="site9.jpg" alt="Chess Image 9" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site11.jpg" alt="Chess Image 11" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site13.jpg" alt="Chess Image 13" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site15.jpg" alt="Chess Image 15" class="image-4-3">
+            </div>
+        </div>
+        <div class="gallery-row">
+            <div class="image-container">
+                <img src="site10.jpg" alt="Chess Image 10" class="image-3-4">
+            </div>
+            <div class="image-container">
+                <img src="site12.jpg" alt="Chess Image 12" class="image-3-4">
+            </div>
+            <div class="image-container">
+                <img src="site14.jpg" alt="Chess Image 14" class="image-3-4">
+            </div>
+            <div class="image-container">
+                <img src="site16.jpg" alt="Chess Image 16" class="image-3-4">
+            </div>
+        </div>
+        <div class="gallery-row">
+            <div class="image-container">
+                <img src="site17.jpg" alt="Chess Image 17" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site19.jpg" alt="Chess Image 19" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site21.jpg" alt="Chess Image 21" class="image-4-3">
+            </div>
+            <div class="image-container">
+                <img src="site23.jpg" alt="Chess Image 23" class="image-4-3">
+            </div>
+        </div>
+    </div>
 
     <!-- AOS JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
