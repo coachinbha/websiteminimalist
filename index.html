@@ -368,6 +368,114 @@
                 position: relative;
             }
         }
+
+            .gallery {
+ display: grid;
+ grid-template-columns: repeat(5, 1fr);
+ grid-auto-flow: dense;
+ grid-template-rows: auto auto; /* Keep the row height automatic */
+ gap: 20px;
+ max-width: 1400px;
+ margin: 0 auto;
+ padding: 20px;
+}
+.gallery img {
+ width: 100%;
+ height: auto; /* Keep the image height automatic */
+ display: block;
+ grid-row: auto;
+ transition: transform 0.3s ease 0.1s;
+ opacity: 0;
+ transform: translateY(20px);
+}
+.gallery img:hover {
+ transform: scale(1.1);
+ z-index: 1;
+}
+.gallery img:nth-child(6) {
+ margin-top: -140px;
+}
+.gallery img:nth-child(8) {
+ margin-top: -140px;
+}
+.gallery img:nth-child(10) {
+ margin-top: -140px;
+}
+.gallery img:nth-child(16) {
+ margin-top: -140px;
+}
+.gallery img:nth-child(22) {
+ margin-top: -140px;
+}
+.gallery img:nth-child(24) {
+ margin-top: -140px;
+}
+/* To maintain image quality */
+.gallery img {
+ image-rendering: -webkit-optimize-contrast;
+ image-rendering: crisp-edges;
+}
+@media (max-width: 1200px) {
+ .gallery {
+  max-width: 90%;
+ }
+}
+@media (max-width: 768px) {
+ .gallery {
+  grid-template-columns: repeat(3, 1fr);
+ }
+ /* Reset margin-top for all images on tablets */
+ .gallery img:nth-child(6),
+ .gallery img:nth-child(8),
+ .gallery img:nth-child(10),
+ .gallery img:nth-child(16),
+ .gallery img:nth-child(22),
+ .gallery img:nth-child(24) {
+  margin-top: 0;
+ }
+}
+@keyframes fadeIn {
+ from {
+  opacity: 0;
+  transform: translateY(20px);
+ }
+ to {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+.gallery img:nth-child(1) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.1s; }
+.gallery img:nth-child(2) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.2s; }
+.gallery img:nth-child(3) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.3s; }
+.gallery img:nth-child(4) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.4s; }
+.gallery img:nth-child(5) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.5s; }
+.gallery img:nth-child(6) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.6s; }
+.gallery img:nth-child(7) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.7s; }
+.gallery img:nth-child(8) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.8s; }
+.gallery img:nth-child(9) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 0.9s; }
+.gallery img:nth-child(10) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1s; }
+.gallery img:nth-child(11) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.1s; }
+.gallery img:nth-child(12) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.2s; }
+.gallery img:nth-child(13) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.3s; }
+.gallery img:nth-child(14) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.4s; }
+.gallery img:nth-child(15) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.5s; }
+.gallery img:nth-child(16) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.6s; }
+.gallery img:nth-child(17) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.7s; }
+.gallery img:nth-child(18) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.8s; }
+.gallery img:nth-child(19) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 1.9s; }
+.gallery img:nth-child(20) { animation: fadeIn 0.5s ease-in forwards; animation-delay: 2s; }
+@media (max-width: 480px) 
+
+{
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 10px; /* Slightly reduce gap for mobile */
+    }
+    
+    .gallery img {
+        margin-top: 0 !important; /* Ensure no offset on mobile */
+    }
+}
     </style>
 </head>
 <body>
@@ -470,6 +578,29 @@
     <footer data-aos="fade-up" data-aos-duration="1500">
         <p>&copy; 2024 Windsor Chess Lions. All Rights Reserved.</p>
     </footer>
+
+    <div class="gallery">
+        <img src="/home/inbha/Pictures/chess images/site1.jpg" alt="Image 1">
+        <img src="/home/inbha/Pictures/chess images/site2.jpg" alt="Image 2">
+        <img src="/home/inbha/Pictures/chess images/site3.jpg" alt="Image 3">
+        <img src="/home/inbha/Pictures/chess images/site4.jpg" alt="Image 4">
+        <img src="/home/inbha/Pictures/chess images/site5.jpg" alt="Image 5">
+        <img src="/home/inbha/Pictures/chess images/site6.jpg" alt="Image 6">
+        <img src="/home/inbha/Pictures/chess images/site7.jpg" alt="Image 7">
+        <img src="/home/inbha/Pictures/chess images/site8.jpg" alt="Image 8">
+        <img src="/home/inbha/Pictures/chess images/site9.jpg" alt="Image 9">
+        <img src="/home/inbha/Pictures/chess images/site10.jpg" alt="Image 10">
+        <img src="/home/inbha/Pictures/chess images/site11.jpg" alt="Image 11">
+        <img src="/home/inbha/Pictures/chess images/site12.jpg" alt="Image 12">
+        <img src="/home/inbha/Pictures/chess images/site13.jpg" alt="Image 13">
+        <img src="/home/inbha/Pictures/chess images/site14.jpg" alt="Image 14">
+        <img src="/home/inbha/Pictures/chess images/site15.jpg" alt="Image 15">
+        <img src="/home/inbha/Pictures/chess images/site16.jpg" alt="Image 16">
+        <img src="/home/inbha/Pictures/chess images/site17.jpg" alt="Image 17">
+        <img src="/home/inbha/Pictures/chess images/site18.jpg" alt="Image 18">
+        <img src="/home/inbha/Pictures/chess images/site19.jpg" alt="Image 19">
+        <img src="/home/inbha/Pictures/chess images/site20.jpg" alt="Image 20">
+    </div>
 
     <!-- AOS JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
