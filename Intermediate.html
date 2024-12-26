@@ -55,6 +55,12 @@
             align-items: center;
         }
 
+        .logo img {
+            width: auto;
+            height: auto;
+            max-height: 60px;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -74,6 +80,7 @@
             color: #666;
         }
 
+        /* Rest of the CSS remains the same */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -202,6 +209,51 @@
             background-color: #333;
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-color);
+        }
+
+        .mobile-dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 200;
+            width: 100%;
+            max-width: 175px;
+        }
+
+        .mobile-dropdown-menu a {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .mobile-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-dropdown-menu a:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
         @media (max-width: 1024px) {
             .hero {
                 flex-direction: column;
@@ -222,6 +274,18 @@
         }
 
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                position: relative;
+            }
+
             header {
                 padding: 2rem 0;
             }
@@ -242,19 +306,43 @@
                 min-height: auto;
                 padding: 1.5rem;
             }
+
+            .logo img {
+                max-height: 40px;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navigation">
+    <!-- Navigation -->
+    <nav class="navigation" data-aos="fade-down">
         <div class="nav-container">
-            <a href="#" class="logo">Chess Academy</a>
+            <a href="/" class="logo">
+                <img src="Contact.png" alt="Chess Club Logo">
+            </a>
             <div class="nav-links">
-                <a href="#curriculum">Advanced Training</a>
+                <a href="#home">Home</a>
+                <a href="#services">Teaching</a>
+                <a href="#about">About</a>
+                <a href="#tournaments">Tournaments</a>
+                <a href="#contact">Contact</a>
+                <a href="#gallery">Gallery</a>
+            </div>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <div id="mobile-dropdown-menu" class="mobile-dropdown-menu">
+                <a href="#home">Home</a>
+                <a href="#services">Teaching</a>
+                <a href="#about">About</a>
+                <a href="#tournaments">Tournaments</a>
+                <a href="#contact">Contact</a>
+                <a href="#gallery">Gallery</a>
             </div>
         </div>
     </nav>
-
     <header class="container">
         <h1 data-aos="fade-up" data-aos-duration="1500">Intermediate Chess Mastery</h1>
         <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">Elevate Your Game to the Next Level</p>
@@ -272,7 +360,7 @@
     </section>
 
     <section id="curriculum" class="container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1500">Advanced Training Modules</h2>
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1500">Advanced Training Path</h2>
         <div class="service-grid">
             <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
                 <h3>Positional Mastery</h3>
@@ -280,7 +368,7 @@
             </div>
             <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
                 <h3>Advanced Tactics</h3>
-                <p>Master complex combinations, sacrifice techniques, and defensive resources. Study classic games and learn to calculate multiple variations accurately.</p>
+                <p>Master complex combinations, sacrifice techniques, and defensive resources. Study famous classical games and learn to calculate multiple variations accurately to crush!</p>
             </div>
             <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
                 <h3>Opening Repertoire</h3>
