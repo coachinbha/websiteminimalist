@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Chess Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .navigation {
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 100;
+            border-bottom: 1px solid var(--text-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 0;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        header h1 {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+            background-color: var(--bg-color);
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--text-color);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            header h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 0;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigation">
+        <div class="nav-container">
+            <a href="#" class="logo">Chess Academy</a>
+            <div class="nav-links">
+                <a href="#curriculum">Advanced Training</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container">
+        <h1 data-aos="fade-up" data-aos-duration="1500">Intermediate Chess Mastery</h1>
+        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">Elevate Your Game to the Next Level</p>
+    </header>
+
+    <section class="hero container">
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="1500">
+            <h2>Perfect Your Strategy</h2>
+            <p>For players who know the basics but want to improve, our intermediate program focuses on advanced tactics, positional play, and tournament preparation. Transform your understanding of chess and boost your rating.</p>
+            <a href="https://coachinbha.github.io/websiteminimalist/signup.html" class="cta-button">Book a Lesson</a>
+        </div>
+        <div class="hero-image" data-aos="fade-left" data-aos-duration="1500">
+            <img src="/api/placeholder/500/400" alt="Chess players analyzing position" />
+        </div>
+    </section>
+
+    <section id="curriculum" class="container">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1500">Advanced Training Modules</h2>
+        <div class="service-grid">
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                <h3>Positional Mastery</h3>
+                <p>Deep dive into pawn structures, piece coordination, and strategic planning. Learn to evaluate positions, create long-term plans, and exploit weaknesses in your opponent's position.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                <h3>Advanced Tactics</h3>
+                <p>Master complex combinations, sacrifice techniques, and defensive resources. Study classic games and learn to calculate multiple variations accurately.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
+                <h3>Opening Repertoire</h3>
+                <p>Develop a personalized opening repertoire for both colors. Understanding middlegame plans, typical pawn structures, and common tactical motifs in your chosen openings.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="text-align: center;">
+        <div data-aos="fade-up" data-aos-duration="1500">
+            <h2 class="section-title">Ready to Advance?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Book a skills assessment to customize your training plan</p>
+            <a href="https://coachinbha.github.io/websiteminimalist/signup.html" class="cta-button">Book a Lesson</a>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
