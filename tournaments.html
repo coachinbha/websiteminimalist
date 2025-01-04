@@ -10,6 +10,7 @@
             --bg-color: #ffffff;
             --text-color: #000000;
             --accent-color: #000000;
+            --spacing-unit: 0.675rem;
         }
 
         * {
@@ -23,9 +24,11 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.4;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
-            padding: 2rem;
+            flex-direction: column;
+            align-items: center;
+            padding: calc(var(--spacing-unit) * 3);
         }
 
         .tournament-container {
@@ -34,6 +37,7 @@
             background-color: var(--bg-color);
             border: 2px solid var(--text-color);
             padding: 2rem;
+            margin-bottom: calc(var(--spacing-unit) * 2);
         }
 
         .tournament-title {
@@ -83,28 +87,33 @@
             opacity: 0.7;
         }
 
-        .back-link {
-            display: inline-block;
-            color: var(--bg-color);
-            background-color: var(--text-color);
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            border: 2px solid var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .back-link:hover {
-            background-color: transparent;
-            color: var(--text-color);
-        }
-
-        .back-section {
+        .form-actions {
             text-align: center;
-            margin-top: 2rem;
+        }
+
+        .back-button {
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 0.75em 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid black;
+            box-shadow: 0 0 0 0 black;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .back-button:hover {
+            transform: translateY(-4px) translateX(-2px);
+            box-shadow: 2px 5px 0 0 black;
+        }
+
+        .back-button:active {
+            transform: translateY(2px) translateX(1px);
+            box-shadow: 0 0 0 0 black;
         }
 
         @media (max-width: 768px) {
@@ -114,6 +123,11 @@
 
             .tournament-container {
                 padding: 1.5rem;
+            }
+            
+            .back-button {
+                font-size: 0.95rem;
+                padding: 0.7em 1.4em;
             }
         }
     </style>
@@ -157,8 +171,8 @@
             <div class="detail-section">
                 <div class="detail-title">Entry Fee</div>
                 <ul class="detail-content detail-list">
-                    <li>Rated Sections: $25 (by Jan 8, 2025); $35 after</li>
-                    <li>Unrated Sections: $20 (by Jan 8, 2025); $30 after</li>
+                    <li>Rated Sections: $25 (by Jan 3, 2025); $35 after</li>
+                    <li>Unrated Sections: $20 (by Jan 3, 2025); $30 after</li>
                 </ul>
             </div>
 
@@ -188,14 +202,11 @@
                     </a> for any queries
                 </div>
             </div>
-
-            <div class="detail-section back-section">
-                <a href="https://windsorchesslions.com" 
-                   class="back-link">
-                    Back to Windsor Chess Lions Website
-                </a>
-            </div>
         </div>
+    </div>
+    
+    <div class="form-actions">
+        <a href="https://windsorchesslions.com" class="back-button">Back to Website</a>
     </div>
 </body>
 </html>
