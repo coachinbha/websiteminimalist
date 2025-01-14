@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Tournament Fundraiser</title>
+    <title>Chess Tournament - Windsor Chess Lions</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -69,6 +69,9 @@
 
         .detail-content {
             font-size: 1rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .detail-list {
@@ -85,6 +88,19 @@
         .registration-link:hover,
         .contact-link:hover {
             opacity: 0.7;
+        }
+
+        .past-tournaments {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ccc;
+        }
+
+        .past-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         .form-actions {
@@ -122,7 +138,17 @@
             }
 
             .tournament-container {
-                padding: 1.5rem calc(1.5rem + 5px);  /* Added 5px to left and right padding */
+                padding: 1.5rem;
+                width: 95%;
+            }
+            
+            .detail-content {
+                font-size: 0.95rem;
+            }
+            
+            .contact-link,
+            .registration-link {
+                word-break: break-all;
             }
             
             .back-button {
@@ -134,58 +160,59 @@
 </head>
 <body>
     <div class="tournament-container">
-        <h2 class="tournament-title">Chess Tournament Fundraiser</h2>
+        <h2 class="tournament-title">Chess Tournament</h2>
         
         <div class="tournament-details">
             <div class="detail-section">
                 <div class="detail-title">Date</div>
-                <div class="detail-content">Saturday, Jan 11, 2025</div>
+                <div class="detail-content">Friday, March 22, 2025</div>
             </div>
 
             <div class="detail-section">
                 <div class="detail-title">Organizer</div>
-                <div class="detail-content">2715 RCAC + Windsor Chess Lions</div>
+                <div class="detail-content">Windsor Chess Lions</div>
             </div>
 
             <div class="detail-section">
                 <div class="detail-title">Location</div>
-                <div class="detail-content">Royal Canadian Legion (Branch 594)<br>5030 Howard Ave, Windsor, ON, N9A 6Z6</div>
+                <div class="detail-content">Royal Canadian Legion (Branch 594)<br>5030 Howard Ave, Windsor, ON N9A 6Z6</div>
             </div>
 
             <div class="detail-section">
-                <div class="detail-title">Format</div>
-                <div class="detail-content">4 rounds, CFC RATED & UNRATED Sections</div>
+                <div class="detail-title">Format & Time Control</div>
+                <div class="detail-content">4 rounds (Swiss system); CFC RATED & UNRATED<br>G30/d0 (30 minutes per player, per game)</div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-title">Schedule</div>
+                <div class="detail-content">
+                    Check-in: 10:00 am<br>
+                    Round 1: 10:30 am<br>
+                    Round 2: 11:45 am<br>
+                    Round 3: 1:15 pm<br>
+                    Round 4: 2:30 pm
+                </div>
             </div>
 
             <div class="detail-section">
                 <div class="detail-title">Sections</div>
                 <ul class="detail-content detail-list">
                     <li>Grade 1-5 (CFC Rated)</li>
-                    <li>Grade 6-12 (CFC Rated)</li>
+                    <li>Grade 6-8 (CFC Rated)</li>
+                    <li>Grade 9-12 (CFC Rated)</li>
                     <li>Grade 1-5 (Unrated)</li>
-                    <li>Grade 6-12 (Unrated)</li>
-                    <li>Adults (unrated)</li>
+                    <li>Grade 6-8 (Unrated)</li>
+                    <li>Grade 9-12 (Unrated)</li>
+                    <li>Adults (Unrated)</li>
                 </ul>
             </div>
 
             <div class="detail-section">
                 <div class="detail-title">Entry Fee</div>
                 <ul class="detail-content detail-list">
-                    <li>Rated Sections: $25 (by Jan 8, 2025); $35 after</li>
-                    <li>Unrated Sections: $20 (by Jan 8, 2025); $30 after</li>
+                    <li>Rated Sections: $25</li>
+                    <li>Unrated Sections: $20</li>
                 </ul>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Registration</div>
-                <div class="detail-content">
-                    <a href="https://forms.gle/2BNzLYAAY4fbCgv48" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="registration-link">
-                        Please fill the Google form
-                    </a>
-                </div>
             </div>
 
             <div class="detail-section">
@@ -194,19 +221,41 @@
             </div>
 
             <div class="detail-section">
+                <div class="detail-title">Additional Information</div>
+                <ul class="detail-content detail-list">
+                    <li>Chess boards will be provided</li>
+                    <li>Some clocks available</li>
+                    <li>Snacks available for purchase (Cash only)</li>
+                    <li>Prizes: Trophies or medals based on registration</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
                 <div class="detail-title">Contact</div>
                 <div class="detail-content">
-                    <a href="mailto:windsorchesslions@gmail.com" 
-                       class="contact-link">
+                    <a href="mailto:windsorchesslions@gmail.com" class="contact-link">
                         windsorchesslions@gmail.com
-                    </a> for any queries
+                    </a>
                 </div>
             </div>
+
         </div>
     </div>
     
     <div class="form-actions">
         <a href="https://windsorchesslions.com" class="back-button">Back to Website</a>
+    </div>
+
+    <div class="tournament-container past-tournaments">
+        <h3 class="past-title">Past Tournaments</h3>
+        <div class="detail-section">
+            <div class="detail-title">January 11, 2025</div>
+            <div class="detail-content">
+                Chess Tournament Fundraiser<br>
+                Organized by: 2715 RCAC + Windsor Chess Lions<br>
+                Location: Royal Canadian Legion (Branch 594)
+            </div>
+        </div>
     </div>
 </body>
 </html>
