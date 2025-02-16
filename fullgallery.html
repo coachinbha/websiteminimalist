@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .gallery-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .image-container {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in forwards;
+      cursor: pointer;
+    }
+
+    .image-container img {
+      width: 100%;
+      display: block;
+      transition: all 0.4s ease;
+    }
+
+    .image-4-3 {
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .image-3-4 {
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+
+    .image-container:hover img {
+      filter: brightness(1.1);
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    img.error {
+      display: none;
+    }
+
+    @media (max-width: 1200px) {
+      .gallery-wrapper {
+        max-width: 900px;
+      }
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .gallery-wrapper {
+        max-width: 600px;
+      }
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery-wrapper">
+    <div class="gallery">
+      <!-- Row 1 - 4:3 -->
+      <div class="image-container">
+        <img src="site1.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site3.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site5.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site7.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+
+      <!-- Row 2 - 3:4 -->
+      <div class="image-container">
+        <img src="site2.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site4.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site6.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site8.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+
+      <!-- Row 3 - 4:3 -->
+      <div class="image-container">
+        <img src="site9.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site11.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site13.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site15.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+
+      <!-- Row 4 - 3:4 -->
+      <div class="image-container">
+        <img src="site10.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site12.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site14.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site16.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+
+      <!-- Row 5 - 4:3 -->
+      <div class="image-container">
+        <img src="site17.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site19.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site21.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site23.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+
+      <!-- Row 6 - 3:4 -->
+      <div class="image-container">
+        <img src="site18.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site20.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site22.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site24.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+
+      <!-- Row 7 - 4:3 -->
+      <div class="image-container">
+        <img src="site25.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site27.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site29.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site31.jpg" class="image-4-3" onerror="this.classList.add('error')">
+      </div>
+
+      <!-- Row 8 - 3:4 -->
+      <div class="image-container">
+        <img src="site26.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site28.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site30.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+      <div class="image-container">
+        <img src="site32.jpg" class="image-3-4" onerror="this.classList.add('error')">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.image-container').forEach(container => {
+      if (container.querySelector('img.error')) {
+        container.remove();
+      }
+    });
+  </script>
+</body>
+</html>
