@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Tournament - Windsor Chess Lions</title>
+    <title>Chess Tournaments - Windsor Chess Lions</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --bg-color: #ffffff;
@@ -31,28 +32,100 @@
             padding: calc(var(--spacing-unit) * 3);
         }
 
-        .tournament-container {
+        .page-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        .tournaments-container {
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tournament-card {
             background-color: var(--bg-color);
             border: 2px solid var(--text-color);
-            padding: 2rem;
-            margin-bottom: calc(var(--spacing-unit) * 2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .tournament-header {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .tournament-header:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .tournament-title-container {
+            flex: 1;
         }
 
         .tournament-title {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 900;
             text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 2rem;
-            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .tournament-date {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .toggle-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            margin-left: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon::before,
+        .toggle-icon::after {
+            content: '';
+            position: absolute;
+            background-color: var(--text-color);
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            margin-top: -1px;
+        }
+
+        .toggle-icon::after {
+            transform: rotate(90deg);
+            transition: transform 0.3s ease;
+        }
+
+        .tournament-card.active .toggle-icon::after {
+            transform: rotate(0);
         }
 
         .tournament-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding: 0 2rem;
+        }
+
+        .tournament-card.active .tournament-details {
+            max-height: 2000px;
+            padding-bottom: 2rem;
         }
 
         .detail-section {
@@ -90,21 +163,17 @@
             opacity: 0.7;
         }
 
-        .past-tournaments {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #ccc;
-        }
-
-        .past-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .past-tournaments-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 3rem 0 1.5rem;
             text-align: center;
+            text-transform: uppercase;
         }
 
         .form-actions {
             text-align: center;
+            margin-top: 2rem;
         }
 
         .back-button {
@@ -133,13 +202,24 @@
         }
 
         @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
             .tournament-title {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
+            }
+            
+            .tournament-date {
+                font-size: 1rem;
             }
 
-            .tournament-container {
-                padding: 1.5rem;
-                width: 95%;
+            .tournament-header {
+                padding: 1.2rem 1.5rem;
+            }
+            
+            .tournament-details {
+                padding: 0 1.5rem;
             }
             
             .detail-content {
@@ -159,112 +239,232 @@
     </style>
 </head>
 <body>
-    <div class="tournament-container">
-        <h2 class="tournament-title">Chess Tournament</h2>
+    <h1 class="page-title" data-aos="fade-down">Windsor Chess Lions Tournaments</h1>
+    
+    <div class="tournaments-container">
+        <!-- Tournament 1 -->
+        <div class="tournament-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="tournament-header" onclick="toggleTournament(this.parentElement)">
+                <div class="tournament-title-container">
+                    <h2 class="tournament-title">March Chess Tournament</h2>
+                    <div class="tournament-date">Saturday, March 22, 2025</div>
+                </div>
+                <div class="toggle-icon"></div>
+            </div>
+            
+            <div class="tournament-details">
+                <div class="detail-section">
+                    <div class="detail-title">Organizer</div>
+                    <div class="detail-content">Windsor Chess Lions</div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Location</div>
+                    <div class="detail-content">Royal Canadian Legion (Branch 594)<br>5030 Howard Ave, Windsor, ON N9A 6Z6</div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Format & Time Control</div>
+                    <div class="detail-content">4 rounds (Swiss system); CFC RATED & UNRATED<br>G30/d0 (30 minutes per player, per game)</div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Schedule</div>
+                    <div class="detail-content">
+                        Check-in: 10:00 am<br>
+                        Round 1: 10:30 am<br>
+                        Round 2: 11:45 am<br>
+                        Round 3: 1:15 pm<br>
+                        Round 4: 2:30 pm
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Sections</div>
+                    <ul class="detail-content detail-list">
+                        <li>Grade 1-5 (CFC Rated)</li>
+                        <li>Grade 6-8 (CFC Rated)</li>
+                        <li>Grade 9-12 (CFC Rated)</li>
+                        <li>Grade 1-5 (Unrated)</li>
+                        <li>Grade 6-8 (Unrated)</li>
+                        <li>Grade 9-12 (Unrated)</li>
+                        <li>Adults (Unrated)</li>
+                    </ul>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Entry Fee</div>
+                    <ul class="detail-content detail-list">
+                        <li>Rated Sections: $25</li>
+                        <li>Unrated Sections: $20</li>
+                    </ul>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Registration</div>
+                    <div class="detail-content">
+                        Please fill out this Google form to register:<br>
+                        <a href="https://forms.gle/xUY2VfRxiYhwfepz6" class="registration-link" target="_blank">
+                            Registration Form
+                        </a>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Payment</div>
+                    <div class="detail-content">e-transfer to windsorchesslions@gmail.com</div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Additional Information</div>
+                    <ul class="detail-content detail-list">
+                        <li>Chess boards will be provided</li>
+                        <li>Some clocks available</li>
+                        <li>Snacks available for purchase (Cash only)</li>
+                        <li>Prizes: Trophies or medals based on registration</li>
+                    </ul>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-title">Contact</div>
+                    <div class="detail-content">
+                        <a href="mailto:windsorchesslions@gmail.com" class="contact-link">
+                            windsorchesslions@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <div class="tournament-details">
-            <div class="detail-section">
-                <div class="detail-title">Date</div>
-                <div class="detail-content">Saturday, March 22, 2025</div>
+        <!-- Tournament 2 -->
+        <div class="tournament-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="tournament-header" onclick="toggleTournament(this.parentElement)">
+                <div class="tournament-title-container">
+                    <h2 class="tournament-title">Amherstburg Open Air Chess Tournament</h2>
+                    <div class="tournament-date">Saturday, August 9, 2025</div>
+                </div>
+                <div class="toggle-icon"></div>
             </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Organizer</div>
-                <div class="detail-content">Windsor Chess Lions</div>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Location</div>
-                <div class="detail-content">Royal Canadian Legion (Branch 594)<br>5030 Howard Ave, Windsor, ON N9A 6Z6</div>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Format & Time Control</div>
-                <div class="detail-content">4 rounds (Swiss system); CFC RATED & UNRATED<br>G30/d0 (30 minutes per player, per game)</div>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Schedule</div>
-                <div class="detail-content">
-                    Check-in: 10:00 am<br>
-                    Round 1: 10:30 am<br>
-                    Round 2: 11:45 am<br>
-                    Round 3: 1:15 pm<br>
-                    Round 4: 2:30 pm
+            
+            <div class="tournament-details">
+                <div class="detail-section">
+                    <div class="detail-title">Time</div>
+                    <div class="detail-content">Starts at 11:00 am</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Check-in</div>
+                    <div class="detail-content">10:15 am - 10:45 am</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Format</div>
+                    <ul class="detail-content detail-list">
+                        <li>One big section</li>
+                        <li>4 rounds</li>
+                        <li>G15/d0 (15 minutes per player, no delay)</li>
+                        <li>First round at 11:00 am</li>
+                        <li>Subsequent rounds start ASAP</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Organizer</div>
+                    <div class="detail-content">Windsor Chess Lions</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Location</div>
+                    <div class="detail-content">252 Dalhousie St, Amherstburg, N9V 1W7</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Entry Fee</div>
+                    <div class="detail-content">Free entry - Open to all!</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Equipment</div>
+                    <div class="detail-content">Boards, clocks, and tables provided</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Prizes</div>
+                    <div class="detail-content">Trophies and medals to the winners!</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Registration</div>
+                    <div class="detail-content">
+                        Register by filling the form in the QR code:<br>
+                        <a href="https://forms.gle/nXcDDyp5EEKFnUbh6" class="registration-link" target="_blank">
+                            Registration Form
+                        </a>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Contact</div>
+                    <div class="detail-content">
+                        <a href="mailto:windsorchesslions@gmail.com" class="contact-link">
+                            windsorchesslions@gmail.com
+                        </a>
+                        <br>
+                        <a href="mailto:tourism@amherstburg.ca" class="contact-link">
+                            tourism@amherstburg.ca
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Sections</div>
-                <ul class="detail-content detail-list">
-                    <li>Grade 1-5 (CFC Rated)</li>
-                    <li>Grade 6-8 (CFC Rated)</li>
-                    <li>Grade 9-12 (CFC Rated)</li>
-                    <li>Grade 1-5 (Unrated)</li>
-                    <li>Grade 6-8 (Unrated)</li>
-                    <li>Grade 9-12 (Unrated)</li>
-                    <li>Adults (Unrated)</li>
-                </ul>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Entry Fee</div>
-                <ul class="detail-content detail-list">
-                    <li>Rated Sections: $25</li>
-                    <li>Unrated Sections: $20</li>
-                </ul>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Registration</div>
-                <div class="detail-content">
-                    Please fill out this Google form to register:<br>
-                    <a href="https://forms.gle/xUY2VfRxiYhwfepz6" class="registration-link" target="_blank">
-                        Registration Form
-                    </a>
+        </div>
+    </div>
+    
+    <h2 class="past-tournaments-title" data-aos="fade-up">Past Tournaments</h2>
+    
+    <div class="tournaments-container">
+        <div class="tournament-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="tournament-header" onclick="toggleTournament(this.parentElement)">
+                <div class="tournament-title-container">
+                    <h2 class="tournament-title">Army Cadets Fundraiser</h2>
+                    <div class="tournament-date">January 11, 2025</div>
                 </div>
+                <div class="toggle-icon"></div>
             </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Payment</div>
-                <div class="detail-content">e-transfer to windsorchesslions@gmail.com</div>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Additional Information</div>
-                <ul class="detail-content detail-list">
-                    <li>Chess boards will be provided</li>
-                    <li>Some clocks available</li>
-                    <li>Snacks available for purchase (Cash only)</li>
-                    <li>Prizes: Trophies or medals based on registration</li>
-                </ul>
-            </div>
-
-            <div class="detail-section">
-                <div class="detail-title">Contact</div>
-                <div class="detail-content">
-                    <a href="mailto:windsorchesslions@gmail.com" class="contact-link">
-                        windsorchesslions@gmail.com
-                    </a>
+            
+            <div class="tournament-details">
+                <div class="detail-section">
+                    <div class="detail-title">Organizer</div>
+                    <div class="detail-content">2715 RCAC + Windsor Chess Lions</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-title">Location</div>
+                    <div class="detail-content">Royal Canadian Legion (Branch 594)</div>
                 </div>
             </div>
         </div>
     </div>
     
     <div class="form-actions">
-        <a href="https://windsorchesslions.com" class="back-button">Back to Website</a>
+        <a href="https://windsorchesslions.com" class="back-button" data-aos="fade-up">Back to Website</a>
     </div>
 
-    <div class="tournament-container past-tournaments">
-        <h3 class="past-title">Past Tournaments</h3>
-        <div class="detail-section">
-            <div class="detail-title">January 11, 2025</div>
-            <div class="detail-content">
-                Chess Tournament Fundraiser<br>
-                Organized by: 2715 RCAC + Windsor Chess Lions<br>
-                Location: Royal Canadian Legion (Branch 594)
-            </div>
-        </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true
+        });
+        
+        // Function to toggle tournament details
+        function toggleTournament(element) {
+            element.classList.toggle('active');
+            
+            // Add fade-in animation to details when expanded
+            const details = element.querySelector('.tournament-details');
+            if (element.classList.contains('active')) {
+                details.style.opacity = 0;
+                setTimeout(() => {
+                    details.style.transition = 'opacity 0.5s ease, max-height 0.5s ease';
+                    details.style.opacity = 1;
+                }, 10);
+            } else {
+                details.style.transition = 'opacity 0.3s ease, max-height 0.5s ease';
+                details.style.opacity = 0;
+            }
+        }
+    </script>
 </body>
 </html>
