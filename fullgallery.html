@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap">
   <style>
@@ -13,6 +14,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
+      box-sizing: border-box;
     }
 
     .info-section {
@@ -36,6 +38,7 @@
       justify-content: center;
       gap: 15px;
       margin-bottom: 30px;
+      flex-wrap: wrap;
     }
 
     .button {
@@ -54,6 +57,8 @@
       letter-spacing: 0.5px;
       transition: all 0.3s ease;
       cursor: pointer;
+      justify-content: center;
+      min-width: 180px;
     }
 
     .button:hover {
@@ -64,8 +69,6 @@
     .button i {
       margin-left: 8px;
     }
-
-    /* Home button now uses the same color as the past tournaments button */
 
     .gallery {
       display: grid;
@@ -80,12 +83,14 @@
       opacity: 0;
       animation: fadeIn 0.5s ease-in forwards;
       cursor: pointer;
+      height: 100%;
     }
 
     .image-container img {
       width: 100%;
       display: block;
       transition: all 0.4s ease;
+      height: 100%;
     }
 
     .image-4-3 {
@@ -118,6 +123,7 @@
       display: none;
     }
 
+    /* Improved responsive breakpoints */
     @media (max-width: 1200px) {
       .gallery-wrapper {
         max-width: 900px;
@@ -130,27 +136,45 @@
     @media (max-width: 800px) {
       .gallery-wrapper {
         max-width: 600px;
+        padding: 15px;
       }
       .gallery {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
       }
     }
 
     @media (max-width: 500px) {
+      .gallery-wrapper {
+        padding: 10px;
+      }
       .gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
       }
       .button {
         padding: 10px 20px;
         font-size: 14px;
+        min-width: 0;
+        width: auto;
       }
       .gallery-info {
         font-size: 14px;
-        padding: 0 15px;
+        padding: 0 10px;
       }
       .button-container {
-        flex-direction: column;
         gap: 10px;
+        justify-content: center;
+      }
+      .info-section {
+        margin-bottom: 15px;
+      }
+    }
+    
+    /* Fix for very small screens */
+    @media (max-width: 320px) {
+      .gallery {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -285,11 +309,26 @@
   </div>
 
   <script>
+    // Remove containers with missing images
     document.querySelectorAll('.image-container').forEach(container => {
       if (container.querySelector('img.error')) {
         container.remove();
       }
     });
+
+    // Apply equal height to maintain grid integrity for 3:4 and 4:3 images
+    function adjustImageContainers() {
+      const containers = document.querySelectorAll('.image-container');
+      if (window.innerWidth <= 500) {
+        containers.forEach(container => {
+          container.style.height = 'auto';
+        });
+      }
+    }
+
+    // Run on load and resize
+    window.addEventListener('load', adjustImageContainers);
+    window.addEventListener('resize', adjustImageContainers);
   </script>
 </body>
 </html>
