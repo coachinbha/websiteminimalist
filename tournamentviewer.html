@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --text-color: rgba(0, 0, 0, 0.7);
+            --transition-duration: 400ms;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tournament-folder {
+            margin-bottom: 60px;
+            border: 1px solid var(--border-color);
+        }
+
+        .folder-header {
+            padding: 32px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--secondary-color);
+            transition: background-color 0.3s;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .folder-header:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .folder-header h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tournament-description {
+            padding: 32px 32px 0;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            max-width: 800px;
+        }
+
+        .folder-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height var(--transition-duration) ease-out, 
+                        opacity var(--transition-duration) ease-out,
+                        padding var(--transition-duration) ease;
+            padding: 0 32px;
+        }
+
+        .folder-content.active {
+            max-height: 3000px; /* Increased to accommodate 9 images */
+            opacity: 1;
+            padding: 32px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-gap: 32px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            margin-top: 32px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity var(--transition-duration) ease, 
+                       transform var(--transition-duration) ease;
+        }
+
+        .folder-content.active .image-grid {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 200ms;
+        }
+
+        .image-container {
+            position: relative;
+            padding-top: 75%;
+            background: var(--secondary-color);
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+
+        .image-caption {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            font-weight: 400;
+        }
+
+        .toggle-icon {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            transition: transform var(--transition-duration) ease;
+        }
+
+        .folder-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .toggle-icon::before,
+        .toggle-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon::before {
+            width: 1px;
+            height: 20px;
+            left: 10px;
+            top: 0;
+        }
+
+        .toggle-icon::after {
+            width: 20px;
+            height: 1px;
+            left: 0;
+            top: 10px;
+        }
+
+        .folder-header.active .toggle-icon::before {
+            transform: rotate(90deg);
+        }
+
+        .show-images-btn {
+            display: none;
+            width: 100%;
+            padding: 12px 24px;
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity var(--transition-duration) ease, 
+                       transform var(--transition-duration) ease,
+                       background-color 0.3s;
+        }
+
+        .folder-content.active .show-images-btn {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 100ms;
+        }
+
+        .show-images-btn:hover {
+            background-color: #e5e5e5;
+        }
+
+        .show-images-btn[aria-expanded="true"] {
+            background-color: #e5e5e5;
+        }
+
+        /* Hide empty image slots and error images */
+        .image-container.empty,
+        .image-container.error {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .folder-header {
+                padding: 24px;
+            }
+
+            .folder-content.active {
+                padding: 24px;
+            }
+
+            .tournament-description {
+                padding: 0;
+            }
+
+            .folder-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .image-grid {
+                grid-gap: 20px;
+                display: none;
+            }
+
+            .image-grid.visible {
+                display: grid;
+            }
+
+            .show-images-btn {
+                display: block;
+            }
+        }
+
+        /* Fade-in animations for individual items in the content */
+        .folder-content .tournament-description {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity var(--transition-duration) ease, 
+                       transform var(--transition-duration) ease;
+        }
+
+        .folder-content.active .tournament-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .folder-content .image-container {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity var(--transition-duration) ease, 
+                       transform var(--transition-duration) ease;
+        }
+
+        /* Transition delays for all 9 images */
+        .folder-content.active .image-container:nth-child(1) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 200ms;
+        }
+
+        .folder-content.active .image-container:nth-child(2) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 250ms;
+        }
+
+        .folder-content.active .image-container:nth-child(3) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 300ms;
+        }
+
+        .folder-content.active .image-container:nth-child(4) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 350ms;
+        }
+
+        .folder-content.active .image-container:nth-child(5) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 400ms;
+        }
+
+        .folder-content.active .image-container:nth-child(6) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 450ms;
+        }
+
+        .folder-content.active .image-container:nth-child(7) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 500ms;
+        }
+
+        .folder-content.active .image-container:nth-child(8) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 550ms;
+        }
+
+        .folder-content.active .image-container:nth-child(9) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 600ms;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <!-- Spring Tournament 2024 -->
+        <div class="tournament-folder" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+            <div class="folder-header">
+                <h2>Lorem Ipsum 2024</h2>
+                <div class="toggle-icon"></div>
+            </div>
+            <div class="folder-content">
+                <div class="tournament-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </div>
+                <button class="show-images-btn" aria-expanded="false">Lorem Ipsum</button>
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Lorem ipsum">
+                        <div class="image-caption">Lorem Ipsum</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Dolor sit">
+                        <div class="image-caption">Dolor Sit</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Consectetur">
+                        <div class="image-caption">Consectetur</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Adipiscing">
+                        <div class="image-caption">Adipiscing</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Elit">
+                        <div class="image-caption">Elit</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Tempor">
+                        <div class="image-caption">Tempor</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Incididunt">
+                        <div class="image-caption">Incididunt</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Ut labore">
+                        <div class="image-caption">Ut Labore</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Et dolore">
+                        <div class="image-caption">Et Dolore</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Winter Championship 2023 -->
+        <div class="tournament-folder" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="folder-header">
+                <h2>Dolor Sit 2023</h2>
+                <div class="toggle-icon"></div>
+            </div>
+            <div class="folder-content">
+                <div class="tournament-description">
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                </div>
+                <button class="show-images-btn">Dolor Sit</button>
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Amet consectetur">
+                        <div class="image-caption">Amet Consectetur</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Adipiscing elit">
+                        <div class="image-caption">Adipiscing Elit</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Tempor incididunt">
+                        <div class="image-caption">Tempor Incididunt</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Ut labore">
+                        <div class="image-caption">Ut Labore</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Et dolore">
+                        <div class="image-caption">Et Dolore</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Magna aliqua">
+                        <div class="image-caption">Magna Aliqua</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Ut enim">
+                        <div class="image-caption">Ut Enim</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Ad minim">
+                        <div class="image-caption">Ad Minim</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Veniam quis">
+                        <div class="image-caption">Veniam Quis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summer Open 2023 -->
+        <div class="tournament-folder" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            <div class="folder-header">
+                <h2>Consectetur Adipiscing 2023</h2>
+                <div class="toggle-icon"></div>
+            </div>
+            <div class="folder-content">
+                <div class="tournament-description">
+                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.
+                </div>
+                <button class="show-images-btn">Consectetur Adipiscing</button>
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Nostrud exercitation">
+                        <div class="image-caption">Nostrud Exercitation</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Ullamco laboris">
+                        <div class="image-caption">Ullamco Laboris</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Nisi ut aliquip">
+                        <div class="image-caption">Nisi Ut Aliquip</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Ex ea commodo">
+                        <div class="image-caption">Ex Ea Commodo</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Consequat duis">
+                        <div class="image-caption">Consequat Duis</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Aute irure">
+                        <div class="image-caption">Aute Irure</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Dolor in reprehenderit">
+                        <div class="image-caption">Dolor In Reprehenderit</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Voluptate velit">
+                        <div class="image-caption">Voluptate Velit</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Esse cillum">
+                        <div class="image-caption">Esse Cillum</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fall Classic 2022 -->
+        <div class="tournament-folder" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+            <div class="folder-header">
+                <h2>Elit Tempor 2022</h2>
+                <div class="toggle-icon"></div>
+            </div>
+            <div class="folder-content">
+                <div class="tournament-description">
+                    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+                </div>
+                <button class="show-images-btn">Elit Tempor</button>
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Dolore eu fugiat">
+                        <div class="image-caption">Dolore Eu Fugiat</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Nulla pariatur">
+                        <div class="image-caption">Nulla Pariatur</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Excepteur sint">
+                        <div class="image-caption">Excepteur Sint</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Occaecat cupidatat">
+                        <div class="image-caption">Occaecat Cupidatat</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Non proident">
+                        <div class="image-caption">Non Proident</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Sunt in culpa">
+                        <div class="image-caption">Sunt In Culpa</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Qui officia">
+                        <div class="image-caption">Qui Officia</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Deserunt mollit">
+                        <div class="image-caption">Deserunt Mollit</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="/api/placeholder/400/300" alt="Anim id est">
+                        <div class="image-caption">Anim Id Est</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100
+        });
+
+        // Handle image errors
+        document.querySelectorAll('.image-container img').forEach(img => {
+            // Mark empty src images as empty
+            if (!img.src || img.src === '' || img.src === 'null' || img.src === 'undefined') {
+                img.parentElement.classList.add('empty');
+            }
+            
+            // Add error event listener to handle loading failures
+            img.addEventListener('error', function() {
+                this.parentElement.classList.add('error');
+            });
+        });
+
+        document.querySelectorAll('.folder-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = header.classList.contains('active');
+                
+                document.querySelectorAll('.folder-header').forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    header.classList.add('active');
+                    content.classList.add('active');
+                }
+            });
+        });
+
+        // Handle show/hide images buttons
+        document.querySelectorAll('.show-images-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const imageGrid = button.nextElementSibling;
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                
+                imageGrid.classList.toggle('visible');
+                button.setAttribute('aria-expanded', !isExpanded);
+                button.textContent = isExpanded ? 'Show Images' : 'Hide Images';
+                
+                // Reinitialize AOS for the newly visible elements
+                if (!isExpanded) {
+                    AOS.refresh();
+                }
+            });
+        });
+
+        // Function to update button text to reflect actual image count
+        function updateImageCounters() {
+            document.querySelectorAll('.image-grid').forEach(grid => {
+                const button = grid.previousElementSibling;
+                const visibleImageCount = grid.querySelectorAll('.image-container:not(.empty):not(.error)').length;
+                
+                if (visibleImageCount === 0) {
+                    button.textContent = 'No Images Available';
+                    button.disabled = true;
+                    button.style.opacity = '0.5';
+                    button.style.cursor = 'not-allowed';
+                } else {
+                    const buttonText = button.textContent.split(' ')[0]; // Get the first word of the button text
+                    button.textContent = buttonText + ` (${visibleImageCount})`;
+                }
+            });
+        }
+
+        // Call the function after images have had a chance to load
+        window.addEventListener('load', () => {
+            setTimeout(updateImageCounters, 500);
+        });
+    </script>
+</body>
+</html>
