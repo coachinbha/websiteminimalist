@@ -34,10 +34,11 @@
     .button-container {
       display: flex;
       justify-content: center;
+      gap: 15px;
       margin-bottom: 30px;
     }
 
-    .past-tournaments-button {
+    .button {
       display: inline-flex;
       align-items: center;
       background-color: #000;
@@ -55,14 +56,16 @@
       cursor: pointer;
     }
 
-    .past-tournaments-button:hover {
+    .button:hover {
       background-color: #333;
       transform: translateY(-2px);
     }
 
-    .past-tournaments-button i {
+    .button i {
       margin-left: 8px;
     }
+
+    /* Home button now uses the same color as the past tournaments button */
 
     .gallery {
       display: grid;
@@ -137,7 +140,7 @@
       .gallery {
         grid-template-columns: 1fr;
       }
-      .past-tournaments-button {
+      .button {
         padding: 10px 20px;
         font-size: 14px;
       }
@@ -145,16 +148,23 @@
         font-size: 14px;
         padding: 0 15px;
       }
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="gallery-wrapper">
     <div class="info-section">
-      <p class="gallery-info"></p>The pictures below are in no order. If you'd like to find images from a past tournament or find a past tournament, please use the button below.
+      <p class="gallery-info">The pictures below are in no order. If you'd like to find images from a past tournament or find a past tournament, please use the button below.</p>
     </div>
     <div class="button-container">
-      <a href="https://windsorchesslions.com/unfinished.html" class="past-tournaments-button">
+      <a href="https://windsorchesslions.com" class="button home-button">
+        Back to Website <i class="fas fa-home"></i>
+      </a>
+      <a href="https://windsorchesslions.com/unfinished.html" class="button past-tournaments-button">
         Past Tournaments <i class="fas fa-arrow-right"></i>
       </a>
     </div>
