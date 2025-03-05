@@ -346,6 +346,35 @@
             transform: translateY(0);
             transition-delay: 600ms;
         }
+
+        /* Back button styles */
+        .back-button {
+            display: block;
+            width: 240px;
+            padding: 16px 20px;
+            margin: 20px auto 40px;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #333333;
+            transform: translateY(-2px);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -459,6 +488,11 @@
                 </div>
             </div>
         </div>
+
+        <!-- Back button -->
+        <a href="https://windsorchesslions.com" class="back-button" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            Back to Home
+        </a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
