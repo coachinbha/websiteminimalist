@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Resources - Chess Lions</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <meta name="description" content="Chess tips, tutorials, and support articles from Chess Lions. Learn chess strategies, tournament preparation, and improve your game with our expert guides.">
+    
+    <!-- Google Fonts - Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --gray-100: #f8f8f8;
+            --gray-200: #e5e5e5;
+            --gray-400: #999999;
+            --gray-600: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-image {
+            width: 200px;
+            height: 120px;
+            object-fit: contain;
+            border: 2px solid #000;
+            background-color: #f5f5f5;
+        }
+
+        .page-title {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-600);
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Search and Filter */
+        .search-filter-section {
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            border: 2px solid var(--text-color);
+            background: var(--bg-color);
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .search-btn {
+            padding: 1rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: 2px solid var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Category Filters */
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            border: 2px solid var(--gray-200);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            border-color: var(--text-color);
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-card {
+            border: 2px solid var(--text-color);
+            background: var(--bg-color);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 180px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid var(--text-color);
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-image svg {
+            width: 60px;
+            height: 60px;
+            stroke: var(--gray-400);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-category {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-400);
+            margin-bottom: 0.5rem;
+        }
+
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            font-weight: 600;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .read-time svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--gray-400);
+        }
+
+        /* Featured Article */
+        .featured-article {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 2px solid var(--text-color);
+        }
+
+        .featured-article .article-image {
+            height: 100%;
+            min-height: 280px;
+            border-bottom: none;
+            border-right: 2px solid var(--text-color);
+        }
+
+        .featured-article .article-content {
+            padding: 2rem;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: var(--text-color);
+            color: var(--bg-color);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.35rem 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-article .article-title {
+            font-size: 1.75rem;
+        }
+
+        .featured-article .article-excerpt {
+            font-size: 1rem;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            grid-column: 1 / -1;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
+            color: var(--gray-600);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 0.6;
+        }
+
+        .back-link svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 2px solid var(--text-color);
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 800;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 0.5;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .logo-image {
+                width: 150px;
+                height: 90px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article .article-image {
+                min-height: 200px;
+                border-right: none;
+                border-bottom: 2px solid var(--text-color);
+            }
+
+            .featured-article .article-content {
+                padding: 1.5rem;
+            }
+
+            .featured-article .article-title {
+                font-size: 1.35rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .category-filters {
+                justify-content: center;
+            }
+
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Touch device optimization */
+        @media (hover: none) {
+            .article-card:hover {
+                transform: none;
+            }
+
+            .article-card:active {
+                transform: translateY(-2px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Link -->
+        <a href="https://michesslions.com/" class="back-link" data-aos="fade-right" data-aos-duration="500">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+        </a>
+
+        <!-- Header -->
+        <header class="header" data-aos="fade-down" data-aos-duration="600">
+            <a href="https://michesslions.com/" class="logo-link">
+                <img src="WCL business card 1050x600.png" 
+                     alt="Chess Lions Logo"
+                     class="logo-image">
+            </a>
+            <h1 class="page-title">Articles & Resources</h1>
+            <p class="page-subtitle">Tips, tutorials & chess knowledge</p>
+        </header>
+
+        <!-- Search and Filter -->
+        <div class="search-filter-section" data-aos="fade-up" data-aos-duration="500">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search articles...">
+                <button class="search-btn" id="searchBtn">Search</button>
+            </div>
+            <div class="category-filters" id="categoryFilters">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="beginner">Beginner</button>
+                <button class="category-btn" data-category="strategy">Strategy</button>
+                <button class="category-btn" data-category="tournament">Tournament</button>
+                <button class="category-btn" data-category="support">Support</button>
+            </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="articles-grid" id="articlesGrid"></div>
+
+        <!-- Footer -->
+        <footer class="footer" data-aos="fade-up" data-aos-duration="600">
+            <p class="footer-text">
+                Need help? <a href="https://michesslions.com/#contact" class="footer-link">Contact Us</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // ============================================
+        // ARTICLES DATA
+        // ============================================
+        
+        const articles = [
+            {
+                id: 1,
+                title: "Getting Started with Chess: A Complete Beginner's Guide",
+                excerpt: "Learn the fundamentals of chess including piece movement, basic rules, and essential strategies to start your chess journey on the right foot.",
+                category: "beginner",
+                date: "Jan 15, 2025",
+                readTime: "8 min read",
+                featured: true,
+                url: "article-beginners-guide.html",
+                image: null
+            },
+            {
+                id: 2,
+                title: "Understanding Chess Notation: How to Read and Write Moves",
+                excerpt: "Master algebraic notation to record your games, study grandmaster matches, and communicate with other chess players effectively.",
+                category: "beginner",
+                date: "Jan 10, 2025",
+                readTime: "5 min read",
+                featured: false,
+                url: "article-beginners-guide.html",
+                image: null
+            },
+            {
+                id: 3,
+                title: "5 Opening Principles Every Player Should Know",
+                excerpt: "Discover the foundational opening principles that will help you gain an advantage in the first moves of any chess game.",
+                category: "strategy",
+                date: "Jan 8, 2025",
+                readTime: "6 min read",
+                featured: false,
+                url: "article-beginners-guide.html",
+                image: null
+            },
+            {
+                id: 4,
+                title: "How to Prepare for Your First Chess Tournament",
+                excerpt: "Everything you need to know before competing in your first rated tournament, from registration to tournament etiquette.",
+                category: "tournament",
+                date: "Jan 5, 2025",
+                readTime: "7 min read",
+                featured: false,
+                url: "article-beginners-guide.html",
+                image: null
+            },
+            {
+                id: 5,
+                title: "USCF Membership Guide: Everything You Need to Know",
+                excerpt: "A comprehensive guide to USCF memberships, ratings, and how to get started with competitive chess in the United States.",
+                category: "support",
+                date: "Jan 3, 2025",
+                readTime: "4 min read",
+                featured: false,
+                url: "article-beginners-guide.html",
+                image: null
+            },
+            {
+                id: 6,
+                title: "Common Chess Mistakes and How to Avoid Them",
+                excerpt: "Learn about the most frequent errors players make and develop habits to improve your game and avoid blunders.",
+                category: "strategy",
+                date: "Dec 28, 2024",
+                readTime: "6 min read",
+                featured: false,
+                url: "article-beginners-guide.html",
+                image: null
+            },
+            {
+                id: 7,
+                title: "Understanding Chess Ratings: What Your Number Really Means",
+                excerpt: "Demystify the chess rating system and learn how ratings are calculated, what they represent, and how to improve yours.",
+                category: "support",
+                date: "Dec 22, 2024",
+                readTime: "5 min read",
+                featured: false,
+                url: "article-beginners-guide.html",
+                image: null
+            },
+            {
+                id: 8,
+                title: "The Art of Checkmate: Essential Mating Patterns",
+                excerpt: "Master the most important checkmate patterns that every chess player should recognize and know how to execute.",
+                category: "beginner",
+                date: "Dec 18, 2024",
+                readTime: "7 min read",
+                featured: false,
+                url: "article-beginners-guide.html",
+                image: null
+            }
+        ];
+
+        // ============================================
+        // RENDER FUNCTIONS
+        // ============================================
+
+        function createArticleCard(article, index) {
+            const isFeatured = article.featured;
+            
+            return `
+                <a href="${article.url}" class="article-card ${isFeatured ? 'featured-article' : ''}" 
+                   data-aos="fade-up" data-aos-duration="500" data-aos-delay="${index * 50}"
+                   data-category="${article.category}">
+                    <div class="article-image">
+                        ${article.image 
+                            ? `<img src="${article.image}" alt="${article.title}">`
+                            : `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+                               </svg>`
+                        }
+                    </div>
+                    <div class="article-content">
+                        ${isFeatured ? '<span class="featured-badge">Featured</span>' : ''}
+                        <span class="article-category">${article.category}</span>
+                        <h2 class="article-title">${article.title}</h2>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-meta">
+                            <span class="article-date">${article.date}</span>
+                            <span class="read-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                ${article.readTime}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        function renderArticles(filteredArticles) {
+            const grid = document.getElementById('articlesGrid');
+            
+            if (filteredArticles.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <h3>No articles found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort to put featured first
+            const sorted = [...filteredArticles].sort((a, b) => b.featured - a.featured);
+            grid.innerHTML = sorted.map((article, index) => createArticleCard(article, index)).join('');
+            
+            // Reinitialize AOS for new elements
+            AOS.refresh();
+        }
+
+        // ============================================
+        // FILTER AND SEARCH
+        // ============================================
+
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        function filterArticles() {
+            let filtered = articles;
+
+            // Category filter
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(article => article.category === currentCategory);
+            }
+
+            // Search filter
+            if (currentSearch) {
+                const searchLower = currentSearch.toLowerCase();
+                filtered = filtered.filter(article => 
+                    article.title.toLowerCase().includes(searchLower) ||
+                    article.excerpt.toLowerCase().includes(searchLower) ||
+                    article.category.toLowerCase().includes(searchLower)
+                );
+            }
+
+            renderArticles(filtered);
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial render
+            renderArticles(articles);
+
+            // Category filter buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = btn.dataset.category;
+                    filterArticles();
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+
+            searchBtn.addEventListener('click', () => {
+                currentSearch = searchInput.value.trim();
+                filterArticles();
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    currentSearch = searchInput.value.trim();
+                    filterArticles();
+                }
+            });
+
+            // Live search (debounced)
+            let debounceTimer;
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    currentSearch = searchInput.value.trim();
+                    filterArticles();
+                }, 300);
+            });
+
+            // Initialize AOS
+            AOS.init({
+                duration: 500,
+                easing: 'ease-out-cubic',
+                once: true,
+                offset: 50
+            });
+        });
+    </script>
+</body>
+</html>
