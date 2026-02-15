@@ -150,6 +150,7 @@
 
         html {
             scroll-behavior: smooth;
+            /* iOS scroll fix */
             -webkit-overflow-scrolling: touch;
         }
 
@@ -158,33 +159,17 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.4;
+            /* iOS scroll fix - ensure proper stacking context */
             position: relative;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* ============================================
-           OPTIMIZED AOS MOBILE FIX
-           ============================================ */
-        
-        /* Force hardware acceleration on all AOS elements */
+        /* iOS AOS Fix - Force GPU acceleration and prevent scroll blocking */
         [data-aos] {
-            pointer-events: auto;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            -webkit-perspective: 1000px;
-            perspective: 1000px;
-        }
-
-        /* Ensure smooth scrolling on all devices */
-        html, body {
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-        }
-
-        /* Prevent AOS from blocking touch events */
-        [data-aos]:not(.aos-animate) {
-            pointer-events: auto !important;
+            -webkit-perspective: 1000;
+            perspective: 1000;
         }
 
         /* New Navigation Styles */
@@ -197,6 +182,7 @@
             border-bottom: 1px solid var(--gray-200);
             z-index: 1000;
             transition: box-shadow 0.3s ease;
+            /* iOS fix - ensure navbar doesn't interfere with scroll */
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
         }
@@ -963,64 +949,69 @@
         }
 
         @media (max-width: 768px) {
-            html, body {
-                overflow-x: hidden;
-                width: 100%;
-                position: relative;
-            }
+    /* Mobile overflow fix - prevents horizontal scrolling issues */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
 
-            .navbar {
-                width: 100%;
-                left: 0;
-                right: 0;
-            }
+    /* Ensure navbar stays fixed and full-width on mobile */
+    .navbar {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
 
-            .nav-inner {
-                width: 100%;
-                max-width: 100%;
-            }
+    .nav-inner {
+        width: 100%;
+        max-width: 100%;
+    }
 
-            .nav-links {
-                display: none;
-            }
+    .nav-links {
+        display: none;
+    }
 
-            .mobile-menu-container {
-                display: block;
-            }
+    .mobile-menu-container {
+        display: block;
+    }
 
-            header {
-                padding: 2rem 0;
-                margin-top: 67px;
-            }
+    header {
+        padding: 2rem 0;
+        margin-top: 67px;
+    }
 
-            header h1 {
-                font-size: 2.5rem;
-            }
+    header h1 {
+        font-size: 2.5rem;
+    }
 
-            .hero-content h2 {
-                font-size: 2rem;
-            }
+    .hero-content h2 {
+        font-size: 2rem;
+    }
 
-            .section-title {
-                font-size: 2rem;
-            }
+    .section-title {
+        font-size: 2rem;
+    }
 
-            .image-container {
-                flex: 0 0 100%;
-            }
+    .image-container {
+        flex: 0 0 100%;
+    }
 
-            .button-group {
-                flex-direction: column;
-                width: 100%;
-            }
+    .button-group {
+        flex-direction: column;
+        width: 100%;
+        align-items: center; /* Ensures items are centered horizontally */
+    }
 
-            .button-group .cta-button {
-                width: 100%;
-                text-align: center;
-            }
-        }
+    .button-group .cta-button {
+        width: 100%;
+        text-align: center;
+        margin: 0; /* FIX: Removes horizontal margins that caused misalignment */
+    }
+}
 
         @media (max-width: 480px) {
+            /* Extra mobile overflow protection for smaller screens */
             html, body {
                 overflow-x: hidden;
                 width: 100%;
@@ -1040,6 +1031,7 @@
                 font-size: 2rem;
             }
 
+            /* Ensure container doesn't cause overflow */
             .container {
                 width: 100%;
                 padding-left: 1rem;
@@ -1047,22 +1039,85 @@
                 max-width: 100%;
             }
 
+            /* Prevent gallery from causing overflow */
             .gallery {
                 padding: 10px;
                 max-width: 100%;
             }
 
+            /* Service grid fix for mobile */
             .service-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         /* ============================================
-           TOUCH DEVICE HOVER FIXES
+           iOS-SPECIFIC AOS SCROLL FIXES
            ============================================ */
         
+        /* Detect touch devices and apply fixes */
         @media (hover: none) and (pointer: coarse) {
-            /* Disable hover transforms on touch devices */
+            /* Force hardware acceleration on all animated elements */
+            [data-aos] {
+                -webkit-transform: translate3d(0, 0, 0) !important;
+                transform: translate3d(0, 0, 0) !important;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                will-change: opacity;
+            }
+            
+            /* Override AOS transforms that cause scroll issues on iOS */
+            [data-aos="fade-up"],
+            [data-aos="fade-down"],
+            [data-aos="fade-left"],
+            [data-aos="fade-right"],
+            [data-aos="fade"],
+            [data-aos="zoom-in"] {
+                -webkit-transform: none !important;
+                transform: none !important;
+            }
+            
+            /* For elements that haven't animated yet, only use opacity */
+            [data-aos]:not(.aos-animate) {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 0, 0) !important;
+                transform: translate3d(0, 0, 0) !important;
+            }
+            
+            /* After animation, ensure clean state */
+            [data-aos].aos-animate {
+                opacity: 1;
+                -webkit-transform: translate3d(0, 0, 0) !important;
+                transform: translate3d(0, 0, 0) !important;
+            }
+            
+            /* Ensure smooth scrolling behavior on touch */
+            html {
+                -webkit-overflow-scrolling: touch;
+                overflow-y: scroll;
+            }
+            
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Prevent any transform on critical sections during scroll */
+            .hero,
+            .hero-content,
+            .hero-image,
+            header,
+            .services,
+            .about,
+            .contact {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+
+            /* ============================================
+               DISABLE HOVER EFFECTS ON TOUCH DEVICES
+               ============================================ */
+            
+            /* Disable all hover transformations and effects on touch devices */
             .logo:hover,
             .nav-links a:hover,
             .nav-dropdown > span:hover,
@@ -1084,6 +1139,7 @@
                 -webkit-transform: none !important;
             }
 
+            /* Disable hover background effects */
             .dropdown-menu a:hover,
             .mobile-menu a:hover,
             .mobile-menu .mobile-dropdown-toggle:hover,
@@ -1092,12 +1148,14 @@
                 padding-left: inherit !important;
             }
 
+            /* Disable hover box shadows */
             .service-card:hover,
             .website-button:hover,
             .cta-button:hover {
                 box-shadow: none !important;
             }
 
+            /* Disable hover filters and overlays */
             .hero-image img:hover,
             .image-container:hover img {
                 filter: none !important;
@@ -1107,18 +1165,21 @@
                 background: rgba(0, 0, 0, 0) !important;
             }
 
+            /* Disable hover pseudo-elements */
             .service-card:hover::before,
             .website-button:hover::before,
             .cta-button:hover::before {
                 left: -100% !important;
             }
 
+            /* Disable hover underlines */
             .nav-links a:hover::after,
             .dropdown-menu a:hover span::after,
             .section-title:hover::after {
                 width: 0 !important;
             }
 
+            /* Keep tap/active states visible briefly */
             .cta-button:active,
             .website-button:active,
             .service-card:active {
@@ -1265,7 +1326,7 @@
         </div>
     </section>
 
-    <section id="gallery2" class="gallery2">
+ <section id="gallery2" class="gallery2">
         <div class="gallery">
             <div class="gallery-rows-container">
                 <div class="gallery-row">
@@ -1282,25 +1343,26 @@
                         <img src="site7.jpg" alt="Chess club meeting in metro Detroit area" class="image-4-3">
                     </div>
                 </div>
-
                 <div class="gallery-row">
                     <div class="image-container" data-aos="fade-up" data-aos-delay="150">
                         <img src="site2.jpg" alt="Kids learning chess fundamentals" class="image-3-4">
                     </div>
+                    <!-- REPLACE THIS IMAGE - site4 removed -->
                     <div class="image-container" data-aos="fade-up" data-aos-delay="250">
-                        <img src="site4.jpg" alt="Advanced chess training session" class="image-3-4">
+                        <img src="site63.jpg" alt="REPLACE - Advanced chess training session" class="image-3-4">
                     </div>
+                    <!-- REPLACE THIS IMAGE - site6 removed -->
                     <div class="image-container" data-aos="fade-up" data-aos-delay="350">
-                        <img src="site6.jpg" alt="Chess tournament preparation class" class="image-3-4">
+                        <img src="site64.jpg" alt="REPLACE - Chess tournament preparation class" class="image-3-4">
                     </div>
                     <div class="image-container" data-aos="fade-up" data-aos-delay="450">
                         <img src="site8.jpg" alt="Chess instruction for all skill levels" class="image-3-4">
                     </div>
                 </div>
-
                 <div class="gallery-row">
+                    <!-- REPLACE THIS IMAGE - site9 removed -->
                     <div class="image-container" data-aos="fade-up" data-aos-delay="200">
-                        <img src="site9.jpg" alt="Chess Lions students in competition" class="image-4-3">
+                        <img src="site59.jpg" alt="REPLACE - Chess Lions students in competition" class="image-4-3">
                     </div>
                     <div class="image-container" data-aos="fade-up" data-aos-delay="300">
                         <img src="site11.jpg" alt="Group chess lesson at Chess Lions" class="image-4-3">
@@ -1312,7 +1374,6 @@
                         <img src="site15.jpg" alt="Chess Lions championship training" class="image-4-3">
                     </div>
                 </div>
-
                 <div class="gallery-row">
                     <div class="image-container" data-aos="fade-up" data-aos-delay="250">
                         <img src="site10.jpg" alt="Youth chess development program" class="image-3-4">
@@ -1342,26 +1403,69 @@
     <!-- AOS JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // Initialize AOS with optimized settings for all devices
-        AOS.init({
-            duration: 1500,
-            once: true,
-            mirror: false,
-            anchorPlacement: 'top-bottom',
-            offset: 120,
-            delay: 0,
-            easing: 'ease-out-cubic',
-            disable: false
-        });
+        // Detect if device is touch-based (mobile/tablet)
+        function isTouchDevice() {
+            return (('ontouchstart' in window) ||
+                    (navigator.maxTouchPoints > 0) ||
+                    (navigator.msMaxTouchPoints > 0));
+        }
 
-        // Refresh AOS on page load to ensure proper initialization
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                AOS.refresh();
-            }, 100);
-        });
+        // Detect iOS specifically
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        }
 
-        // Navbar scroll effect - optimized with requestAnimationFrame
+        // Initialize AOS with mobile-optimized settings
+        if (isTouchDevice()) {
+            // Mobile/Touch device initialization - Convert all animations to fade-only
+            document.addEventListener('DOMContentLoaded', function() {
+                const aosElements = document.querySelectorAll('[data-aos]');
+                aosElements.forEach(function(el) {
+                    // Convert all animation types to simple fade on mobile
+                    el.setAttribute('data-aos', 'fade');
+                    
+                    // Force GPU acceleration and prevent scroll issues
+                    el.style.willChange = 'opacity';
+                    el.style.webkitTransform = 'translate3d(0,0,0)';
+                    el.style.transform = 'translate3d(0,0,0)';
+                });
+            });
+
+            AOS.init({
+                duration: 600,           // Shorter duration for mobile
+                once: true,              // Only animate once
+                disable: false,          // Keep animations but optimized
+                startEvent: 'load',      // Wait for full page load
+                offset: 50,              // Smaller offset for mobile
+                delay: 0,                // Remove delays on mobile
+                easing: 'ease-out',      // Simpler easing
+                mirror: false,           // Don't animate on scroll up
+                anchorPlacement: 'top-bottom',
+                useClassNames: true,
+                disableMutationObserver: false,
+                debounceDelay: 50,
+                throttleDelay: 99,
+            });
+
+            // For iOS specifically, apply additional fixes after AOS init
+            if (isIOS()) {
+                // Refresh AOS after a short delay to ensure proper initialization
+                window.addEventListener('load', function() {
+                    setTimeout(function() {
+                        AOS.refresh();
+                    }, 100);
+                });
+            }
+        } else {
+            // Desktop initialization - keep original settings with full animations
+            AOS.init({
+                duration: 1500,
+                once: true,
+            });
+        }
+
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         let ticking = false;
         
@@ -1413,7 +1517,7 @@
             }
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll for anchor links - optimized for mobile
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1421,12 +1525,14 @@
                 if (target) {
                     const offsetTop = target.offsetTop - 80;
                     
+                    // Use native smooth scroll with fallback
                     if ('scrollBehavior' in document.documentElement.style) {
                         window.scrollTo({
                             top: offsetTop,
                             behavior: 'smooth'
                         });
                     } else {
+                        // Fallback for older browsers
                         window.scrollTo(0, offsetTop);
                     }
                 }
