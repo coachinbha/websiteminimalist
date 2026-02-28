@@ -164,17 +164,21 @@
         }
 
         /* Mobile-only condensed link — replaces full bar content on small screens */
-        .announce-bar-mobile {
-            display: none;
-        }
-
-        .announce-bar-desktop {
-            display: contents;
-        }
+        .announce-bar-mobile  { display: none; }
+        .announce-bar-desktop { display: contents; }
 
         @media (max-width: 768px) {
             .announce-bar-desktop { display: none; }
-            .announce-bar-mobile  { display: block; }
+            /* Flex row: link stretches, ✕ is a fixed sibling — can never overlap */
+            .announce-bar          { justify-content: space-between; padding: 0.55rem 0.75rem 0.55rem 1rem; gap: 0.5rem; }
+            .announce-bar-mobile   { display: flex; flex: 1; align-items: center; }
+            /* Keep ✕ visible, reset absolute positioning so it flows in flex */
+            .announce-bar-close    {
+                position: static;
+                transform: none;
+                flex-shrink: 0;
+                padding: 0.25rem 0.35rem;
+            }
         }
 
         /* Mirrors the navbar link style exactly — inverted to white */
@@ -875,8 +879,9 @@
             <span class="announce-bar-dot">&nbsp;|&nbsp;</span>
             <a href="https://michesslions.com/registration.html" class="announce-bar-link">Register Now</a>
         </span>
-        <!-- Mobile: entire bar is one compact link -->
-        <a href="https://michesslions.com/registration.html" class="announce-bar-link announce-bar-mobile">Register Here — Wyndham Tournament</a>
+        <!-- Mobile: just the link, arrow signals action, no ✕ needed -->
+        <a href="https://michesslions.com/registration.html" class="announce-bar-link announce-bar-mobile">Wyndham Tournament &mdash; Register &rarr;</a>
+        <!-- Desktop only ✕ -->
         <button class="announce-bar-close" id="announceClose" aria-label="Dismiss announcement">&#x2715;</button>
     </div>
 
@@ -1003,12 +1008,12 @@
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                     <polyline points="22,6 12,13 2,6"/>
                 </svg>
-                <p>i2v2chess@gmail.com</p>
+                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f79ec581c5949f928484b7909a969e9bd994989a">[email&#160;protected]</a></p>
             </div>
         </div>
 
         <div class="button-group">
-            <a href="mailto:i2v2chess@gmail.com" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Send an Email</a>
+            <a href="/cdn-cgi/l/email-protection#6f065d195d0c070a1c1c2f08020e0603410c0002" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Send an Email</a>
             <a href="https://michesslions.com/faq.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">FAQ</a>
         </div>
     </section>
@@ -1175,6 +1180,9 @@
             }
 
             close.addEventListener('click', dismissBar);
+
+            const closeMobile = document.getElementById('announceCloseMobile');
+            if (closeMobile) closeMobile.addEventListener('click', dismissBar);
         })();
 
         // ── Mobile menu ────────────────────────────────────────────────
