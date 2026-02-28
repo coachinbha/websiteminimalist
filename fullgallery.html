@@ -396,6 +396,8 @@
             flex-direction: column;
             align-items: center;
             gap: 30px;
+            /* Transition for the straight-down fall */
+            transition: transform 0.85s cubic-bezier(0.55, 0.085, 0.68, 0.53);
         }
 
         .loader-text {
@@ -425,8 +427,6 @@
             transform-style: preserve-3d;
             transform-origin: 50% 50%;
             transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px);
-            /* Transition used for the fall */
-            transition: transform 0.85s cubic-bezier(0.55, 0.085, 0.68, 0.53);
         }
 
         .boxes .box {
@@ -470,8 +470,9 @@
             animation-play-state: paused;
         }
 
-        .loader-container.falling .boxes {
-            transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg) translateZ(0px) translateY(160vh);
+        /* Keep the 3D rotation on .boxes unchanged during fall */
+        .loader-container.falling .loader-content {
+            transform: translateY(160vh);
         }
 
         @keyframes box1 {
