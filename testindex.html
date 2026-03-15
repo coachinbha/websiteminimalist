@@ -147,6 +147,7 @@
             letter-spacing: 0.6px;
             text-transform: uppercase;
             min-height: var(--bar-height);
+            max-height: 60px;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
             transition: opacity 0.4s ease;
@@ -154,7 +155,12 @@
 
         .announce-bar.announce-hidden {
             opacity: 0;
+            max-height: 0;
+            min-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
             pointer-events: none;
+            transition: opacity 0.35s ease, max-height 0.4s ease 0.3s, min-height 0.4s ease 0.3s, padding 0.4s ease 0.3s;
         }
 
         .announce-bar-dot {
@@ -163,16 +169,14 @@
             letter-spacing: 0;
         }
 
-        /* Mobile-only condensed link — replaces full bar content on small screens */
+        /* Mobile-only condensed link */
         .announce-bar-mobile  { display: none; }
         .announce-bar-desktop { display: contents; }
 
         @media (max-width: 768px) {
             .announce-bar-desktop { display: none; }
-            /* Flex row: link stretches, ✕ is a fixed sibling — can never overlap */
             .announce-bar          { justify-content: space-between; padding: 0.55rem 0.75rem 0.55rem 1rem; gap: 0.5rem; }
             .announce-bar-mobile   { display: flex; flex: 1; align-items: center; }
-            /* Keep ✕ visible, reset absolute positioning so it flows in flex */
             .announce-bar-close    {
                 position: static;
                 transform: none;
@@ -181,7 +185,6 @@
             }
         }
 
-        /* Mirrors the navbar link style exactly — inverted to white */
         .announce-bar-link {
             position: relative;
             text-decoration: none;
@@ -230,7 +233,7 @@
         /* ── Navbar ──────────────────────────────────────────────────── */
         .navbar {
             position: fixed;
-            top: var(--bar-height);   /* rests just below the bar */
+            top: var(--bar-height);
             left: 0;
             right: 0;
             background: var(--bg-color);
@@ -300,29 +303,38 @@
 
         .nav-links a:hover::after { width: 100%; }
 
+        /* ── Dropdown — keyboard + hover accessible ───────────────────── */
         .nav-dropdown { position: relative; }
 
-        .nav-dropdown > span {
+        .nav-dropdown > button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             font-size: 0.85rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            cursor: pointer;
+            color: var(--text-color);
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            padding: 0;
             transition: transform 0.3s ease;
         }
 
-        .nav-dropdown > span:hover { transform: translateY(-2px); }
+        .nav-dropdown > button:hover { transform: translateY(-2px); }
 
-        .nav-dropdown > span svg {
+        .nav-dropdown > button svg {
             width: 12px;
             height: 12px;
             transition: transform 0.3s ease;
+            stroke: var(--text-color);
+            fill: none;
         }
 
-        .nav-dropdown:hover > span svg { transform: rotate(180deg); }
+        /* Rotate chevron when open */
+        .nav-dropdown > button[aria-expanded="true"] svg { transform: rotate(180deg); }
 
         .dropdown-menu {
             position: absolute;
@@ -346,7 +358,9 @@
             height: 1rem;
         }
 
-        .nav-dropdown:hover .dropdown-menu {
+        /* Open via hover OR aria-expanded */
+        .nav-dropdown:hover .dropdown-menu,
+        .nav-dropdown > button[aria-expanded="true"] + .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
@@ -358,6 +372,11 @@
             padding: 0.875rem 1.25rem;
             font-size: 0.8rem;
             border-bottom: 1px solid var(--gray-100);
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             position: relative;
             transition: background-color 0.3s ease, padding-left 0.3s ease;
         }
@@ -460,15 +479,21 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
         }
 
         .mobile-dropdown-toggle svg {
             width: 14px; height: 14px;
             transition: transform 0.3s ease;
             stroke: var(--text-color);
+            fill: none;
         }
 
-        .mobile-dropdown-toggle.active svg { transform: rotate(180deg); }
+        .mobile-dropdown-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
 
         .mobile-submenu { display: none; background: var(--gray-100); }
 
@@ -528,6 +553,8 @@
             align-items: center;
             justify-content: center;
             gap: 4rem;
+            /* FIX: min-height prevents collapsed layout on very wide screens */
+            min-height: 400px;
         }
 
         .hero-content {
@@ -571,27 +598,13 @@
             padding: 4rem 0;
         }
 
+        /* FIX: removed ::after hover underline — headings aren't interactive affordances */
         .section-title {
             font-size: 3rem;
             margin-bottom: 3rem;
             text-align: center;
-            position: relative;
             display: inline-block;
         }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background: var(--text-color);
-            transition: width 0.5s ease;
-        }
-
-        .section-title:hover::after { width: 100%; }
 
         .service-grid {
             display: grid;
@@ -650,6 +663,7 @@
 
         .image-container:hover::after { background: rgba(0,0,0,0.1); }
 
+        /* FIX: explicit aspect-ratio on img to prevent CLS */
         .image-4-3 { width: 100%; aspect-ratio: 4/3; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; }
         .image-3-4 { width: 100%; aspect-ratio: 3/4; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; }
 
@@ -725,20 +739,31 @@
         /* ── Contact ─────────────────────────────────────────────────── */
         .contact-info { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
 
-        .contact-item { display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s ease; cursor: default; }
+        .contact-item { display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s ease; }
         .contact-item:hover { transform: translateX(10px); }
 
-        .contact-item svg { width: 24px; height: 24px; fill: none; stroke: var(--text-color); stroke-width: 2; transition: transform 0.3s ease, stroke 0.3s ease; }
+        .contact-item svg { width: 24px; height: 24px; fill: none; stroke: var(--text-color); stroke-width: 2; transition: transform 0.3s ease, stroke 0.3s ease; flex-shrink: 0; }
         .contact-item:hover svg { transform: scale(1.2) rotate(5deg); stroke: #333; }
 
+        /* FIX: contact links styled to match plain text appearance */
         .contact-item p { margin: 0; font-size: 1.2rem; transition: font-size 0.3s ease; }
         .contact-item:hover p { font-size: 1.25rem; }
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: inherit;
+            transition: font-size 0.3s ease;
+        }
+        .contact-item:hover a { font-size: 1.25rem; }
 
         .button-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
 
         /* ── Footer ──────────────────────────────────────────────────── */
         footer { text-align: center; padding: 2rem 0; font-size: 1rem; transition: transform 0.3s ease; }
         footer:hover { transform: scale(1.02); }
+
+
 
         /* ── Media Queries ───────────────────────────────────────────── */
         @media (max-width: 1024px) {
@@ -834,13 +859,13 @@
             }
 
             /* Disable hover effects on touch devices */
-            .logo:hover, .nav-links a:hover, .nav-dropdown > span:hover,
+            .logo:hover, .nav-links a:hover, .nav-dropdown > button:hover,
             .mobile-toggle:hover, header h1:hover, .hero-image img:hover,
-            .section-title:hover, .service-card:hover, .service-card:hover h3,
+            .service-card:hover, .service-card:hover h3,
             .service-card:hover p, .image-container:hover img,
             .website-button:hover, .cta-button:hover, .contact-item:hover,
-            .contact-item:hover svg, .contact-item:hover p, footer:hover,
-            .announce-bar-link:hover {
+            .contact-item:hover svg, .contact-item:hover p, .contact-item:hover a,
+            footer:hover, .announce-bar-link:hover {
                 transform: none !important;
                 -webkit-transform: none !important;
             }
@@ -859,9 +884,15 @@
             .cta-button:hover::before { left: -100% !important; }
 
             .nav-links a:hover::after, .dropdown-menu a:hover span::after,
-            .section-title:hover::after, .announce-bar-link:hover::after { width: 0 !important; }
+            .announce-bar-link:hover::after { width: 0 !important; }
 
             .cta-button:active, .website-button:active, .service-card:active { opacity: 0.8; }
+        }
+
+        /* ── Focus styles (keyboard nav) ─────────────────────────────── */
+        :focus-visible {
+            outline: 3px solid #000;
+            outline-offset: 3px;
         }
     </style>
 </head>
@@ -879,52 +910,66 @@
             <span class="announce-bar-dot">&nbsp;|&nbsp;</span>
             <a href="https://michesslions.com/registration.html" class="announce-bar-link">Register Now</a>
         </span>
-        <!-- Mobile: just the link, arrow signals action, no ✕ needed -->
-        <a href="https://michesslions.com/registration.html" class="announce-bar-link announce-bar-mobile">Wyndham Tournament &mdash; Register &rarr;</a>
-        <!-- Desktop only ✕ -->
+        <!-- Mobile: just the link -->
+        <a href="https://michesslions.com/registration.html" class="announce-bar-link announce-bar-mobile">Wyndham Tournament &mdash; Register <span style="font-weight:700;font-style:normal;">&#x2192;</span></a>
         <button class="announce-bar-close" id="announceClose" aria-label="Dismiss announcement">&#x2715;</button>
     </div>
 
     <!-- ── Navigation ────────────────────────────────────────────────── -->
-    <nav class="navbar" id="navbar" data-aos="fade-down" data-aos-duration="1000">
+    <nav class="navbar" id="navbar" data-aos="fade-down" data-aos-duration="1000" aria-label="Main navigation">
         <div class="nav-inner">
-            <a href="/" class="logo">
-                <img src="WCL business card 1050x600.png" alt="Chess Lions Logo - Professional Chess Instruction in South Lyon Michigan">
+            <a href="/" class="logo" aria-label="Chess Lions — home">
+                <img src="WCL business card 1050x600.png" alt="Chess Lions Logo - Professional Chess Instruction in South Lyon Michigan" width="200" height="50">
             </a>
             
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#services">Teaching</a>
-                <a href="https://michesslions.com/about.html">About</a>
-                <div class="nav-dropdown">
-                    <span>Tournaments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></span>
-                    <div class="dropdown-menu">
-                        <a href="https://michesslions.com/tournaments.html"><span>Current Tournaments</span></a>
-                        <a href="https://michesslions.com/registration.html"><span>Register</span></a>
-                        <a href="https://michesslions.com/registration-list.html"><span>Registration List</span></a>
+            <div class="nav-links" role="list">
+                <a href="#home" role="listitem">Home</a>
+                <a href="#services" role="listitem">Teaching</a>
+                <a href="https://michesslions.com/about.html" role="listitem">About</a>
+
+                <!-- FIX: <button> for dropdown trigger — keyboard + aria-expanded accessible -->
+                <div class="nav-dropdown" role="listitem">
+                    <button
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        id="tournamentBtn"
+                    >
+                        Tournaments
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu" role="menu" aria-labelledby="tournamentBtn">
+                        <a href="https://michesslions.com/tournaments.html" role="menuitem"><span>Current Tournaments</span></a>
+                        <a href="https://michesslions.com/registration.html" role="menuitem"><span>Register</span></a>
+                        <a href="https://michesslions.com/registration-list.html" role="menuitem"><span>Registration List</span></a>
                     </div>
                 </div>
-                <a href="#contact">Contact</a>
-                <a href="https://michesslions.com/faq.html">FAQ</a>
-                <a href="https://michesslions.com/fullgallery.html">Gallery</a>
+
+                <a href="#contact" role="listitem">Contact</a>
+                <a href="https://michesslions.com/faq.html" role="listitem">FAQ</a>
+                <a href="https://michesslions.com/fullgallery.html" role="listitem">Gallery</a>
             </div>
 
             <div class="mobile-menu-container">
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
                 
-                <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
                     <a href="#home">Home</a>
                     <a href="#services">Teaching</a>
                     <a href="https://michesslions.com/about.html">About</a>
-                    <div class="mobile-dropdown-toggle" id="mobileTournamentToggle">
+                    <!-- FIX: <button> for mobile dropdown toggle -->
+                    <button class="mobile-dropdown-toggle" id="mobileTournamentToggle" aria-expanded="false" aria-controls="mobileSubmenu">
                         <span>Tournaments</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                    <div class="mobile-submenu" id="mobileSubmenu">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="mobile-submenu" id="mobileSubmenu" aria-hidden="true">
                         <a href="https://michesslions.com/tournaments.html">Current Tournaments</a>
                         <a href="https://michesslions.com/registration.html">Register</a>
                         <a href="https://michesslions.com/registration-list.html">Registration List</a>
@@ -937,154 +982,160 @@
         </div>
     </nav>
 
-    <!-- ── Header ────────────────────────────────────────────────────── -->
-    <header id="home" data-aos="fade-down" data-aos-duration="1500">
-        <div class="container">
-            <h1>Chess Lions</h1>
-            <p>Where Everyone Can Become a Champion</p>
-        </div>
-    </header>
+    <!-- FIX: <main> landmark wraps all primary content -->
+    <main id="main-content">
 
-    <!-- ── Hero ──────────────────────────────────────────────────────── -->
-    <section class="hero container">
-        <div class="hero-content" data-aos="fade-right" data-aos-duration="1500">
-            <h2>Chess Lessons for All Levels</h2>
-            <p>Unlock your chess potential with personalized coaching. Whether you're a beginner or an advanced player, our expert instruction will elevate your game to championship level.</p>
-            <a href="https://michesslions.com/signup.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Book a Lesson</a>
-        </div>
-        <div class="hero-image" data-aos="fade-left" data-aos-duration="1500">
-            <img src="P1AWN.svg" alt="Chess pawn illustration representing chess instruction and strategy" />
-        </div>
-    </section>
+        <!-- ── Header ────────────────────────────────────────────────────── -->
+        <header id="home" data-aos="fade-down" data-aos-duration="1500">
+            <div class="container">
+                <h1>Chess Lions</h1>
+                <p>Where Everyone Can Become a Champion</p>
+            </div>
+        </header>
 
-    <!-- ── Services ──────────────────────────────────────────────────── -->
-    <section id="services" class="services container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1500">Our Chess Programs</h2>
-        <div class="service-grid">
-            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <h3>Beginner Lessons</h3>
-                <p>Learn the fundamentals of chess from scratch. Perfect for children and adults new to the game who want to build a strong foundation.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                <h3>Intermediate Training</h3>
-                <p>Enhance your strategic thinking and tactical skills. Ideal for players looking to improve their game and compete at higher levels.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
-                <h3>Advanced Coaching</h3>
-                <p>Dive deep into complex strategies and competitive play. Tailored for serious chess enthusiasts aiming for tournament success.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── About ─────────────────────────────────────────────────────── -->
-    <section id="about" class="about container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1500">About Us</h2>
-        <div class="hero" data-aos="fade-right" data-aos-duration="1500">
-            <div class="hero-content">
-                <h3>Experienced Chess Instructors</h3>
-                <p>We are the Chess Lions, dedicated to promoting the ancient game of strategy and intellect across North America. Starting out as a community chess club in 2017, we've grown into a championship-producing organization. We've proudly coached, taught, and led teams to victory in several state-level championships in both Canada and the USA. With our proven methods and passionate instruction, everyone can be a champion.</p>
-                <a href="https://michesslions.com/about.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Learn More About Us</a>
+        <!-- ── Hero ──────────────────────────────────────────────────────── -->
+        <section class="hero container" aria-labelledby="hero-heading">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1500">
+                <h2 id="hero-heading">Chess Lessons for All Levels</h2>
+                <p>Unlock your chess potential with personalized coaching. Whether you're a beginner or an advanced player, our expert instruction will elevate your game to championship level.</p>
+                <a href="https://michesslions.com/signup.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Book a Lesson</a>
             </div>
             <div class="hero-image" data-aos="fade-left" data-aos-duration="1500">
-                <img src="library.jpg" alt="Chess instruction at local library in South Lyon Michigan" />
+                <img src="P1AWN.svg" alt="Chess pawn illustration representing chess instruction and strategy" width="400" height="400" />
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ── Contact ───────────────────────────────────────────────────── -->
-    <section id="contact" class="contact container">
-        <h2 class="section-title" data-aos="fade-up" data-aos-duration="1500">Contact Us</h2>
-        
-        <div class="contact-info">
-            <div class="contact-item" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-                <p>(734) 560-2802</p>
+        <!-- ── Services ──────────────────────────────────────────────────── -->
+        <section id="services" class="services container" aria-labelledby="services-heading">
+            <h2 class="section-title" id="services-heading" data-aos="fade-up" data-aos-duration="1500">Our Chess Programs</h2>
+            <div class="service-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <h3>Beginner Lessons</h3>
+                    <p>Learn the fundamentals of chess from scratch. Perfect for children and adults new to the game who want to build a strong foundation.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                    <h3>Intermediate Training</h3>
+                    <p>Enhance your strategic thinking and tactical skills. Ideal for players looking to improve their game and compete at higher levels.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
+                    <h3>Advanced Coaching</h3>
+                    <p>Dive deep into complex strategies and competitive play. Tailored for serious chess enthusiasts aiming for tournament success.</p>
+                </div>
             </div>
+        </section>
+
+        <!-- ── About ─────────────────────────────────────────────────────── -->
+        <section id="about" class="about container" aria-labelledby="about-heading">
+            <h2 class="section-title" id="about-heading" data-aos="fade-up" data-aos-duration="1500">About Us</h2>
+            <div class="hero" data-aos="fade-right" data-aos-duration="1500">
+                <div class="hero-content">
+                    <h3>Experienced Chess Instructors</h3>
+                    <p>We are the Chess Lions, dedicated to promoting the ancient game of strategy and intellect across North America. Starting out as a community chess club in 2017, we've grown into a championship-producing organization. We've proudly coached, taught, and led teams to victory in several state-level championships in both Canada and the USA. With our proven methods and passionate instruction, everyone can be a champion.</p>
+                    <a href="https://michesslions.com/about.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Learn More About Us</a>
+                </div>
+                <div class="hero-image" data-aos="fade-left" data-aos-duration="1500">
+                    <img src="library.jpg" alt="Chess instruction at local library in South Lyon Michigan" width="500" height="400" />
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Contact ───────────────────────────────────────────────────── -->
+        <section id="contact" class="contact container" aria-labelledby="contact-heading">
+            <h2 class="section-title" id="contact-heading" data-aos="fade-up" data-aos-duration="1500">Contact Us</h2>
             
-            <div class="contact-item" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                </svg>
-                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f79ec581c5949f928484b7909a969e9bd994989a">[email&#160;protected]</a></p>
-            </div>
-        </div>
-
-        <div class="button-group">
-            <a href="/cdn-cgi/l/email-protection#6f065d195d0c070a1c1c2f08020e0603410c0002" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Send an Email</a>
-            <a href="https://michesslions.com/faq.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">FAQ</a>
-        </div>
-    </section>
-
-    <!-- ── Gallery ───────────────────────────────────────────────────── -->
-    <section id="gallery2" class="gallery2">
-        <div class="gallery">
-            <div class="gallery-rows-container">
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="100">
-                        <img src="site1.jpg"  alt="Chess students learning strategy at Chess Lions" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="200">
-                        <img src="site3.jpg"  alt="Youth chess tournament participants at Chess Lions" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="300">
-                        <img src="site5.jpg"  alt="Chess coaching session in South Lyon Michigan" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="400">
-                        <img src="site7.jpg"  alt="Chess club meeting in metro Detroit area" class="image-4-3">
-                    </div>
+            <div class="contact-info">
+                <!-- FIX: phone number is now a tappable tel: link -->
+                <div class="contact-item" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <p><a href="tel:+17345602802">(734) 560-2802</a></p>
                 </div>
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="150">
-                        <img src="site2.jpg"  alt="Kids learning chess fundamentals" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="250">
-                        <img src="site63.jpg" alt="Advanced chess training session" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="350">
-                        <img src="site64.jpg" alt="Chess tournament preparation class" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="450">
-                        <img src="site8.jpg"  alt="Chess instruction for all skill levels" class="image-3-4">
-                    </div>
-                </div>
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="200">
-                        <img src="site59.jpg" alt="Chess Lions students in competition" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="300">
-                        <img src="site11.jpg" alt="Group chess lesson at Chess Lions" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="400">
-                        <img src="site13.jpg" alt="Chess strategy workshop in Michigan" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="500">
-                        <img src="site15.jpg" alt="Chess Lions championship training" class="image-4-3">
-                    </div>
-                </div>
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="250">
-                        <img src="site10.jpg" alt="Youth chess development program" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="350">
-                        <img src="site12.jpg" alt="Chess club activities in South Lyon" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="450">
-                        <img src="site14.jpg" alt="Chess coaching for beginners and advanced players" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="550">
-                        <img src="site16.jpg" alt="Chess Lions community events" class="image-3-4">
-                    </div>
+                
+                <div class="contact-item" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <p><a href="mailto:i2v2chess@gmail.com">i2v2chess@gmail.com</a></p>
                 </div>
             </div>
 
-            <div class="button-container">
-                <a href="https://michesslions.com/fullgallery.html" class="website-button">GO TO FULL GALLERY</a>
+            <div class="button-group">
+                <a href="mailto:i2v2chess@gmail.com" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Send an Email</a>
+                <a href="https://michesslions.com/faq.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">FAQ</a>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- ── Gallery ───────────────────────────────────────────────────── -->
+        <section id="gallery2" class="gallery2" aria-label="Photo gallery">
+            <div class="gallery">
+                <div class="gallery-rows-container">
+                    <div class="gallery-row">
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="100">
+                            <img src="site1.jpg"  alt="Chess students learning strategy at Chess Lions" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="200">
+                            <img src="site3.jpg"  alt="Youth chess tournament participants at Chess Lions" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="300">
+                            <img src="site5.jpg"  alt="Chess coaching session in South Lyon Michigan" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="400">
+                            <img src="site7.jpg"  alt="Chess club meeting in metro Detroit area" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="gallery-row">
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="150">
+                            <img src="site2.jpg"  alt="Kids learning chess fundamentals" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="250">
+                            <img src="site63.jpg" alt="Advanced chess training session" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="350">
+                            <img src="site64.jpg" alt="Chess tournament preparation class" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="450">
+                            <img src="site8.jpg"  alt="Chess instruction for all skill levels" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="gallery-row">
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="200">
+                            <img src="site59.jpg" alt="Chess Lions students in competition" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="300">
+                            <img src="site11.jpg" alt="Group chess lesson at Chess Lions" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="400">
+                            <img src="site13.jpg" alt="Chess strategy workshop in Michigan" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="500">
+                            <img src="site15.jpg" alt="Chess Lions championship training" class="image-4-3" width="400" height="300" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="gallery-row">
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="250">
+                            <img src="site10.jpg" alt="Youth chess development program" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="350">
+                            <img src="site12.jpg" alt="Chess club activities in South Lyon" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="450">
+                            <img src="site14.jpg" alt="Chess coaching for beginners and advanced players" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                        <div class="image-container" data-aos="fade-up" data-aos-delay="550">
+                            <img src="site16.jpg" alt="Chess Lions community events" class="image-3-4" width="300" height="400" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <a href="https://michesslions.com/fullgallery.html" class="website-button">GO TO FULL GALLERY</a>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- /main -->
 
     <footer data-aos="fade-up" data-aos-duration="1500">
         <p>&copy; 2025-2026 I2V2 Academy LLC. All Rights Reserved.</p>
@@ -1138,7 +1189,6 @@
                 });
             }
         } else {
-            // Desktop — same duration as the navbar (1000ms)
             AOS.init({ duration: 1000, once: true });
         }
 
@@ -1157,21 +1207,32 @@
         }, { passive: true });
 
         // ── Announcement bar ───────────────────────────────────────────
+        // FIX: measure bar height dynamically instead of relying on hardcoded CSS vars
         (function () {
             const bar    = document.getElementById('announceBar');
             const close  = document.getElementById('announceClose');
             const header = document.querySelector('header');
             if (!bar) return;
 
+            function setDynamicBarHeight() {
+                const h = bar.offsetHeight;
+                document.documentElement.style.setProperty('--bar-height', h + 'px');
+                document.documentElement.style.setProperty('--bar-height-mobile', h + 'px');
+                if (navbar) navbar.style.top = h + 'px';
+                if (header) header.style.marginTop = (h + parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'))) + 'px';
+            }
+
             function dismissBar() {
                 bar.classList.add('announce-hidden');
                 navbar.classList.add('bar-gone');
                 if (header) header.classList.add('bar-gone');
+                // Reset inline styles so CSS classes take over
+                navbar.style.top = '';
+                if (header) header.style.marginTop = '';
                 sessionStorage.setItem('announceDismissed', '1');
-                setTimeout(function () { bar.style.display = 'none'; }, 450);
+                setTimeout(function () { bar.style.display = 'none'; }, 800);
             }
 
-            // Already dismissed this session — hide before first paint
             if (sessionStorage.getItem('announceDismissed')) {
                 bar.style.display = 'none';
                 navbar.classList.add('bar-gone');
@@ -1179,10 +1240,56 @@
                 return;
             }
 
-            close.addEventListener('click', dismissBar);
+            // Set on load and on resize (bar may wrap on narrow screens)
+            setDynamicBarHeight();
+            window.addEventListener('resize', setDynamicBarHeight, { passive: true });
 
-            const closeMobile = document.getElementById('announceCloseMobile');
-            if (closeMobile) closeMobile.addEventListener('click', dismissBar);
+            close.addEventListener('click', dismissBar);
+        })();
+
+        // ── Desktop dropdown — keyboard accessible ─────────────────────
+        (function () {
+            const btn  = document.getElementById('tournamentBtn');
+            const menu = btn ? btn.nextElementSibling : null;
+            if (!btn || !menu) return;
+
+            function openMenu()  { btn.setAttribute('aria-expanded', 'true');  }
+            function closeMenu() { btn.setAttribute('aria-expanded', 'false'); }
+            function isOpen()    { return btn.getAttribute('aria-expanded') === 'true'; }
+
+            // Toggle on click/Enter/Space
+            btn.addEventListener('click', function () {
+                isOpen() ? closeMenu() : openMenu();
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && isOpen()) { closeMenu(); btn.focus(); }
+            });
+
+            // Close when focus leaves the dropdown entirely
+            menu.addEventListener('focusout', function (e) {
+                if (!menu.contains(e.relatedTarget) && e.relatedTarget !== btn) {
+                    closeMenu();
+                }
+            });
+
+            btn.addEventListener('focusout', function (e) {
+                if (!menu.contains(e.relatedTarget)) closeMenu();
+            });
+
+            // Arrow key nav within menu
+            const menuLinks = Array.from(menu.querySelectorAll('a'));
+            menu.addEventListener('keydown', function (e) {
+                const idx = menuLinks.indexOf(document.activeElement);
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    menuLinks[(idx + 1) % menuLinks.length].focus();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    menuLinks[(idx - 1 + menuLinks.length) % menuLinks.length].focus();
+                }
+            });
         })();
 
         // ── Mobile menu ────────────────────────────────────────────────
@@ -1192,19 +1299,25 @@
         const mobileSubmenu          = document.getElementById('mobileSubmenu');
 
         mobileToggle.addEventListener('click', function () {
-            mobileToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
+            const isOpen = mobileMenu.classList.toggle('active');
+            mobileToggle.classList.toggle('active', isOpen);
+            mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
         });
 
         mobileTournamentToggle.addEventListener('click', function () {
-            mobileTournamentToggle.classList.toggle('active');
-            mobileSubmenu.classList.toggle('active');
+            const isOpen = mobileSubmenu.classList.toggle('active');
+            mobileTournamentToggle.classList.toggle('active', isOpen);
+            mobileTournamentToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            mobileSubmenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
         });
 
         mobileMenu.querySelectorAll('a').forEach(function (link) {
             link.addEventListener('click', function () {
                 mobileToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
             });
         });
 
@@ -1213,6 +1326,8 @@
             if (!container.contains(e.target)) {
                 mobileToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
             }
         });
 
