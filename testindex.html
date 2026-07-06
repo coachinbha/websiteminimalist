@@ -1,1469 +1,906 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Lessons & Coaching in Novi, MI | Chess Lions - Professional Chess Instruction</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Primary Meta Tags -->
-    <meta name="description" content="Professional chess lessons and coaching in South Lyon, Novi, Canton, and Farmington Hills, Michigan. Chess Lions offers personalized instruction, chess clubs, and tournaments for kids and adults of all skill levels. Book your lesson today!">
-    
-    <!-- Mobile Optimization -->
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://michesslions.com/">
-    <meta property="og:title" content="Chess Lions - Professional Chess Lessons in South Lyon & Metro Detroit">
-    <meta property="og:description" content="Professional chess coaching for all ages and skill levels in South Lyon, Novi, Canton, and Farmington Hills. Join our chess clubs, tournaments, and personalized training programs.">
-    <meta property="og:image" content="https://michesslions.com/WCL business card 1050x600.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://michesslions.com/">
-    <meta property="twitter:title" content="Chess Lions - Professional Chess Lessons in South Lyon & Metro Detroit">
-    <meta property="twitter:description" content="Professional chess coaching for all ages and skill levels in South Lyon, Novi, Canton, and Farmington Hills.">
-    <meta property="twitter:image" content="https://michesslions.com/WCL business card 1050x600.png">
-    
-    <!-- Google Fonts - Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Tournament Registrations | Chess Lions</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- AOS CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    
-    <!-- Local Business Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Chess Lions",
-      "image": "https://michesslions.com/WCL business card 1050x600.png",
-      "description": "Expert chess instruction, coaching, and tournaments for all skill levels in South Lyon and metro Detroit, Michigan",
-      "@id": "https://michesslions.com",
-      "url": "https://michesslions.com",
-      "telephone": "(734) 560-2802",
-      "email": "i2v2chess@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "",
-        "addressLocality": "South Lyon",
-        "addressRegion": "MI",
-        "postalCode": "",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 42.43004957746741,
-        "longitude": -83.64825433484748
-      },
-      "areaServed": [
-        {"@type": "City", "name": "South Lyon"},
-        {"@type": "City", "name": "Novi"},
-        {"@type": "City", "name": "Canton"},
-        {"@type": "City", "name": "Farmington Hills"}
-      ],
-      "priceRange": "$$",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-        "opens": "09:00",
-        "closes": "20:00"
-      },
-      "sameAs": ["https://michesslions.com"],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "1"
-      },
-      "offers": [
-        {"@type": "Offer", "name": "Beginner Chess Lessons",      "description": "Foundational chess instruction for children and adults new to the game"},
-        {"@type": "Offer", "name": "Intermediate Chess Training",  "description": "Strategic and tactical skill development for competitive play"},
-        {"@type": "Offer", "name": "Advanced Chess Coaching",      "description": "Tournament preparation and advanced strategy for serious players"},
-        {"@type": "Offer", "name": "Chess Clubs",                  "description": "Community chess clubs for regular practice and social play"},
-        {"@type": "Offer", "name": "Chess Tournaments",            "description": "Organized chess tournaments and competitive events"}
-      ]
-    }
-    </script>
-    
     <style>
-        /* ── Variables ───────────────────────────────────────────────── */
-:root {
-    --bg-color:          #ffffff;
-    --text-color:        #000000;
-    --accent-color:      #000000;
-    --gray-100:          #f8f8f8;
-    --gray-200:          #e5e5e5;
-    --bar-height:        38px;
-    --bar-height-mobile: 42px;
-    --nav-height:        67px;
-}
- 
-* { margin: 0; padding: 0; box-sizing: border-box; }
- 
-html {
-    scroll-behavior: smooth;
-    /* REMOVED: -webkit-overflow-scrolling: touch — iOS-only, creates nested scroll context on Android */
-}
- 
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.4;
-    min-height: 100vh;
-    /* REMOVED: position: relative — causes Android to treat body as scroll container boundary */
-    /* REMOVED: overscroll-behavior-y: none — breaks Android scroll chain entirely */
-    overscroll-behavior-x: none; /* only block horizontal overscroll */
-    touch-action: pan-y;         /* explicitly allow vertical pan on Android */
-}
- 
-/* iOS AOS Fix */
-[data-aos] {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
-}
- 
-/* ── Skip-to-content link (desktop accessibility) ────────────── */
-.skip-link {
-    position: absolute;
-    top: -100%;
-    left: 1rem;
-    z-index: 9999;
-    background: #000;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-radius: 0 0 4px 4px;
-    transition: top 0.2s ease;
-}
-.skip-link:focus { top: 0; }
- 
-/* ── Announcement Bar ────────────────────────────────────────── */
-.announce-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-    background: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 0.55rem 3rem;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    min-height: var(--bar-height);
-    max-height: 60px;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    transition: opacity 0.4s ease;
-}
- 
-.announce-bar.announce-hidden {
-    opacity: 0;
-    max-height: 0;
-    min-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease, max-height 0.4s ease 0.3s, min-height 0.4s ease 0.3s, padding 0.4s ease 0.3s;
-}
- 
-.announce-bar-dot {
-    opacity: 0.4;
-    font-weight: 400;
-    letter-spacing: 0;
-}
- 
-/* Mobile-only condensed link */
-.announce-bar-mobile  { display: none; }
-.announce-bar-desktop { display: contents; }
- 
-@media (max-width: 768px) {
-    .announce-bar-desktop { display: none; }
-    .announce-bar          { justify-content: space-between; padding: 0.55rem 0.75rem 0.55rem 1rem; gap: 0.5rem; }
-    .announce-bar-mobile   { display: flex; flex: 1; align-items: center; }
-    .announce-bar-close    {
-        position: static;
-        transform: none;
-        flex-shrink: 0;
-        padding: 0.25rem 0.35rem;
-    }
-}
- 
-.announce-bar-link {
-    position: relative;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.78rem;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    transition: color 0.3s ease, transform 0.3s ease;
-    white-space: nowrap;
-}
- 
-.announce-bar-link::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #fff;
-    transition: width 0.3s ease;
-}
- 
-.announce-bar-link:hover::after,
-.announce-bar-link:focus::after  { width: 100%; }
-.announce-bar-link:hover,
-.announce-bar-link:focus         { outline: none; transform: translateY(-2px); }
- 
-.announce-bar-close {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    opacity: 0.5;
-    font-size: 1rem;
-    line-height: 1;
-    padding: 0.25rem 0.4rem;
-    font-family: 'Montserrat', sans-serif;
-    transition: opacity 0.3s ease;
-}
- 
-.announce-bar-close:hover,
-.announce-bar-close:focus { opacity: 1; outline: 2px solid #fff; outline-offset: 2px; }
- 
-/* ── Navbar ──────────────────────────────────────────────────── */
-.navbar {
-    position: fixed;
-    top: var(--bar-height);
-    left: 0;
-    right: 0;
-    background: var(--bg-color);
-    border-bottom: 1px solid var(--gray-200);
-    z-index: 1000;
-    transition: box-shadow 0.3s ease, top 0.3s ease;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
- 
-.navbar.bar-gone { top: 0; }
-.navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
- 
-.nav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.5rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
- 
-.logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
- 
-.logo:hover  { transform: scale(1.05); opacity: 0.8; }
-.logo:focus  { outline: 2px solid var(--text-color); outline-offset: 3px; }
- 
-.logo img {
-    max-height: 50px;
-    max-width: 200px;
-    object-fit: contain;
-}
- 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
- 
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    position: relative;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
- 
-.nav-links a:hover  { transform: translateY(-2px); }
-.nav-links a:focus  { outline: 2px solid var(--text-color); outline-offset: 3px; border-radius: 2px; }
- 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--text-color);
-    transition: width 0.3s ease;
-}
- 
-.nav-links a:hover::after,
-.nav-links a:focus::after { width: 100%; }
- 
-.nav-dropdown { position: relative; }
- 
-.nav-dropdown-btn {
-    appearance: none;
-    -webkit-appearance: none;
-    background: none;
-    border: none;
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-color);
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    transition: transform 0.3s ease;
-}
- 
-.nav-dropdown-btn:hover { transform: translateY(-2px); }
- 
-.nav-dropdown-btn:focus {
-    outline: 2px solid var(--text-color);
-    outline-offset: 3px;
-    border-radius: 2px;
-}
- 
-.nav-dropdown-btn svg {
-    width: 12px;
-    height: 12px;
-    transition: transform 0.3s ease;
-    pointer-events: none;
-}
- 
-.nav-dropdown:hover .nav-dropdown-btn svg,
-.nav-dropdown.is-open  .nav-dropdown-btn svg { transform: rotate(180deg); }
- 
-.dropdown-menu {
-    position: absolute;
-    top: calc(100% + 1rem);
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: var(--bg-color);
-    border: 1px solid var(--gray-200);
-    min-width: 200px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-}
- 
-.dropdown-menu::before {
-    content: '';
-    position: absolute;
-    top: -1rem;
-    left: 0; right: 0;
-    height: 1rem;
-}
- 
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown.is-open .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
- 
-.nav-dropdown:focus-within .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
- 
-.dropdown-menu a {
-    display: inline-flex;
-    width: 100%;
-    padding: 0.875rem 1.25rem;
-    font-size: 0.8rem;
-    border-bottom: 1px solid var(--gray-100);
-    position: relative;
-    text-decoration: none;
-    color: var(--text-color);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, padding-left 0.3s ease;
-}
- 
-.dropdown-menu a:hover    { background-color: var(--gray-100); padding-left: 1.5rem; }
-.dropdown-menu a:focus    { background-color: var(--gray-100); padding-left: 1.5rem; outline: 2px solid var(--text-color); outline-offset: -2px; }
-.dropdown-menu a::after   { display: none; }
-.dropdown-menu a:last-child { border-bottom: none; }
- 
-.dropdown-menu a span { position: relative; display: inline-block; }
- 
-.dropdown-menu a span::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--text-color);
-    transition: width 0.3s ease;
-}
- 
-.dropdown-menu a:hover span::after,
-.dropdown-menu a:focus span::after { width: 100%; }
- 
-/* Mobile Menu */
-.mobile-menu-container { display: none; position: relative; }
- 
-.mobile-toggle {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.75rem;
-    transition: transform 0.3s ease;
-}
- 
-.mobile-toggle:hover { transform: scale(1.1); }
-.mobile-toggle:focus { outline: 2px solid var(--text-color); outline-offset: 2px; border-radius: 2px; }
- 
-.mobile-toggle span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--text-color);
-    margin: 5px 0;
-    transition: all 0.3s ease;
-}
- 
-.mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.mobile-toggle.active span:nth-child(2) { opacity: 0; }
-.mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
- 
-.mobile-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: var(--bg-color);
-    border: 1px solid var(--gray-200);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-    z-index: 999;
-    min-width: 200px;
-    max-width: 220px;
-    margin-top: 0.5rem;
-    border-radius: 4px;
-}
- 
-.mobile-menu.active {
-    display: block;
-    animation: slideDown 0.3s ease;
-}
- 
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
- 
-.mobile-menu a,
-.mobile-menu .mobile-dropdown-toggle {
-    display: block;
-    padding: 0.875rem 1.25rem;
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 700;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid var(--gray-100);
-    transition: background-color 0.3s ease, padding-left 0.3s ease;
-}
- 
-.mobile-menu a:hover,
-.mobile-menu .mobile-dropdown-toggle:hover {
-    background-color: var(--gray-100);
-    padding-left: 1.5rem;
-}
- 
-.mobile-menu a:last-child { border-bottom: none; }
- 
-.mobile-dropdown-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    font-family: 'Montserrat', sans-serif;
-}
- 
-.mobile-dropdown-toggle svg {
-    width: 14px; height: 14px;
-    transition: transform 0.3s ease;
-    stroke: var(--text-color);
-    flex-shrink: 0;
-}
- 
-.mobile-dropdown-toggle.active svg { transform: rotate(180deg); }
- 
-.mobile-submenu { display: none; background: var(--gray-100); }
- 
-.mobile-submenu.active {
-    display: block;
-    animation: expandDown 0.3s ease;
-}
- 
-@keyframes expandDown {
-    from { opacity: 0; max-height: 0; }
-    to   { opacity: 1; max-height: 500px; }
-}
- 
-.mobile-submenu a {
-    padding: 0.75rem 1.25rem 0.75rem 2rem;
-    font-size: 0.75rem;
-    border-bottom: 1px solid var(--gray-200);
-}
- 
-.mobile-submenu a:hover        { padding-left: 2.5rem; }
-.mobile-submenu a:last-child   { border-bottom: 1px solid var(--gray-100); }
- 
-/* ── Layout ──────────────────────────────────────────────────── */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 0;
-}
- 
-h1, h2, h3 {
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-}
- 
-header {
-    text-align: center;
-    padding: 6rem 0 4rem;
-    margin-top: calc(var(--bar-height) + var(--nav-height));
-    transition: margin-top 0.3s ease;
-}
- 
-header.bar-gone { margin-top: var(--nav-height); }
- 
-header h1 {
-    font-size: 5rem;
-    margin-bottom: 0.5rem;
-    transition: transform 0.3s ease, letter-spacing 0.3s ease;
-}
- 
-header h1:hover { transform: scale(1.02); letter-spacing: 2px; }
-header p        { font-size: 1.5rem; font-weight: 300; }
- 
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
-}
- 
-.hero-content {
-    flex: 1;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
- 
-.hero-content h2   { font-size: 3rem; margin-bottom: 1rem; }
-.hero-content p    { font-size: 1.2rem; max-width: 500px; margin-bottom: 2rem; }
- 
-.hero-image {
-    flex: 1;
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
- 
-.hero-image img {
-    max-width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
-}
- 
-.hero-image img:hover {
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    filter: brightness(1.1);
-}
- 
-.services, .about, .contact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4rem 0;
-}
- 
-.section-title {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    text-align: center;
-    position: relative;
-    display: inline-block;
-}
- 
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background: var(--text-color);
-    transition: width 0.5s ease;
-}
- 
-.section-title:hover::after { width: 100%; }
- 
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    width: 100%;
-    max-width: 1200px;
-}
- 
-.service-card {
-    background-color: var(--bg-color);
-    padding: 2rem;
-    text-align: center;
-    border: 2px solid var(--text-color);
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    touch-action: pan-y; /* Android: allow scroll over cards */
-}
- 
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
-    transition: left 0.5s ease;
-}
- 
-.service-card:hover::before  { left: 100%; }
-.service-card:hover          { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.15); border-color: #333; }
-.service-card h3             { font-size: 2rem; margin-bottom: 1rem; transition: color 0.3s ease, transform 0.3s ease; }
-.service-card:hover h3       { transform: scale(1.05); }
-.service-card p              { font-size: 1.1rem; transition: transform 0.3s ease; }
-.service-card:hover p        { transform: scale(1.02); }
- 
-/* ── Gallery ─────────────────────────────────────────────────── */
-.gallery { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; }
- 
-.gallery-rows-container {
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0.1) 100%);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0.1) 100%);
-    touch-action: pan-y; /* Android: allow scroll through masked container */
-}
- 
-.gallery-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    touch-action: pan-y; /* Android: allow scroll through flex rows */
-}
- 
-.image-container { flex: 1; position: relative; overflow: hidden; border-radius: 8px; }
- 
-.image-container::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0);
-    transition: background 0.4s ease;
-    pointer-events: none;
-}
- 
-.image-container:hover::after { background: rgba(0,0,0,0.1); }
- 
-.image-4-3 { width: 100%; aspect-ratio: 4/3; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; }
-.image-3-4 { width: 100%; aspect-ratio: 3/4; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; }
- 
-.image-container:hover img { transform: scale(1.1) rotate(1deg); filter: brightness(1.1) contrast(1.05); }
- 
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to   { transform: translateY(0);    opacity: 1; }
-}
- 
-.button-container { text-align: center; margin-top: 2rem; padding-bottom: 2rem; animation: slideUp 1s ease-out; }
- 
-.website-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    background-color: #000;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
- 
-.website-button::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 0; height: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
-}
- 
-.website-button:hover::before { width: 300px; height: 300px; }
-.website-button:hover         { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); background-color: #222; }
-.website-button:focus         { outline: 2px solid #000; outline-offset: 3px; }
- 
-/* ── Buttons ─────────────────────────────────────────────────── */
-.cta-button {
-    display: inline-block;
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    font-weight: 700;
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.4s ease;
-    margin: 0.5rem;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid var(--text-color);
-}
- 
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: var(--bg-color);
-    transition: left 0.4s ease;
-    z-index: -1;
-}
- 
-.cta-button:hover::before { left: 0; }
-.cta-button:hover         { color: var(--text-color); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-.cta-button:focus         { outline: 2px solid var(--text-color); outline-offset: 3px; }
- 
-/* ── Contact ─────────────────────────────────────────────────── */
-.contact-info { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
- 
-.contact-item { display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s ease; cursor: default; }
-.contact-item:hover { transform: translateX(10px); }
- 
-.contact-item svg { width: 24px; height: 24px; fill: none; stroke: var(--text-color); stroke-width: 2; transition: transform 0.3s ease, stroke 0.3s ease; }
-.contact-item:hover svg { transform: scale(1.2) rotate(5deg); stroke: #333; }
- 
-.contact-item p { margin: 0; font-size: 1.2rem; transition: font-size 0.3s ease; }
-.contact-item:hover p { font-size: 1.25rem; }
- 
-.button-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
- 
-/* ── Footer ──────────────────────────────────────────────────── */
-footer { text-align: center; padding: 2rem 0; font-size: 1rem; transition: transform 0.3s ease; }
-footer:hover { transform: scale(1.02); }
- 
-/* ── Media Queries ───────────────────────────────────────────── */
-@media (max-width: 1024px) {
-    .hero { flex-direction: column; gap: 2rem; }
-    header h1 { font-size: 3rem; }
-    .hero-content h2 { font-size: 2.5rem; }
-    .section-title { font-size: 2.5rem; }
-    .gallery-row { flex-wrap: wrap; }
-    .image-container { flex: 0 0 calc(50% - 0.5rem); }
-}
- 
-@media (max-width: 768px) {
-    html { width: 100%; }
-    body { overflow-x: hidden; width: 100%; }
- 
-    .announce-bar {
-        padding: 0.55rem 2.5rem 0.55rem 1rem;
-        gap: 0.6rem;
-        font-size: 0.72rem;
-        min-height: var(--bar-height-mobile);
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
- 
-    .navbar {
-        width: 100%; left: 0; right: 0;
-        top: var(--bar-height-mobile);
-    }
-    .navbar.bar-gone { top: 0; }
- 
-    header {
-        padding: 2rem 0;
-        margin-top: calc(var(--bar-height-mobile) + var(--nav-height));
-    }
-    header.bar-gone { margin-top: var(--nav-height); }
- 
-    .nav-inner            { width: 100%; max-width: 100%; }
-    .nav-links            { display: none; }
-    .mobile-menu-container { display: block; }
- 
-    header h1    { font-size: 2.5rem; }
-    .hero-content h2 { font-size: 2rem; }
-    .section-title   { font-size: 2rem; }
-    .image-container { flex: 0 0 100%; }
- 
-    .button-group             { flex-direction: column; width: 100%; align-items: center; }
-    .button-group .cta-button { width: 100%; text-align: center; margin: 0; }
-}
- 
-@media (max-width: 480px) {
-    html { width: 100%; }
-    body { overflow-x: hidden; width: 100%; }
- 
-    .logo img  { max-height: 40px; max-width: 160px; }
-    .nav-inner { padding: 0.5rem 1rem; width: 100%; }
-    header h1  { font-size: 2rem; }
-    .container { width: 100%; padding-left: 1rem; padding-right: 1rem; max-width: 100%; }
-    .gallery   { padding: 10px; max-width: 100%; }
-    .service-grid { grid-template-columns: 1fr; }
-}
- 
-/* ── Touch devices (iOS + Android) ──────────────────────────── */
-@media (hover: none) and (pointer: coarse) {
- 
-    /* ── iOS-specific AOS fixes (unchanged) ── */
-    [data-aos] {
-        -webkit-transform: translate3d(0,0,0) !important;
-        transform: translate3d(0,0,0) !important;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        will-change: opacity;
-    }
- 
-    [data-aos="fade-up"], [data-aos="fade-down"], [data-aos="fade-left"],
-    [data-aos="fade-right"], [data-aos="fade"], [data-aos="zoom-in"] {
-        -webkit-transform: none !important;
-        transform: none !important;
-    }
- 
-    [data-aos]:not(.aos-animate) {
-        opacity: 0;
-        -webkit-transform: translate3d(0,0,0) !important;
-        transform: translate3d(0,0,0) !important;
-    }
- 
-    [data-aos].aos-animate {
-        opacity: 1;
-        -webkit-transform: translate3d(0,0,0) !important;
-        transform: translate3d(0,0,0) !important;
-    }
- 
-    html { -webkit-overflow-scrolling: touch; overflow-y: scroll; }
-    body { -webkit-overflow-scrolling: touch; }
- 
-    .hero, .hero-content, .hero-image, header, .services, .about, .contact {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-    }
-    /* ── end iOS-specific ── */
- 
-    /* ── Android: ensure scroll passes through composited/transformed elements ── */
-    .gallery-rows-container,
-    .gallery-row,
-    .image-container,
-    .service-card,
-    .hero,
-    .hero-content,
-    .hero-image,
-    header,
-    .services,
-    .about,
-    .contact,
-    .container {
-        touch-action: pan-y;
-    }
- 
-    /* Kill all hover effects */
-    .logo:hover, .nav-links a:hover, .nav-dropdown-btn:hover,
-    .mobile-toggle:hover, header h1:hover, .hero-image img:hover,
-    .section-title:hover, .service-card:hover, .service-card:hover h3,
-    .service-card:hover p, .image-container:hover img,
-    .website-button:hover, .cta-button:hover, .contact-item:hover,
-    .contact-item:hover svg, .contact-item:hover p, footer:hover,
-    .announce-bar-link:hover {
-        transform: none !important;
-        -webkit-transform: none !important;
-    }
- 
-    .dropdown-menu a:hover,
-    .mobile-menu a:hover,
-    .mobile-menu .mobile-dropdown-toggle:hover,
-    .mobile-submenu a:hover {
-        background-color: transparent !important;
-    }
- 
-    .service-card:hover, .website-button:hover, .cta-button:hover { box-shadow: none !important; }
-    .hero-image img:hover, .image-container:hover img { filter: none !important; }
-    .image-container:hover::after { background: rgba(0,0,0,0) !important; }
- 
-    .service-card:hover::before, .website-button:hover::before,
-    .cta-button:hover::before { left: -100% !important; }
- 
-    .nav-links a:hover::after, .dropdown-menu a:hover span::after,
-    .section-title:hover::after, .announce-bar-link:hover::after { width: 0 !important; }
- 
-    .cta-button:active, .website-button:active, .service-card:active { opacity: 0.8; }
-    .mobile-menu a:active, .mobile-submenu a:active { background-color: var(--gray-200) !important; }
-}
-    </style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #000000;
+            --gray-100: #f8f8f8;
+            --gray-200: #e5e5e5;
+        }
 
-    <script
-        id="counterscale-script"
-        data-site-id="windsorchesslions"
-        src="https://counterscale.windsorchesslions.workers.dev/tracker.js"
-        defer
-    ></script>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.4;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-text-size-adjust: 100%;
+            touch-action: pan-y;
+        }
+
+        /* ── NAVBAR ─────────────────────────────────────────── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            transition: box-shadow .3s ease;
+            will-change: box-shadow;
+        }
+        .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            padding: .5rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo { display: flex; align-items: center; text-decoration: none; transition: transform .3s ease, opacity .3s ease; -webkit-tap-highlight-color: transparent; }
+        .logo:hover { transform: scale(1.05); opacity: .8; }
+        .logo img { max-height: 50px; max-width: 200px; object-fit: contain; }
+
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-color);
+            font-weight: 700; font-size: .85rem; letter-spacing: .5px; text-transform: uppercase;
+            position: relative; transition: color .3s ease, transform .3s ease;
+        }
+        .nav-links a:hover { transform: translateY(-2px); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--text-color); transition: width .3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > span {
+            font-weight: 700; font-size: .85rem; letter-spacing: .5px; text-transform: uppercase;
+            cursor: pointer; display: flex; align-items: center; gap: .3rem; transition: transform .3s ease;
+        }
+        .nav-dropdown > span:hover { transform: translateY(-2px); }
+        .nav-dropdown > span svg { width: 12px; height: 12px; transition: transform .3s ease; }
+        .nav-dropdown:hover > span svg { transform: rotate(180deg); }
+
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 1rem); left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--bg-color); border: 1px solid var(--gray-200);
+            min-width: 200px; opacity: 0; visibility: hidden;
+            transition: all .3s ease; box-shadow: 0 10px 40px rgba(0,0,0,.1);
+        }
+        .dropdown-menu::before { content: ''; position: absolute; top: -1rem; left: 0; right: 0; height: 1rem; }
+        .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-menu a {
+            display: inline-flex; width: 100%; padding: .875rem 1.25rem;
+            font-size: .8rem; border-bottom: 1px solid var(--gray-100);
+            text-decoration: none; color: var(--text-color);
+            font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+            position: relative; transition: background-color .3s ease, padding-left .3s ease;
+        }
+        .dropdown-menu a:hover { background: var(--gray-100); padding-left: 1.5rem; }
+        .dropdown-menu a::after { display: none; }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a span { position: relative; display: inline-block; }
+        .dropdown-menu a span::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--text-color); transition: width .3s ease;
+        }
+        .dropdown-menu a:hover span::after { width: 100%; }
+
+        /* Mobile nav */
+        .mobile-menu-container { display: none; position: relative; }
+        .mobile-toggle { background: none; border: none; cursor: pointer; padding: .75rem; transition: transform .3s ease; -webkit-tap-highlight-color: transparent; }
+        .mobile-toggle:hover { transform: scale(1.1); }
+        .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--text-color); margin: 5px 0; transition: all .3s ease; }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+        .mobile-menu {
+            display: none; position: absolute; top: 100%; right: 0;
+            background: var(--bg-color); border: 1px solid var(--gray-200);
+            box-shadow: 0 10px 40px rgba(0,0,0,.15);
+            z-index: 999; min-width: 200px; max-width: 220px;
+            margin-top: .5rem; border-radius: 4px;
+            -webkit-overflow-scrolling: auto;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .mobile-menu.active { display: block; animation: slideDown .3s ease; }
+        @keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+
+        .mobile-menu a, .mobile-menu .mobile-dropdown-toggle {
+            display: block; padding: .875rem 1.25rem;
+            text-decoration: none; color: var(--text-color);
+            font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .5px;
+            border-bottom: 1px solid var(--gray-100);
+            transition: background-color .3s ease, padding-left .3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mobile-menu a:hover, .mobile-menu .mobile-dropdown-toggle:hover { background: var(--gray-100); padding-left: 1.5rem; }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-dropdown-toggle { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .mobile-dropdown-toggle svg { width: 14px; height: 14px; transition: transform .3s ease; stroke: var(--text-color); }
+        .mobile-dropdown-toggle.active svg { transform: rotate(180deg); }
+        .mobile-submenu { display: none; background: var(--gray-100); }
+        .mobile-submenu.active { display: block; animation: expandDown .3s ease forwards; overflow: hidden; }
+        @keyframes expandDown { from { opacity:0; max-height:0; } to { opacity:1; max-height:500px; } }
+        .mobile-submenu a { padding: .75rem 1.25rem .75rem 2rem; font-size: .75rem; border-bottom: 1px solid var(--gray-200); }
+        .mobile-submenu a:hover { padding-left: 2.5rem; }
+        .mobile-submenu a:last-child { border-bottom: 1px solid var(--gray-100); }
+
+        /* ── PAGE CONTENT ────────────────────────────────────── */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10rem 0 4rem;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            margin: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--text-color);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .cta-button::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%; background: var(--bg-color);
+            transition: left 0.4s ease; z-index: 0;
+        }
+        .cta-button:hover::before { left: 0; }
+        .cta-button:hover { color: var(--text-color); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .cta-button span { position: relative; z-index: 1; }
+
+        .loading { text-align: center; color: #666; font-size: 1rem; padding: 4rem 2rem; letter-spacing: 1px; }
+        .error { background: var(--bg-color); border: 2px solid var(--text-color); color: var(--text-color); padding: 2rem; text-align: center; margin: 2rem 0; font-size: 1rem; }
+
+        .tournament-tabs {
+            display: flex; justify-content: center; flex-wrap: wrap;
+            gap: 0.5rem; margin: 2rem 0;
+            border-bottom: 2px solid var(--text-color); padding-bottom: 1rem;
+        }
+
+        .tournament-tab {
+            padding: 0.75rem 1.5rem; border: 2px solid var(--text-color);
+            background-color: var(--bg-color); color: var(--text-color);
+            cursor: pointer; font-weight: 700; text-transform: uppercase;
+            font-size: 0.85rem; letter-spacing: 0.5px; transition: all 0.4s ease;
+            font-family: 'Montserrat', sans-serif; position: relative; overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tournament-tab::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--text-color); transition: left 0.4s ease; z-index: 0; }
+        .tournament-tab:hover::before { left: 0; }
+        .tournament-tab:hover { color: var(--bg-color); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .tournament-tab span { position: relative; z-index: 1; }
+        .tournament-tab.active { background-color: var(--text-color); color: var(--bg-color); }
+        .tournament-tab.active::before { left: 0; }
+
+        .stats { display: flex; justify-content: center; gap: 4rem; margin: 3rem 0; padding: 2rem; border: 1px solid var(--text-color); }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 3rem; font-weight: 900; color: var(--text-color); letter-spacing: -1px; transition: all 0.3s ease; }
+        .stat-label { font-size: 0.9rem; color: #666; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+
+        h2 { text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .search-section { margin: 2rem 0 1rem; display: flex; justify-content: center; }
+        .search-wrapper { position: relative; width: 100%; max-width: 500px; }
+        .search-input {
+            width: 100%; padding: 0.9rem 3rem 0.9rem 1.25rem;
+            border: 2px solid var(--text-color); background-color: var(--bg-color);
+            color: var(--text-color); font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px;
+            outline: none; transition: box-shadow 0.3s ease; text-transform: uppercase;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+        .search-input::placeholder { color: #aaa; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+        .search-input:focus { box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .search-clear {
+            position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%);
+            background: none; border: none; cursor: pointer; font-size: 1.1rem;
+            color: #aaa; font-family: 'Montserrat', sans-serif; font-weight: 900;
+            padding: 0.25rem; line-height: 1; display: none; transition: color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .search-clear:hover { color: var(--text-color); }
+        .search-clear.visible { display: block; }
+        .no-results { text-align: center; color: #999; font-size: 0.95rem; padding: 3rem 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .search-highlight { background-color: #000; color: #fff; padding: 0 2px; border-radius: 1px; }
+
+        .filter-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .filter-btn {
+            padding: 0.75rem 1.5rem; border: 2px solid var(--text-color);
+            background-color: var(--bg-color); color: var(--text-color);
+            cursor: pointer; font-weight: 700; text-transform: uppercase;
+            font-size: 0.85rem; letter-spacing: 0.5px; transition: all 0.4s ease;
+            font-family: 'Montserrat', sans-serif; position: relative; overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .filter-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--text-color); transition: left 0.4s ease; z-index: 0; }
+        .filter-btn:hover::before { left: 0; }
+        .filter-btn:hover { color: var(--bg-color); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .filter-btn span { position: relative; z-index: 1; }
+        .filter-btn.active { background-color: var(--text-color); color: var(--bg-color); }
+        .filter-btn.active::before { left: 0; }
+
+        .table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; margin-top: 2rem; border: 1px solid var(--text-color); transition: opacity 0.3s ease, transform 0.3s ease; }
+        table.updating { opacity: 0.5; transform: translateY(-10px); }
+        th { background-color: var(--bg-color); color: var(--text-color); padding: 1.5rem; text-align: left; font-weight: 900; border-bottom: 2px solid var(--text-color); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; white-space: nowrap; }
+        td { padding: 1.2rem 1.5rem; border-bottom: 1px solid #e0e0e0; font-size: 0.95rem; vertical-align: middle; }
+        tr:hover { background-color: #f9f9f9; }
+        tr:last-child td { border-bottom: 1px solid var(--text-color); }
+
+        .refresh-info { text-align: center; color: #999; font-size: 0.85rem; margin-top: 2rem; letter-spacing: 0.5px; }
+
+        .rating-display { font-weight: 900; font-size: 1rem; color: var(--text-color); }
+        .rating-loading { font-style: italic; color: #aaa; font-size: 0.85rem; }
+        .rating-error { color: #d32f2f; font-weight: 700; }
+        .rating-unrated { color: #666; font-weight: 700; }
+
+        footer { text-align: center; padding: 2rem 0; font-size: 1rem; transition: transform 0.3s ease; margin-top: 2rem; border-top: 1px solid #e0e0e0; }
+        footer:hover { transform: scale(1.02); }
+
+        /* ── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 768px) {
+            body { overflow-x: hidden; width: 100%; }
+            .navbar { width: 100%; left: 0; right: 0; }
+            .nav-inner { width: 100%; max-width: 100%; }
+            .nav-links { display: none; }
+            .mobile-menu-container { display: block; }
+
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+            .stats { flex-direction: column; gap: 2rem; }
+            th, td { padding: 0.75rem 1rem; }
+            .stat-number { font-size: 2.5rem; }
+            .filter-section { gap: 0.25rem; }
+            .filter-btn { padding: 0.6rem 1rem; font-size: 0.75rem; }
+            .tournament-tabs { gap: 0.25rem; }
+            .tournament-tab { padding: 0.6rem 1rem; font-size: 0.75rem; }
+            .cta-button { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+            .search-input { font-size: 0.85rem; }
+            .hide-on-mobile { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-inner { padding: .5rem 1rem; }
+            .logo img { max-height: 40px; max-width: 160px; }
+        }
+
+        /* ── iOS / TOUCH: disable hover effects ── */
+        @media (hover: none) and (pointer: coarse) {
+            .logo:hover,
+            .nav-links a:hover,
+            .nav-dropdown > span:hover,
+            .mobile-toggle:hover {
+                transform: none !important;
+                -webkit-transform: none !important;
+            }
+            .nav-links a:hover::after,
+            .dropdown-menu a:hover span::after { width: 0 !important; }
+
+            /* Only suppress background-color on touch, NOT padding-left */
+            .dropdown-menu a:hover,
+            .mobile-menu a:hover,
+            .mobile-menu .mobile-dropdown-toggle:hover,
+            .mobile-submenu a:hover {
+                background-color: transparent !important;
+            }
+
+            .logo:hover { opacity: 1 !important; }
+
+            .cta-button:hover, .tournament-tab:hover, .filter-btn:hover, footer:hover { transform: none !important; box-shadow: none !important; }
+            .cta-button:hover::before, .tournament-tab:hover::before, .filter-btn:hover::before { left: -100% !important; }
+            .tournament-tab.active::before, .filter-btn.active::before { left: 0 !important; }
+            .cta-button:active, .tournament-tab:active, .filter-btn:active { opacity: 0.7; }
+        }
+    </style>
 </head>
 <body>
 
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- ── Announcement Bar ───────────────────────────────────────────── -->
-    <div class="announce-bar" id="announceBar"
-         data-aos="fade-down"
-         data-aos-duration="1000"
-         role="banner"
-         aria-label="Upcoming event announcement">
-        <span class="announce-bar-desktop">
-            <span>(Upcoming Tournament) Mega Junior Championship & open side event&nbsp;&mdash;&nbsp;Farmington Hills, MI</span>
-            <span class="announce-bar-dot">&nbsp;|&nbsp;</span>
-            <a href="https://michesslions.com/registration.html" class="announce-bar-link">Register Now</a>
-        </span>
-        <a href="https://michesslions.com/registration.html" class="announce-bar-link announce-bar-mobile">Register: Mega Junior Championship<span style="font-weight:700;font-style:normal;">&#x2192;</span></a>
-        <button class="announce-bar-close" id="announceClose" aria-label="Dismiss announcement">&#x2715;</button>
-    </div>
-
-    <!-- ── Navigation ────────────────────────────────────────────────── -->
-    <nav class="navbar" id="navbar" data-aos="fade-down" data-aos-duration="1000" aria-label="Main navigation">
+    <!-- ── NAVBAR ────────────────────────────────────────────── -->
+    <nav class="navbar" id="navbar" data-aos="fade-down" data-aos-duration="1000">
         <div class="nav-inner">
-            <a href="/" class="logo" aria-label="Chess Lions — home">
+            <a href="https://michesslions.com/" class="logo">
                 <img src="WCL business card 1050x600.png" alt="Chess Lions Logo - Professional Chess Instruction in South Lyon Michigan">
             </a>
-            
-            <div class="nav-links" role="menubar" aria-label="Main menu">
-                <a href="#home"   role="menuitem">Home</a>
-                <a href="#services" role="menuitem">Teaching</a>
-                <a href="https://michesslions.com/about.html" role="menuitem">About</a>
-
-                <div class="nav-dropdown" role="none">
-                    <button
-                        type="button"
-                        class="nav-dropdown-btn"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        aria-controls="tournamentsMenu"
-                        id="tournamentsBtn"
-                        role="menuitem"
-                    >
-                        Tournaments
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+            <div class="nav-links">
+                <a href="https://michesslions.com/#home">Home</a>
+                <a href="https://michesslions.com/#services">Teaching</a>
+                <a href="https://michesslions.com/about.html">About</a>
+                <div class="nav-dropdown">
+                    <span>Tournaments
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
-                    </button>
-                    <div
-                        class="dropdown-menu"
-                        id="tournamentsMenu"
-                        role="menu"
-                        aria-labelledby="tournamentsBtn"
-                    >
-                        <a href="https://michesslions.com/tournaments.html"       role="menuitem"><span>Current Tournaments</span></a>
-                        <a href="https://michesslions.com/registration.html"      role="menuitem"><span>Register</span></a>
-                        <a href="https://michesslions.com/registration-list.html" role="menuitem"><span>Registration List</span></a>
-                        <a href="https://michesslions.com/pairingspage.html"      role="menuitem"><span>Pairings</span></a>
+                    </span>
+                    <div class="dropdown-menu">
+                        <a href="https://michesslions.com/tournaments.html"><span>Current Tournaments</span></a>
+                        <a href="https://michesslions.com/registration.html"><span>Register</span></a>
+                        <a href="https://michesslions.com/registration-list.html"><span>Registration List</span></a>
                     </div>
                 </div>
-
-                <a href="#contact" role="menuitem">Contact</a>
-                <a href="https://michesslions.com/faq.html"         role="menuitem">FAQ</a>
-                <a href="https://michesslions.com/fullgallery.html" role="menuitem">Gallery</a>
+                <a href="https://michesslions.com/#contact">Contact</a>
+                <a href="https://michesslions.com/faq.html">FAQ</a>
+                <a href="https://michesslions.com/fullgallery.html">Gallery</a>
             </div>
-
             <div class="mobile-menu-container">
-                <button
-                    class="mobile-toggle"
-                    id="mobileToggle"
-                    aria-label="Toggle navigation menu"
-                    aria-expanded="false"
-                    aria-controls="mobileMenu"
-                >
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
                 </button>
-                
-                <div class="mobile-menu" id="mobileMenu" role="menu" aria-label="Mobile navigation">
-                    <a href="#home"   role="menuitem">Home</a>
-                    <a href="#services" role="menuitem">Teaching</a>
-                    <a href="https://michesslions.com/about.html" role="menuitem">About</a>
-                    <button
-                        type="button"
-                        class="mobile-dropdown-toggle"
-                        id="mobileTournamentToggle"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        aria-controls="mobileSubmenu"
-                        role="menuitem"
-                    >
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="https://michesslions.com/#home">Home</a>
+                    <a href="https://michesslions.com/#services">Teaching</a>
+                    <a href="https://michesslions.com/about.html">About</a>
+                    <div class="mobile-dropdown-toggle" id="mobileTournamentToggle">
                         <span>Tournaments</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
-                    </button>
-                    <div class="mobile-submenu" id="mobileSubmenu" role="menu" aria-label="Tournaments submenu">
-                        <a href="https://michesslions.com/tournaments.html"       role="menuitem">Current Tournaments</a>
-                        <a href="https://michesslions.com/registration.html"      role="menuitem">Register</a>
-                        <a href="https://michesslions.com/registration-list.html" role="menuitem">Registration List</a>
-                        <a href="https://michesslions.com/pairingspage.html"      role="menuitem">Pairings</a>
                     </div>
-                    <a href="#contact" role="menuitem">Contact</a>
-                    <a href="https://michesslions.com/faq.html"         role="menuitem">FAQ</a>
-                    <a href="https://michesslions.com/fullgallery.html" role="menuitem">Gallery</a>
+                    <div class="mobile-submenu" id="mobileSubmenu">
+                        <a href="https://michesslions.com/tournaments.html">Current Tournaments</a>
+                        <a href="https://michesslions.com/registration.html">Register</a>
+                        <a href="https://michesslions.com/registration-list.html">Registration List</a>
+                    </div>
+                    <a href="https://michesslions.com/#contact">Contact</a>
+                    <a href="https://michesslions.com/faq.html">FAQ</a>
+                    <a href="https://michesslions.com/fullgallery.html">Gallery</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ── Main Content ──────────────────────────────────────────────── -->
-    <main id="main-content">
-
-    <!-- ── Header ────────────────────────────────────────────────────── -->
-    <header id="home" data-aos="fade-down" data-aos-duration="1500">
-        <div class="container">
-            <h1>Chess Lions</h1>
-            <p>Where Everyone Can Become a Champion</p>
-        </div>
-    </header>
-
-    <!-- ── Hero ──────────────────────────────────────────────────────── -->
-    <section class="hero container" aria-label="Introduction">
-        <div class="hero-content" data-aos="fade-right" data-aos-duration="1500">
-            <h2>Chess Lessons for All Levels</h2>
-            <p>Unlock your chess potential with personalized coaching. Whether you're a beginner or an advanced player, our expert instruction will elevate your game to championship level.</p>
-            <a href="https://michesslions.com/signup.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Book a Lesson</a>
-        </div>
-        <div class="hero-image" data-aos="fade-left" data-aos-duration="1500">
-            <img src="P1AWN.svg" alt="Chess pawn illustration representing chess instruction and strategy" />
-        </div>
-    </section>
-
-    <!-- ── Services ──────────────────────────────────────────────────── -->
-    <section id="services" class="services container" aria-labelledby="services-heading">
-        <h2 class="section-title" id="services-heading" data-aos="fade-up" data-aos-duration="1500">Our Chess Programs</h2>
-        <div class="service-grid">
-            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <h3>Beginner Lessons</h3>
-                <p>Learn the fundamentals of chess from scratch. Perfect for children and adults new to the game who want to build a strong foundation.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                <h3>Intermediate Training</h3>
-                <p>Enhance your strategic thinking and tactical skills. Ideal for players looking to improve their game and compete at higher levels.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
-                <h3>Advanced Coaching</h3>
-                <p>Dive deep into complex strategies and competitive play. Tailored for serious chess enthusiasts aiming for tournament success.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── About ─────────────────────────────────────────────────────── -->
-    <section id="about" class="about container" aria-labelledby="about-heading">
-        <h2 class="section-title" id="about-heading" data-aos="fade-up" data-aos-duration="1500">About Us</h2>
-        <div class="hero" data-aos="fade-right" data-aos-duration="1500">
-            <div class="hero-content">
-                <h3>Experienced Chess Instructors</h3>
-                <p>We are the Chess Lions, dedicated to promoting the ancient game of strategy and intellect across North America. Starting out as a community chess club in 2017, we've grown into a championship-producing organization. We've proudly coached, taught, and led teams to victory in several state-level championships in both Canada and the USA. With our proven methods and passionate instruction, everyone can be a champion.</p>
-                <a href="https://michesslions.com/about.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Learn More About Us</a>
-            </div>
-            <div class="hero-image" data-aos="fade-left" data-aos-duration="1500">
-                <img src="library.jpg" alt="Chess instruction at local library in South Lyon Michigan" />
-            </div>
-        </div>
-    </section>
-
-    <!-- ── Contact ───────────────────────────────────────────────────── -->
-    <section id="contact" class="contact container" aria-labelledby="contact-heading">
-        <h2 class="section-title" id="contact-heading" data-aos="fade-up" data-aos-duration="1500">Contact Us</h2>
-        
-        <div class="contact-info">
-            <div class="contact-item" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.19 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-                <p><a href="tel:+17345602802" style="color: inherit; text-decoration: none;" aria-label="Call Chess Lions at 7 3 4, 5 6 0, 2 8 0 2">(734) 560-2802</a></p>
-            </div>
-            
-            <div class="contact-item" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                </svg>
-                <p><a href="mailto:i2v2chess@gmail.com" style="color: inherit; text-decoration: none;">i2v2chess@gmail.com</a></p>
-            </div>
+    <!-- ── PAGE CONTENT ──────────────────────────────────────── -->
+    <div class="container">
+        <div class="header-section">
+            <h1 data-aos="fade-up" data-aos-delay="200">REGISTER FOR OUR<br>TOURNAMENT(S)</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="300">Live registration list with live USCF ratings</p>
+            <a href="https://michesslions.com/registration.html" class="cta-button" data-aos="fade-up" data-aos-delay="400">
+                <span>Register Now</span>
+            </a>
         </div>
 
-        <div class="button-group">
-            <a href="mailto:i2v2chess@gmail.com" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">Send an Email</a>
-            <a href="https://michesslions.com/faq.html" class="cta-button" data-aos="zoom-in" data-aos-duration="1500">FAQ</a>
-        </div>
-    </section>
+        <div id="loading" class="loading" data-aos="fade-in">Loading registrations...</div>
+        <div id="error" class="error" style="display:none;" data-aos="fade-in"></div>
 
-    <!-- ── Gallery ───────────────────────────────────────────────────── -->
-    <section id="gallery2" class="gallery2" aria-label="Photo gallery">
-        <div class="gallery">
-            <div class="gallery-rows-container">
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="100">
-                        <img src="site1.jpg"  alt="Chess students learning strategy at Chess Lions" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="200">
-                        <img src="site3.jpg"  alt="Youth chess tournament participants at Chess Lions" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="300">
-                        <img src="site5.jpg"  alt="Chess coaching session in South Lyon Michigan" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="400">
-                        <img src="site7.jpg"  alt="Chess club meeting in metro Detroit area" class="image-4-3">
-                    </div>
-                </div>
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="150">
-                        <img src="site2.jpg"  alt="Kids learning chess fundamentals" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="250">
-                        <img src="site63.jpg" alt="Advanced chess training session" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="350">
-                        <img src="site64.jpg" alt="Chess tournament preparation class" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="450">
-                        <img src="site8.jpg"  alt="Chess instruction for all skill levels" class="image-3-4">
-                    </div>
-                </div>
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="200">
-                        <img src="site59.jpg" alt="Chess Lions students in competition" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="300">
-                        <img src="site11.jpg" alt="Group chess lesson at Chess Lions" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="400">
-                        <img src="site13.jpg" alt="Chess strategy workshop in Michigan" class="image-4-3">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="500">
-                        <img src="site15.jpg" alt="Chess Lions championship training" class="image-4-3">
-                    </div>
-                </div>
-                <div class="gallery-row">
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="250">
-                        <img src="site10.jpg" alt="Youth chess development program" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="350">
-                        <img src="site12.jpg" alt="Chess club activities in South Lyon" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="450">
-                        <img src="site14.jpg" alt="Chess coaching for beginners and advanced players" class="image-3-4">
-                    </div>
-                    <div class="image-container" data-aos="fade-up" data-aos-delay="550">
-                        <img src="site16.jpg" alt="Chess Lions community events" class="image-3-4">
-                    </div>
+        <div id="content" style="display:none;">
+            <div class="tournament-tabs" id="tournamentTabs"></div>
+            <h2 id="sheetTitle"></h2>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <div class="stat-label">Total Registrations</div>
                 </div>
             </div>
 
-            <div class="button-container">
-                <a href="https://michesslions.com/fullgallery.html" class="website-button">GO TO FULL GALLERY</a>
+            <div class="search-section" data-aos="fade-up">
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search players..." autocomplete="off" spellcheck="false"/>
+                    <button class="search-clear" id="searchClear" title="Clear search">&times;</button>
+                </div>
+            </div>
+
+            <div class="filter-section" id="filterSection"></div>
+
+            <div class="table-wrapper">
+                <table id="registrationTable">
+                    <thead><tr id="headerRow"></tr></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="refresh-info" data-aos="fade-up" data-aos-delay="600">
+                Last updated: <span id="lastUpdate">just now</span> | Auto-refresh every 30 seconds | Ratings fetched automatically
             </div>
         </div>
-    </section>
 
-    </main><!-- /#main-content -->
+        <footer data-aos="fade-up" data-aos-duration="1500">
+            <p>&copy; 2025-2026 I2V2 Academy LLC. All Rights Reserved.</p>
+        </footer>
+    </div>
 
-    <footer data-aos="fade-up" data-aos-duration="1500">
-        <p>&copy; 2025-2026 I2V2 Academy LLC. All Rights Reserved.</p>
-    </footer>
-
-    <!-- AOS JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        // ── Device detection ───────────────────────────────────────────
-        function isTouchDevice() {
-            return (('ontouchstart' in window) ||
-                    (navigator.maxTouchPoints > 0) ||
-                    (navigator.msMaxTouchPoints > 0));
+        AOS.init({ duration: 1000, once: true, disable: false });
+        let hasAnimated = false;
+
+        const USCF_ID_KEY = 'USCF ID (ONLY if playing in a rated section, an 8 digit number, like "12892910" )';
+const SECTION_KEY = 'Which section?(For the scholastic sections, please use the grade the student was in this January)\n\n Note: sections may be combined based upon entries.';
+const RATING_CACHE_KEY = 'uscf_rating_cache';
+const CACHE_DURATION = 24 * 60 * 60 * 1000;
+
+        const TOURNAMENTS = [
+            
+            {
+    name: 'Chess Lions: Mega Junior Championship and Side Event', 
+    url: 'https://opensheet.elk.sh/1U2fKXguu-IyOGCcbtPL5qRwY5SKegaW_8thjZxEHBrk/dataforopensheet', 
+    columns: [
+        "Players Name (Last name, First name)",
+        SECTION_KEY,
+        USCF_ID_KEY,
+        "Rating"
+    ],
+    sectionColumn: SECTION_KEY,
+    columnLabels: {
+        'Players Name (Last name, First name)': 'Player Name',
+        [SECTION_KEY]: 'Section',
+        [USCF_ID_KEY]: 'USCF ID'
+    }
+},
+
+{
+    name: 'Chess Lions August Open',
+    url: 'https://opensheet.elk.sh/1VBt12hEOQ21R1Ip3rSVm5cRGq4PtXNsj2GpzgoJrZaU/dataforopensheet',
+    columns: [
+        "Players Name (Last name, First name)",
+        'Which section? Note: sections may be combined based upon entries.',
+        USCF_ID_KEY,
+        "Rating"
+    ],
+    sectionColumn: 'Which section? Note: sections may be combined based upon entries.',
+    columnLabels: {
+        'Players Name (Last name, First name)': 'Player Name',
+        'Which section? Note: sections may be combined based upon entries.': 'Section',
+        [USCF_ID_KEY]: 'USCF ID'
+    }
+}
+        ];
+
+        let activeTournament = 0;
+        let tournamentsData = {};
+        let selectedSections = {};
+        let searchQuery = '';
+        let ratingCache = {};
+
+        function loadRatingCache() {
+            try {
+                const stored = localStorage.getItem(RATING_CACHE_KEY);
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    const now = Date.now();
+                    Object.keys(parsed).forEach(id => {
+                        if (now - parsed[id].timestamp > CACHE_DURATION) {
+                            delete parsed[id];
+                        }
+                    });
+                    ratingCache = parsed;
+                    localStorage.setItem(RATING_CACHE_KEY, JSON.stringify(ratingCache));
+                }
+            } catch (e) {
+                console.warn('Failed to load rating cache:', e);
+                ratingCache = {};
+            }
         }
 
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        function saveRatingCache() {
+            try {
+                localStorage.setItem(RATING_CACHE_KEY, JSON.stringify(ratingCache));
+            } catch (e) {
+                console.warn('Failed to save rating cache:', e);
+            }
         }
 
-        // ── AOS init ───────────────────────────────────────────────────
-        if (isTouchDevice()) {
-            document.addEventListener('DOMContentLoaded', function () {
-                document.querySelectorAll('[data-aos]').forEach(function (el) {
-                    el.setAttribute('data-aos', 'fade');
-                    el.style.willChange = 'opacity';
-                    el.style.webkitTransform = 'translate3d(0,0,0)';
-                    el.style.transform = 'translate3d(0,0,0)';
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+
+        searchInput.addEventListener('input', () => {
+            searchQuery = searchInput.value.trim();
+            searchClear.classList.toggle('visible', searchQuery.length > 0);
+            applyFiltersAndRender();
+        });
+
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchQuery = '';
+            searchClear.classList.remove('visible');
+            searchInput.focus();
+            applyFiltersAndRender();
+        });
+
+        function applyFiltersAndRender() {
+            const data = tournamentsData[activeTournament];
+            const tournament = TOURNAMENTS[activeTournament];
+            if (!data) return;
+            renderTable(activeTournament, data, tournament);
+        }
+
+        function getFilteredData(tournamentIdx, data, tournament) {
+            let filtered = selectedSections[tournamentIdx] === 'All'
+                ? data
+                : data.filter(row => row[tournament.sectionColumn] === selectedSections[tournamentIdx]);
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase();
+                filtered = filtered.filter(row =>
+                    tournament.columns.some(col => {
+                        const val = row[col];
+                        return val && val.toString().toLowerCase().includes(q);
+                    })
+                );
+            }
+            return filtered;
+        }
+
+        function highlightText(text, query) {
+            if (!query || !text) return escapeHtml(text || '');
+            const escaped = escapeHtml(text);
+            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return escaped.replace(new RegExp(`(${escapedQuery})`, 'gi'), '<mark class="search-highlight">$1</mark>');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function getLabel(tournament, key) {
+            return (tournament.columnLabels && tournament.columnLabels[key]) ? tournament.columnLabels[key] : key;
+        }
+
+        async function fetchAllTournaments() {
+            try {
+                TOURNAMENTS.forEach((t, idx) => {
+                    if (!tournamentsData[idx]) tournamentsData[idx] = [];
+                    if (selectedSections[idx] === undefined) selectedSections[idx] = 'All';
                 });
+                await Promise.all(TOURNAMENTS.map((tournament, idx) => fetchTournament(idx, tournament.url)));
+                createTournamentTabs();
+                displayTournament(activeTournament);
+                await fetchAllRatings();
+                updateTimestamp();
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Could not load registrations. Check console for details.');
+            }
+        }
+
+        async function fetchTournament(idx, url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+                tournamentsData[idx] = await response.json();
+            } catch (error) {
+                console.error(`Error fetching tournament ${idx}:`, error);
+            }
+        }
+
+        async function fetchAllRatings() {
+            const uscfIds = new Set();
+            Object.values(tournamentsData).forEach(data => {
+                if (Array.isArray(data)) {
+                    data.forEach(row => {
+                        const id = row[USCF_ID_KEY];
+                        if (id && id.trim() && /^\d{8}$/.test(id.trim())) {
+                            uscfIds.add(id.trim());
+                        }
+                    });
+                }
             });
 
-            AOS.init({
-                duration: 600,
-                once: true,
-                disable: false,
-                startEvent: 'load',
-                offset: 50,
-                delay: 0,
-                easing: 'ease-out',
-                mirror: false,
-                anchorPlacement: 'top-bottom',
-                useClassNames: true,
-                disableMutationObserver: false,
-                debounceDelay: 50,
-                throttleDelay: 99,
+            console.log(`Fetching ratings for ${uscfIds.size} players...`);
+
+            const batchSize = 5;
+            const idsArray = Array.from(uscfIds);
+            for (let i = 0; i < idsArray.length; i += batchSize) {
+                const batch = idsArray.slice(i, i + batchSize);
+                await Promise.all(batch.map(id => fetchAndCacheRating(id)));
+            }
+
+            applyFiltersAndRender();
+        }
+
+        async function fetchAndCacheRating(uscfId) {
+            if (ratingCache[uscfId]) {
+                return ratingCache[uscfId].rating;
+            }
+
+            try {
+                const response = await fetch(
+                    `https://yellow-bonus-c067.windsorchesslions.workers.dev/?id=${encodeURIComponent(uscfId)}`
+                );
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                let rating = 'Unrated';
+
+                if (data.ratings && Array.isArray(data.ratings)) {
+                    const regularRating = data.ratings.find(r => r.ratingSystem === 'R');
+                    if (regularRating && regularRating.rating) {
+                        rating = regularRating.rating;
+                    } else if (data.ratings.length > 0 && data.ratings[0].rating) {
+                        rating = data.ratings[0].rating;
+                    }
+                }
+
+                ratingCache[uscfId] = { rating: rating, timestamp: Date.now() };
+                saveRatingCache();
+                return rating;
+            } catch (error) {
+                console.error(`Error fetching rating for ${uscfId}:`, error);
+                ratingCache[uscfId] = { rating: 'Error', timestamp: Date.now() };
+                saveRatingCache();
+                return 'Error';
+            }
+        }
+
+        function getRatingDisplay(uscfId) {
+            if (!uscfId || !uscfId.trim() || !/^\d{8}$/.test(uscfId.trim())) {
+                return '-';
+            }
+            const cached = ratingCache[uscfId.trim()];
+            if (cached) {
+                return cached.rating;
+            }
+            return 'Loading...';
+        }
+
+        function createTournamentTabs() {
+            const tabsContainer = document.getElementById('tournamentTabs');
+            tabsContainer.innerHTML = '';
+            TOURNAMENTS.forEach((tournament, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'tournament-tab' + (idx === activeTournament ? ' active' : '');
+                if (!hasAnimated) {
+                    btn.setAttribute('data-aos', 'fade-up');
+                    btn.setAttribute('data-aos-delay', (idx * 100).toString());
+                }
+                btn.innerHTML = '<span>' + tournament.name + '</span>';
+                btn.addEventListener('click', () => {
+                    activeTournament = idx;
+                    searchInput.value = '';
+                    searchQuery = '';
+                    searchClear.classList.remove('visible');
+                    createTournamentTabs();
+                    displayTournament(idx);
+                });
+                tabsContainer.appendChild(btn);
+            });
+            if (!hasAnimated) AOS.refresh();
+        }
+
+        function displayTournament(tournamentIdx) {
+            const tournament = TOURNAMENTS[tournamentIdx];
+            const data = tournamentsData[tournamentIdx];
+            if (!data || data.length === 0) {
+                displayEmptyRegistrations(tournamentIdx, tournament);
+                return;
+            }
+            updateSectionFilters(tournamentIdx, data, tournament);
+            renderTable(tournamentIdx, data, tournament);
+        }
+
+        function updateSectionFilters(tournamentIdx, data, tournament) {
+            const sectionCounts = { 'All': data.length };
+            data.forEach(row => {
+                const section = row[tournament.sectionColumn];
+                if (section) sectionCounts[section] = (sectionCounts[section] || 0) + 1;
             });
 
-            if (isIOS()) {
-                window.addEventListener('load', function () {
-                    setTimeout(function () { AOS.refresh(); }, 100);
+            const filterSection = document.getElementById('filterSection');
+            filterSection.innerHTML = '';
+
+            Object.keys(sectionCounts).sort((a, b) => {
+                if (a === 'All') return -1; if (b === 'All') return 1; return a.localeCompare(b);
+            }).forEach((section, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn' + (section === selectedSections[tournamentIdx] ? ' active' : '');
+                if (!hasAnimated) {
+                    btn.setAttribute('data-aos', 'fade-up');
+                    btn.setAttribute('data-aos-delay', (idx * 50).toString());
+                }
+                btn.innerHTML = '<span>' + getLabel(tournament, section) + ' (' + sectionCounts[section] + ')</span>';
+                btn.addEventListener('click', () => {
+                    selectedSections[tournamentIdx] = section;
+                    const table = document.getElementById('registrationTable');
+                    const statNumber = document.getElementById('totalCount');
+                    table.classList.add('updating');
+                    statNumber.style.transform = 'scale(0.8)';
+                    statNumber.style.opacity = '0.5';
+                    setTimeout(() => {
+                        updateSectionFilters(tournamentIdx, data, tournament);
+                        renderTable(tournamentIdx, data, tournament);
+                        table.classList.remove('updating');
+                        statNumber.style.transform = 'scale(1)';
+                        statNumber.style.opacity = '1';
+                    }, 150);
+                });
+                filterSection.appendChild(btn);
+            });
+            if (!hasAnimated) AOS.refresh();
+        }
+
+        function renderTable(tournamentIdx, data, tournament) {
+            const filteredData = getFilteredData(tournamentIdx, data, tournament);
+
+            const headerRow = document.getElementById('headerRow');
+            headerRow.innerHTML = '';
+            tournament.columns.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = getLabel(tournament, col);
+                if (col === USCF_ID_KEY || col === "Rating") th.classList.add('hide-on-mobile');
+                headerRow.appendChild(th);
+            });
+
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = tournament.columns.length;
+                td.className = 'no-results';
+                td.textContent = searchQuery ? `No results for "${searchQuery}"` : 'No registrations yet';
+                tr.appendChild(td);
+                tableBody.appendChild(tr);
+            } else {
+                filteredData.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tournament.columns.forEach(col => {
+                        const td = document.createElement('td');
+                        if (col === USCF_ID_KEY || col === "Rating") td.classList.add('hide-on-mobile');
+
+                        if (col === "Rating") {
+                            const uscfId = row[USCF_ID_KEY];
+                            const rating = getRatingDisplay(uscfId);
+                            const span = document.createElement('span');
+                            if (rating === 'Loading...') {
+                                span.className = 'rating-loading';
+                            } else if (rating === 'Error') {
+                                span.className = 'rating-error';
+                            } else if (rating === '-') {
+                                // No rating
+                            } else {
+                                span.className = 'rating-display';
+                            }
+                            span.textContent = rating;
+                            td.appendChild(span);
+                        } else {
+                            const rawValue = row[col] || '-';
+                            if (searchQuery && rawValue !== '-') {
+                                td.innerHTML = highlightText(rawValue, searchQuery);
+                            } else {
+                                td.textContent = rawValue;
+                            }
+                        }
+                        tr.appendChild(td);
+                    });
+                    tableBody.appendChild(tr);
                 });
             }
-        } else {
-            AOS.init({ duration: 1000, once: true });
+
+            document.getElementById('totalCount').textContent = filteredData.length;
+            document.getElementById('sheetTitle').textContent = tournament.name;
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+
+            if (!hasAnimated) { AOS.refresh(); hasAnimated = true; }
         }
 
-        // ── Navbar scroll shadow ───────────────────────────────────────
-        const navbar = document.getElementById('navbar');
-        let ticking  = false;
+        function displayEmptyRegistrations(tournamentIdx, tournament) {
+            const headerRow = document.getElementById('headerRow');
+            headerRow.innerHTML = '';
+            tournament.columns.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = getLabel(tournament, col);
+                if (col === USCF_ID_KEY || col === "Rating") th.classList.add('hide-on-mobile');
+                headerRow.appendChild(th);
+            });
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '<tr><td colspan="' + tournament.columns.length + '" style="text-align: center; color: #999;">No registrations yet</td></tr>';
+            document.getElementById('totalCount').textContent = '0';
+            document.getElementById('sheetTitle').textContent = tournament.name;
+            document.getElementById('filterSection').innerHTML = '';
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            AOS.refresh();
+        }
 
-        window.addEventListener('scroll', function () {
-            if (!ticking) {
-                window.requestAnimationFrame(function () {
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').textContent = message;
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('content').style.display = 'none';
+        }
+
+        function updateTimestamp() {
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+        }
+
+        // ── NAVBAR JS ────────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        let navTick = false;
+        window.addEventListener('scroll', () => {
+            if (!navTick) {
+                requestAnimationFrame(() => {
                     navbar.classList.toggle('scrolled', window.scrollY > 50);
-                    ticking = false;
+                    navTick = false;
                 });
-                ticking = true;
+                navTick = true;
             }
         }, { passive: true });
 
-        // ── Announcement bar ───────────────────────────────────────────
-        (function () {
-            const bar    = document.getElementById('announceBar');
-            const close  = document.getElementById('announceClose');
-            const header = document.querySelector('header');
-            if (!bar) return;
+        const mobileToggle        = document.getElementById('mobileToggle');
+        const mobileMenu          = document.getElementById('mobileMenu');
+        const mobTournamentToggle = document.getElementById('mobileTournamentToggle');
+        const mobSubmenu          = document.getElementById('mobileSubmenu');
 
-            function dismissBar() {
-                bar.classList.add('announce-hidden');
-                navbar.classList.add('bar-gone');
-                if (header) header.classList.add('bar-gone');
-                sessionStorage.setItem('announceDismissed', '1');
-                setTimeout(function () { bar.style.display = 'none'; }, 800);
-            }
-
-            if (sessionStorage.getItem('announceDismissed')) {
-                bar.style.display = 'none';
-                navbar.classList.add('bar-gone');
-                if (header) header.classList.add('bar-gone');
-                return;
-            }
-
-            close.addEventListener('click', dismissBar);
-        })();
-
-        // ── Mobile menu ────────────────────────────────────────────────
-        const mobileToggle           = document.getElementById('mobileToggle');
-        const mobileMenu             = document.getElementById('mobileMenu');
-        const mobileTournamentToggle = document.getElementById('mobileTournamentToggle');
-        const mobileSubmenu          = document.getElementById('mobileSubmenu');
-
-        mobileToggle.addEventListener('click', function () {
-            const isOpen = mobileMenu.classList.toggle('active');
-            mobileToggle.classList.toggle('active', isOpen);
-            mobileToggle.setAttribute('aria-expanded', String(isOpen));
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
         });
-
-        mobileTournamentToggle.addEventListener('click', function () {
-            const isOpen = mobileSubmenu.classList.toggle('active');
-            mobileTournamentToggle.classList.toggle('active', isOpen);
-            mobileTournamentToggle.setAttribute('aria-expanded', String(isOpen));
+        mobTournamentToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobTournamentToggle.classList.toggle('active');
+            mobSubmenu.classList.toggle('active');
         });
-
-        mobileMenu.querySelectorAll('a').forEach(function (link) {
-            link.addEventListener('click', function () {
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
                 mobileToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
-                mobileToggle.setAttribute('aria-expanded', 'false');
             });
         });
-
-        document.addEventListener('click', function (e) {
-            const container = document.querySelector('.mobile-menu-container');
-            if (!container.contains(e.target)) {
+        document.addEventListener('click', e => {
+            if (!document.querySelector('.mobile-menu-container').contains(e.target)) {
                 mobileToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
-                mobileToggle.setAttribute('aria-expanded', 'false');
             }
         });
 
-        // ── Desktop dropdown — keyboard accessibility ──────────────────
-        document.querySelectorAll('.nav-dropdown').forEach(function (dropdown) {
-            const btn   = dropdown.querySelector('.nav-dropdown-btn');
-            const menu  = dropdown.querySelector('.dropdown-menu');
-            const items = Array.from(menu.querySelectorAll('a[role="menuitem"]'));
-
-            function openMenu(focusIndex) {
-                dropdown.classList.add('is-open');
-                btn.setAttribute('aria-expanded', 'true');
-                if (typeof focusIndex === 'number') items[focusIndex].focus();
-            }
-
-            function closeMenu(returnFocus) {
-                dropdown.classList.remove('is-open');
-                btn.setAttribute('aria-expanded', 'false');
-                if (returnFocus) btn.focus();
-            }
-
-            btn.addEventListener('keydown', function (e) {
-                switch (e.key) {
-                    case 'Enter':
-                    case ' ':
-                    case 'ArrowDown':
-                        e.preventDefault();
-                        openMenu(0);
-                        break;
-                    case 'ArrowUp':
-                        e.preventDefault();
-                        openMenu(items.length - 1);
-                        break;
-                    case 'Escape':
-                        closeMenu(true);
-                        break;
-                }
-            });
-
-            items.forEach(function (item, index) {
-                item.addEventListener('keydown', function (e) {
-                    switch (e.key) {
-                        case 'ArrowDown':
-                            e.preventDefault();
-                            items[(index + 1) % items.length].focus();
-                            break;
-                        case 'ArrowUp':
-                            e.preventDefault();
-                            items[(index - 1 + items.length) % items.length].focus();
-                            break;
-                        case 'Home':
-                            e.preventDefault();
-                            items[0].focus();
-                            break;
-                        case 'End':
-                            e.preventDefault();
-                            items[items.length - 1].focus();
-                            break;
-                        case 'Escape':
-                            e.preventDefault();
-                            closeMenu(true);
-                            break;
-                        case 'Tab':
-                            closeMenu(false);
-                            break;
-                    }
-                });
-            });
-
-            dropdown.addEventListener('focusout', function (e) {
-                if (!dropdown.contains(e.relatedTarget)) {
-                    closeMenu(false);
-                }
-            });
-
-            document.addEventListener('click', function (e) {
-                if (!dropdown.contains(e.target)) {
-                    closeMenu(false);
-                }
-            });
-        });
-
-        // ── Smooth scroll ──────────────────────────────────────────────
-        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    if ('scrollBehavior' in document.documentElement.style) {
-                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                    } else {
-                        window.scrollTo(0, offsetTop);
-                    }
-                }
-            });
-        });
+        // Initialize
+        loadRatingCache();
+        fetchAllTournaments();
+        setInterval(fetchAllTournaments, 30000);
     </script>
 </body>
 </html>
