@@ -1,35 +1,2003 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinically — Premed Education for Metro Detroit Classrooms</title>
+<meta name="description" content="Clinically is a youth-led initiative delivering free, in-person premed education to high schools across Metro Detroit and Southeast Michigan.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CLINICALLY — v3
+   Hero rebuilt: cream editorial, paper session ticket.
+   Everything below the marquee is unchanged in spirit.
+   ============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --mint: #cdffd8;
+  --mint-soft: #e6fff0;
+  --teal: #539d96;
+  --teal-mid: #3d8580;
+  --teal-deep: #1f4d49;
+  --ink: #0a2622;
+  --ink-2: #143834;
+  --cream: #f4fbf5;
+  --paper: #ffffff;
+  --coral: #ff7a8b;
+  --gold: #ffc94d;
+
+  --line: rgba(10, 38, 34, 0.14);
+  --line-strong: rgba(10, 38, 34, 0.85);
+  --line-dark: rgba(205, 255, 216, 0.16);
+
+  --r-sm: 8px;
+  --r: 14px;
+  --r-lg: 22px;
+
+  --shadow-hard: 6px 6px 0 var(--ink);
+  --shadow-hard-mint: 6px 6px 0 var(--mint);
+  --shadow-soft: 0 24px 50px -28px rgba(10, 38, 34, 0.45);
+
+  --band: clamp(4.5rem, 9vw, 9rem);
+  --gut: clamp(1.25rem, 3.2vw, 3rem);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: clamp(14.5px, 0.92vw, 16.5px);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+::selection { background: var(--mint); color: var(--ink); }
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--teal); border: 3px solid var(--ink); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--mint); }
+
+.shell {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--gut);
+}
+
+.ico {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ---------- type ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 22px;
+}
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 3px;
+  background: var(--teal);
+  display: block;
+}
+.on-dark .eyebrow { color: var(--mint); }
+.on-dark .eyebrow::before { background: var(--mint); }
+
+.h-xl,
+.h-lg {
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+.h-xl { font-size: clamp(2.45rem, 5.4vw, 5rem); }
+.h-lg { font-size: clamp(2rem, 3.9vw, 3.4rem); }
+.h-lg em, .h-xl em { font-style: italic; color: var(--teal); }
+.on-dark .h-lg em, .on-dark .h-xl em { color: var(--mint); }
+
+.lede {
+  font-size: clamp(0.96rem, 1.15vw, 1.1rem);
+  color: var(--ink-2);
+  max-width: 58ch;
+  font-weight: 500;
+}
+.on-dark .lede { color: rgba(244, 251, 245, 0.72); }
+
+.sec-head { margin-bottom: clamp(2.5rem, 5vw, 4.25rem); }
+.sec-head .h-lg { margin-bottom: 18px; }
+
+/* ---------- scroll progress ---------- */
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: transparent;
+  z-index: 200;
+  pointer-events: none;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--mint), var(--teal));
+}
+
+/* ============================================================
+   MASTHEAD — logo forward
+   ============================================================ */
+.masthead {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 150;
+  background: rgba(244, 251, 245, 0.86);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border-bottom: 1.5px solid var(--line);
+  transition: padding 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  transition: padding 0.35s ease;
+}
+.masthead.is-stuck { box-shadow: 0 12px 30px -22px rgba(10, 38, 34, 0.7); }
+.masthead.is-stuck .masthead-inner { padding: 9px 0; }
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.brand img {
+  height: clamp(38px, 4.4vw, 60px);
+  width: auto;
+  transition: height 0.35s ease;
+}
+.masthead.is-stuck .brand img { height: clamp(32px, 3.4vw, 44px); }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.1vw, 2.2rem);
+  list-style: none;
+}
+.nav a {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 0;
+  position: relative;
+  white-space: nowrap;
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 0;
+  background: var(--teal);
+  transition: width 0.28s ease;
+}
+.nav a:hover::after { width: 100%; }
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--ink);
+  color: var(--mint);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 13px 22px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
+
+.burger {
+  display: none;
+  width: 46px; height: 46px;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  font-size: 20px;
+  cursor: pointer;
+}
+.drawer {
+  display: none;
+  border-top: 1.5px solid var(--line);
+  background: var(--cream);
+}
+.drawer ul { list-style: none; padding: 10px 0 20px; }
+.drawer a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  text-decoration: none;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--line);
+}
+.drawer a .ico { color: var(--teal); font-size: 18px; }
+.masthead.is-open .drawer { display: block; }
+
+/* ============================================================
+   HERO — light editorial + paper session ticket
+   ============================================================ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  color: var(--ink);
+  background: var(--cream);
+  padding: clamp(6.9rem, 11vh, 9.2rem) 0 clamp(2.6rem, 4.4vw, 3.6rem);
+  overflow: hidden;
+}
+
+.hero-rule {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1.5px;
+  background: var(--ink);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+  gap: clamp(2rem, 4.4vw, 4.75rem);
+  align-items: center;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 11px;
+  border-radius: 100px;
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: clamp(18px, 2.2vw, 26px);
+  box-shadow: 3px 3px 0 var(--mint);
+}
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--coral);
+  position: relative;
+  flex-shrink: 0;
+}
+.dot::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: var(--coral);
+  opacity: 0.4;
+  animation: ping 2.4s ease-out infinite;
+}
+@keyframes ping {
+  0% { transform: scale(0.85); opacity: 0.5; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.hero h1 {
+  font-size: clamp(2.55rem, 5.15vw, 4.7rem);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 0.94;
+  letter-spacing: -0.042em;
+  color: var(--ink);
+  margin-bottom: 22px;
+  max-width: 13.2ch;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--teal);
+}
+
+.hero-lede {
+  font-size: clamp(0.98rem, 1.12vw, 1.1rem);
+  font-weight: 500;
+  line-height: 1.62;
+  color: var(--ink-2);
+  max-width: 46ch;
+  margin-bottom: clamp(24px, 2.8vw, 32px);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(22px, 2.6vw, 30px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-mint {
+  background: var(--mint);
+  color: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.btn-mint:hover { background: #ffffff; }
+.btn-quiet {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-quiet:hover {
+  background: var(--mint);
+}
+.btn-ink {
+  background: var(--ink);
+  color: var(--mint);
+  border-color: var(--ink);
+  box-shadow: 6px 6px 0 var(--mint);
+}
+.btn-ink:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
+
+.hero-facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.4px;
+  font-weight: 700;
+  color: var(--teal-deep);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 100px;
+  padding: 8px 14px;
+}
+.hero-facts .ico { color: var(--teal); font-size: 15px; }
+
+/* ---------- session ticket ---------- */
+.ticket {
+  position: relative;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 var(--ink);
+  overflow: hidden;
+}
+.ticket-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px 16px;
+  background: var(--mint);
+  border-bottom: 1.5px solid var(--ink);
+}
+.ticket-k {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 6px;
+}
+.ticket-head strong {
+  display: block;
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.ticket-time {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  padding: 8px 11px;
+  background: var(--ink);
+  color: var(--mint);
+  border-radius: 10px;
+}
+.ticket-time b {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.ticket-time span {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.ticket-body { padding: 8px 10px 10px; }
+
+.ticket-inc {
+  list-style: none;
+  display: grid;
+  gap: 2px;
+}
+.ticket-inc li {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 12px 13px;
+  border-radius: 12px;
+}
+.ticket-inc li + li {
+  border-top: 1px dashed var(--line);
+  border-radius: 0;
+}
+.ticket-inc .n {
+  font-size: 13px;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--teal);
+  padding-top: 2px;
+}
+.ticket-inc b {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin-bottom: 3px;
+}
+.ticket-inc p {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.ticket-path {
+  margin: 6px 10px 10px;
+  padding: 16px 16px 14px;
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+}
+.ticket-path .lab {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 14px;
+}
+.path-rail {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.path-rail::before {
+  content: '';
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 7px;
+  height: 2px;
+  background: var(--ink);
+  opacity: 0.16;
+}
+.path-rail li {
+  position: relative;
+  text-align: center;
+  padding-top: 22px;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink-2);
+}
+.path-rail li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  z-index: 1;
+}
+.path-rail li.is-now {
+  color: var(--ink);
+  font-weight: 800;
+}
+.path-rail li.is-now::before {
+  background: var(--coral);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px rgba(255, 122, 139, 0.22);
+}
+.path-rail li.is-done::before {
+  background: var(--teal);
+  border-color: var(--ink);
+}
+.path-rail small {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-top: 3px;
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.strip {
+  background: var(--mint);
+  color: var(--ink);
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  padding: 15px 0;
+  overflow: hidden;
+}
+.strip-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+.strip-group {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  flex: 0 0 auto;
+}
+.strip-group li {
+  display: inline-flex;
+  align-items: center;
+  gap: 34px;
+  padding-right: 34px;
+  font-size: 13px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.strip-group li::after {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--teal-deep);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+section { scroll-margin-top: 96px; }
+.band { padding: var(--band) 0; }
+.band-paper { background: var(--paper); }
+.band-cream { background: var(--cream); }
+.band-ink {
+  background:
+    radial-gradient(60% 80% at 85% 15%, rgba(83, 157, 150, 0.4), transparent 60%),
+    var(--ink);
+  color: var(--cream);
+}
+.band-mint {
+  background: linear-gradient(140deg, var(--mint-soft) 0%, var(--mint) 45%, #9fdcc4 100%);
+}
+
+/* PROGRAMS — bento */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(0.9rem, 1.5vw, 1.4rem);
+}
+.tile {
+  grid-column: span 6;
+  position: relative;
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r);
+  padding: clamp(1.5rem, 2.4vw, 2.4rem);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
+}
+.tile:nth-child(1), .tile:nth-child(4) { grid-column: span 7; }
+.tile:nth-child(2), .tile:nth-child(3) { grid-column: span 5; }
+.tile:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-hard); }
+.tile-n {
+  position: absolute;
+  top: 18px; right: 22px;
+  font-size: 13px;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+}
+.tile-ico {
+  width: 58px; height: 58px;
+  display: grid;
+  place-items: center;
+  background: var(--mint);
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 22px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.tile:hover .tile-ico { background: var(--ink); color: var(--mint); transform: rotate(-6deg); }
+.tile h3 {
+  font-size: clamp(1.3rem, 1.9vw, 1.65rem);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.tile p { font-size: 14.5px; color: var(--ink-2); margin-bottom: 20px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+.chips li {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 6px 13px;
+  border: 1.5px solid var(--line);
+  border-radius: 100px;
+  color: var(--teal-deep);
+}
+
+/* WHY */
+.why-wrap {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+.why-list { display: grid; gap: 0; border-top: 1.5px solid var(--line); }
+.why-item {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  padding: 30px 6px;
+  border-bottom: 1.5px solid var(--line);
+  transition: padding-left 0.3s ease, background 0.3s ease;
+}
+.why-item:hover { padding-left: 20px; background: rgba(205, 255, 216, 0.22); }
+.why-item .bx {
+  width: 50px; height: 50px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  background: var(--mint);
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.why-item h4 { font-size: 1.25rem; font-weight: 800; font-style: italic; margin-bottom: 7px; }
+.why-item p { font-size: 14px; color: var(--ink-2); }
+
+.quote {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--r-lg);
+  padding: clamp(1.8rem, 3vw, 3rem);
+  position: sticky;
+  top: 120px;
+  box-shadow: var(--shadow-soft);
+}
+.quote .mark {
+  font-size: 90px;
+  line-height: 0.6;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--mint);
+  opacity: 0.55;
+  margin-bottom: 18px;
+}
+.quote blockquote {
+  font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.42;
+  margin-bottom: 26px;
+}
+.quote cite { font-style: normal; font-size: 13.5px; font-weight: 700; color: var(--mint); }
+.quote cite span { display: block; font-weight: 400; color: rgba(244, 251, 245, 0.5); margin-top: 5px; }
+
+/* PROCESS */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  counter-reset: step;
+}
+.step { position: relative; padding-top: 30px; border-top: 2px solid var(--line-dark); }
+.step::before {
+  content: '';
+  position: absolute;
+  top: -6px; left: 0;
+  width: 10px; height: 10px;
+  background: var(--mint);
+  transform: rotate(45deg);
+}
+.step .num {
+  font-size: clamp(2.6rem, 4.4vw, 4rem);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1.6px var(--mint);
+  margin-bottom: 18px;
+  transition: color 0.35s ease;
+}
+.step:hover .num { color: var(--mint); }
+.step h3 { font-size: 1.2rem; font-weight: 800; font-style: italic; margin-bottom: 10px; }
+.step p { font-size: 13.8px; color: rgba(244, 251, 245, 0.72); }
+
+/* AREA */
+.area-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+.area-panel {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 2.6vw, 2.4rem);
+  box-shadow: var(--shadow-hard);
+}
+.area-panel h4 {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 20px;
+}
+.pins { display: flex; flex-wrap: wrap; gap: 9px; }
+.pins span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.8px;
+  font-weight: 700;
+  border: 1.5px solid var(--line);
+  border-radius: 100px;
+  padding: 8px 15px;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.pins span::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.pins span:hover {
+  background: var(--ink);
+  color: var(--mint);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+.pins span:hover::before { background: var(--mint); }
+.area-note {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1.5px dashed var(--line);
+  font-size: 13.4px;
+  color: var(--ink-2);
+}
+.area-note .ico { color: var(--teal-deep); font-size: 20px; margin-top: 2px; }
+
+.area-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 14px 20px;
+  background: var(--ink);
+  color: var(--mint);
+  border-radius: var(--r-sm);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 15px;
+}
+.area-badge .ico { font-size: 20px; }
+
+/* TESTIMONIALS */
+.says { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 1.8vw, 1.5rem); }
+.say {
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r);
+  padding: clamp(1.5rem, 2.2vw, 2.1rem);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.say:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-hard); }
+.stars { color: var(--gold); letter-spacing: 3px; font-size: 14px; margin-bottom: 16px; }
+.say blockquote { font-size: 15px; font-style: italic; font-weight: 500; line-height: 1.5; margin-bottom: 26px; flex: 1; }
+.who { display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1.5px dashed var(--line); }
+.who .av {
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mint);
+  border: 1.5px solid var(--ink);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.who b { display: block; font-size: 13.5px; }
+.who small { display: block; font-size: 11.5px; color: var(--ink-2); }
+
+/* CONTACT */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+.meta { display: grid; gap: 12px; margin-top: 34px; }
+.meta-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1.5px solid rgba(10, 38, 34, 0.16);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.meta-row:hover { transform: translateX(6px); background: var(--paper); }
+.meta-row .bx {
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--mint);
+  border-radius: 11px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.meta-row .k {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 3px;
+}
+.meta-row .txt { min-width: 0; }
+.meta-row .k { display: block; }
+.meta-row .v { display: block; font-size: 14.5px; font-weight: 700; text-decoration: none; word-break: break-word; }
+a.v:hover { color: var(--teal-deep); text-decoration: underline; }
+
+.form {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-lg);
+  padding: clamp(1.5rem, 2.8vw, 2.6rem);
+  box-shadow: 12px 12px 0 rgba(10, 38, 34, 0.14);
+}
+.form-head { margin-bottom: 28px; padding-bottom: 22px; border-bottom: 1.5px dashed var(--line); }
+.form-head h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); font-weight: 800; font-style: italic; margin-bottom: 6px; }
+.form-head p { font-size: 13.5px; color: var(--ink-2); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { margin-bottom: 14px; }
+.field label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.field label i { color: var(--coral); font-style: normal; }
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 13px 15px;
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.field textarea { min-height: 104px; resize: vertical; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  background: var(--paper);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(83, 157, 150, 0.18);
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(10, 38, 34, 0.38); }
+.submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 17px;
+  font-size: 15px;
+  font-style: italic;
+}
+.form-note { text-align: center; font-size: 11.5px; color: var(--ink-2); margin-top: 14px; opacity: 0.85; }
+.submit:disabled { opacity: 0.55; cursor: wait; }
+
+/* FOOTER */
+.foot {
+  background: var(--ink);
+  color: var(--cream);
+  padding: clamp(3.5rem, 7vw, 6rem) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.foot-brand img {
+  width: clamp(190px, 22vw, 280px);
+  filter: brightness(0) invert(1);
+  margin-bottom: 22px;
+}
+.foot-brand p { font-size: 13.8px; color: rgba(244, 251, 245, 0.6); max-width: 40ch; margin-bottom: 26px; }
+.social { display: flex; gap: 10px; }
+.social a {
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--line-dark);
+  border-radius: 11px;
+  font-size: 20px;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.social a:hover { background: var(--mint); color: var(--ink); border-color: var(--mint); transform: translateY(-3px); }
+
+.foot-col h4 {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: 18px;
+}
+.foot-col ul { list-style: none; display: grid; gap: 11px; }
+.foot-col a { font-size: 13.8px; color: rgba(244, 251, 245, 0.68); text-decoration: none; }
+.foot-col a:hover { color: var(--mint); }
+
+.foot-mark {
+  border-top: 1.5px solid var(--line-dark);
+  padding: 26px 0 clamp(2rem, 3.5vw, 3rem);
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: rgba(244, 251, 245, 0.45);
+}
+/* TOAST */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%) translateY(180%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--ink);
+  color: var(--mint);
+  border: 1.5px solid var(--mint);
+  border-radius: 100px;
+  padding: 14px 24px;
+  font-size: 13.5px;
+  font-weight: 700;
+  z-index: 300;
+  max-width: 92vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.3s ease, visibility 0s linear 0.55s;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.3s ease, visibility 0s;
+}
+.toast .bx {
+  width: 24px; height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mint);
+  color: var(--ink);
+  font-size: 14px;
+}
+.toast.bad { background: var(--coral); color: #fff; border-color: #fff; }
+.toast.bad .bx { background: #fff; color: var(--coral); }
+
+/* MAGNETIC */
+.magnetic {
+  will-change: transform;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.magnetic.is-pulled {
+  transition: transform 0.14s cubic-bezier(0.33, 1, 0.68, 1),
+              background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.magnetic-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.magnetic.is-pulled .magnetic-inner { transition: transform 0.14s cubic-bezier(0.33, 1, 0.68, 1); }
+
+/* REVEAL */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal].seen { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *:not(.strip-track):not(.dot)::before,
+  *:not(.strip-track):not(.dot)::after,
+  *:not(.strip-track):not(.dot) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1080px) {
+  .nav { display: none; }
+  .burger { display: flex; }
+  .nav-cta { display: none; }
+  .hero-grid { grid-template-columns: 1fr; align-items: start; }
+  .hero h1 { max-width: 16ch; }
+  .why-wrap, .area-wrap, .contact-wrap { grid-template-columns: 1fr; }
+  .quote { position: static; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .says { grid-template-columns: 1fr; }
+  .tile, .tile:nth-child(1), .tile:nth-child(2), .tile:nth-child(3), .tile:nth-child(4) { grid-column: span 12; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .foot-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  .hero { padding-top: clamp(5.5rem, 13vh, 7rem); }
+  .hero h1 { max-width: none; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn { justify-content: center; }
+  .ticket-head { flex-direction: column; }
+  .ticket-time { align-items: flex-start; }
+  .pair { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr; }
+  .why-item { flex-direction: column; gap: 14px; }
+  .foot-mark { flex-direction: column; text-align: left; }
+}
+</style>
 </head>
 <body>
-    <p>Redirecting...</p>
 
-    <script>
-        // This script will execute once the page's HTML content is loaded.
-        // It replaces the current page in the session history with the new URL.
-        window.location.replace("https://michesslions.com/");
-    </script>
+<!-- ===================== ICON SPRITE (no CDN) ===================== -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></symbol>
+  <symbol id="i-school" viewBox="0 0 24 24"><path d="M3 21h18M5.2 21V10.6L12 6.2l6.8 4.4V21M9.6 21v-4.8h4.8V21M12 3v3.2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21c4.6-4.3 7-7.8 7-10.7A7 7 0 0 0 5 10.3C5 13.2 7.4 16.7 12 21Z"/><circle cx="12" cy="10.3" r="2.5"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2.6 9 12 4.4 21.4 9 12 13.6 2.6 9Z"/><path d="M6.6 11.1v4.7c0 1.5 2.4 2.7 5.4 2.7s5.4-1.2 5.4-2.7v-4.7"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 7.3V12l3.2 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.4 11.6c0 3.8-3.7 6.9-8.2 6.9-.9 0-1.8-.1-2.6-.4L4.8 20l1.3-3.4a6.4 6.4 0 0 1-2.5-5c0-3.8 3.7-6.9 8.2-6.9s8.6 3.1 8.6 6.9Z"/><path d="M8.6 10.4h6.8M8.6 13.4h4.2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M13.6 3H7.2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2V8.4L13.6 3Z"/><path d="M13.6 3v5.4H19M8.6 13h6.8M8.6 16.4h4.6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M10.2 6.8h9.2M10.2 12h9.2M10.2 17.2h9.2"/><path d="m4 6.4 1.3 1.3 2.4-2.4M4 11.6l1.3 1.3 2.4-2.4M4 16.8l1.3 1.3 2.4-2.4"/></symbol>
+  <symbol id="i-board" viewBox="0 0 24 24"><rect x="3.2" y="3.2" width="17.6" height="11.4" rx="1.8"/><path d="M7.4 7.2h9.2M7.4 10.4h5.6"/><circle cx="8.4" cy="18" r="1.7"/><path d="M5 21.2a3.4 3.4 0 0 1 6.8 0M15 18h4.6M15 21.2h4.6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7S9.9 5 6.2 5H3.2v12.6h3.4c3.4 0 5.4 1.8 5.4 1.8s2-1.8 5.4-1.8h3.4V5h-3c-3.7 0-5.8 2-5.8 2Z"/><path d="M12 7v12.4"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9.2" y="2.8" width="5.6" height="9.8" rx="2.8"/><path d="M5.6 11a6.4 6.4 0 0 0 12.8 0M12 17.6v3.2M9 20.8h6"/></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="m6.1 6.1 11.8 11.8"/></symbol>
+  <symbol id="i-noone" viewBox="0 0 24 24"><path d="M15.3 8.6a3.4 3.4 0 0 1-4.8 3.1M8.8 5.6a3.4 3.4 0 0 1 4.6 1.2"/><path d="M4.6 20a7.4 7.4 0 0 1 10.6-6"/><path d="m3.6 3.6 16.8 16.8"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4.6 3.6 6.9v12.6L9 17.2l6 2.3 5.4-2.3V4.6L15 6.9 9 4.6Z"/><path d="M9 4.6v12.6M15 6.9v12.6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.2" y="5.2" width="17.6" height="13.6" rx="2"/><path d="m4 6.6 8 5.8 8-5.8"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M4.4 16.4h15.2M6 16.4v-4.6l1.7-3.9a2 2 0 0 1 1.8-1.2h5a2 2 0 0 1 1.8 1.2l1.7 3.9v4.6"/><path d="M6 11.8h12"/><circle cx="8.2" cy="18.2" r="1.6"/><circle cx="15.8" cy="18.2" r="1.6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 5.6v8.2M12 18.2h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5.5 12.5 4.2 4.2 8.8-9.4"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17" cy="7" r="1.05" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-li" viewBox="0 0 24 24"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="4"/><path d="M7.6 10.4v6.6"/><circle cx="7.6" cy="7.4" r="1.1" fill="currentColor" stroke="none"/><path d="M11.8 17v-6.6M11.8 13.6a2.6 2.6 0 0 1 5.2 0V17"/></symbol>
+  <symbol id="i-tt" viewBox="0 0 24 24"><path d="M14.2 3.6v10.6a3.8 3.8 0 1 1-3.8-3.8c.35 0 .7.05 1 .14"/><path d="M14.2 3.6a5.2 5.2 0 0 0 5.2 5.2"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><rect x="2.8" y="5.4" width="18.4" height="13.2" rx="4"/><path d="m10.4 9.2 5.2 2.8-5.2 2.8V9.2Z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7.5h16M4 12h16M4 16.5h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/></symbol>
+</svg>
+
+<div class="progress"><span id="bar"></span></div>
+
+<!-- ===================== MASTHEAD ===================== -->
+<header class="masthead" id="masthead">
+  <div class="shell">
+    <div class="masthead-inner">
+      <a href="#top" class="brand" aria-label="Clinically — home">
+        <img src="logo.svg" alt="Clinically">
+      </a>
+
+      <nav>
+        <ul class="nav">
+          <li><a href="#what">What We Do</a></li>
+          <li><a href="#why">Why It Matters</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#area">Where We Go</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="#contact" class="nav-cta">
+        Book a Presentation
+        <svg class="ico" style="font-size:16px"><use href="#i-arrow"></use></svg>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <svg class="ico" id="burgerIcon" style="font-size:22px"><use href="#i-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer">
+    <div class="shell">
+      <ul>
+        <li><a href="#what">What We Do <svg class="ico"><use href="#i-arrow"></use></svg></a></li>
+        <li><a href="#why">Why It Matters <svg class="ico"><use href="#i-arrow"></use></svg></a></li>
+        <li><a href="#process">Process <svg class="ico"><use href="#i-arrow"></use></svg></a></li>
+        <li><a href="#area">Where We Go <svg class="ico"><use href="#i-arrow"></use></svg></a></li>
+        <li><a href="#contact">Book a Presentation <svg class="ico"><use href="#i-arrow"></use></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-rule" aria-hidden="true"></div>
+
+  <div class="shell hero-grid">
+    <div class="hero-copy">
+      <span class="hero-kicker">
+        <span class="dot"></span>
+        Now booking Metro Detroit schools for 2026–2027
+      </span>
+
+      <h1>We bring the road to medicine <em>into your classroom.</em></h1>
+
+      <p class="hero-lede">
+        Clinically is a youth-led initiative delivering premed education directly to high schools across Metro Detroit — turning curiosity about medicine into a clear, actionable path forward for the next generation of doctors.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-mint">
+          Bring Clinically to Your School
+          <svg class="ico" style="font-size:17px"><use href="#i-arrow"></use></svg>
+        </a>
+        <a href="#what" class="btn btn-quiet">See What We Cover</a>
+      </div>
+
+      <ul class="hero-facts">
+        <li><svg class="ico"><use href="#i-school"></use></svg> Free for schools</li>
+        <li><svg class="ico"><use href="#i-pin"></use></svg> In person, Metro Detroit</li>
+        <li><svg class="ico"><use href="#i-cap"></use></svg> Grades 9–12</li>
+      </ul>
+    </div>
+
+    <aside class="ticket" aria-label="Session overview">
+      <div class="ticket-head">
+        <div>
+          <p class="ticket-k">Session overview</p>
+          <strong>One class period.
+The whole pathway.</strong>
+        </div>
+        <div class="ticket-time">
+          <b>45–60</b>
+          <span>minutes</span>
+        </div>
+      </div>
+
+      <div class="ticket-body">
+        <ul class="ticket-inc">
+          <li>
+            <span class="n">01</span>
+            <div>
+              <b>Interactive Q&amp;A</b>
+              <p>Students ask real questions and get honest answers from current premeds.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">02</span>
+            <div>
+              <b>Printed Roadmaps</b>
+              <p>Every student leaves with a physical, step-by-step premed timeline.</p>
+            </div>
+          </li>
+          <li>
+            <span class="n">03</span>
+            <div>
+              <b>Course Access</b>
+              <p>Interested students get our curated college and admissions tracks.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="ticket-path">
+          <p class="lab">The road we map</p>
+          <ol class="path-rail">
+            <li class="is-done">High School</li>
+            <li class="is-now">Premed<small>in session</small></li>
+            <li>Med School</li>
+            <li>Residency</li>
+          </ol>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track" id="stripTrack">
+    <ul class="strip-group">
+      <li>MCAT</li><li>Shadowing</li><li>Clinical Hours</li><li>Research</li><li>Premed</li><li>Medical School</li><li>Residency</li><li>Volunteering</li><li>Metro Detroit</li>
+    </ul>
+    <ul class="strip-group">
+      <li>MCAT</li><li>Shadowing</li><li>Clinical Hours</li><li>Research</li><li>Premed</li><li>Medical School</li><li>Residency</li><li>Volunteering</li><li>Metro Detroit</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== WHAT WE DO ===================== -->
+<section class="band band-cream" id="what">
+  <div class="shell">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">What we do</span>
+      <h2 class="h-lg">Programs built for <em>curious classrooms.</em></h2>
+      <p class="lede">We design every Clinically session to fit into a single class period — 45 to 60 minutes of focused, honest, and interactive conversation about what it really takes to enter medicine. Every program happens in person, in Michigan schools.</p>
+    </div>
+
+    <div class="bento">
+      <article class="tile" data-reveal>
+        <span class="tile-n">01</span>
+        <span class="tile-ico"><svg class="ico"><use href="#i-board"></use></svg></span>
+        <h3>In-School Presentations</h3>
+        <p>Our flagship program. A trained Clinically presenter comes to your school and delivers a tailored, interactive talk that demystifies the premed pathway — from high school course selection to med school applications.</p>
+        <ul class="chips"><li>45–60 min</li><li>Grades 9–12</li><li>Free for schools</li></ul>
+      </article>
+
+      <article class="tile" data-reveal>
+        <span class="tile-n">02</span>
+        <span class="tile-ico"><svg class="ico"><use href="#i-list"></use></svg></span>
+        <h3>Curated Course Tracks</h3>
+        <p>We build short, focused courses for students aiming at colleges and universities with strong medical pathways — which high school classes actually matter, how premed, nursing, and BS/MD programs differ, what each application really asks for, and how to build a profile that gets in.</p>
+        <ul class="chips"><li>Admissions-focused</li><li>College &amp; program lists</li><li>Built by current premeds</li></ul>
+      </article>
+
+      <article class="tile" data-reveal>
+        <span class="tile-n">03</span>
+        <span class="tile-ico"><svg class="ico"><use href="#i-book"></use></svg></span>
+        <h3>Resource Library</h3>
+        <p>A growing, free library of guides, timelines, and printable planning tools — covering everything from high school course selection to Michigan summer programs, shadowing etiquette, and MCAT prep timelines.</p>
+        <ul class="chips"><li>Always free</li><li>Printed + PDF</li><li>Updated yearly</li></ul>
+      </article>
+
+      <article class="tile" data-reveal>
+        <span class="tile-n">04</span>
+        <span class="tile-ico"><svg class="ico"><use href="#i-mic"></use></svg></span>
+        <h3>Med Student Panels</h3>
+        <p>On-site panels featuring current medical students from Michigan schools and a range of specialties. Students submit questions in advance and hear honest, lived-experience answers from people who just walked the path.</p>
+        <ul class="chips"><li>In person</li><li>By request</li><li>Q&amp;A format</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY IT MATTERS ===================== -->
+<section class="band band-paper" id="why">
+  <div class="shell">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Why it matters</span>
+      <h2 class="h-lg">The premed path is <em>opaque.</em>
+We're making it readable.</h2>
+      <p class="lede">Most high school students interested in medicine have no access to premed advising. The result? Talented students — especially those from underrepresented backgrounds — walk away from the path before they even start.</p>
+    </div>
+
+    <div class="why-wrap">
+      <div class="why-list" data-reveal>
+        <div class="why-item">
+          <span class="bx"><svg class="ico"><use href="#i-ban"></use></svg></span>
+          <div>
+            <h4>No Access</h4>
+            <p>Most high schools offer no premed or health-career advising. Students are left to figure out a complex, high-stakes path entirely on their own — or not at all.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="bx"><svg class="ico"><use href="#i-noone"></use></svg></span>
+          <div>
+            <h4>No Mentorship</h4>
+            <p>Without guidance, talented students — especially those who are first-generation — often abandon the pathway before they even start college, due to lack of information, not lack of ability.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="bx"><svg class="ico"><use href="#i-map"></use></svg></span>
+          <div>
+            <h4>No Roadmap</h4>
+            <p>The medical school pathway is opaque. Requirements, timelines, and exams can feel impossible to navigate without a clear, step-by-step map laid out by someone who has done it.</p>
+          </div>
+        </div>
+      </div>
+
+      <figure class="quote" data-reveal>
+        <div class="mark">&ldquo;</div>
+        <blockquote>I thought you had to be rich, or know a doctor, to even consider medical school. Clinically was the first time someone told me, step by step, how a kid like me could actually get there. Two years later, I'm a biology major prepping for the MCAT.</blockquote>
+        <cite>Maya R.<span>Pilot program student · Metro Detroit · now premed undergrad</span></cite>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="band band-ink on-dark" id="process">
+  <div class="shell">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">How it works</span>
+      <h2 class="h-lg">Booking is <em>simple.</em> Four steps.</h2>
+      <p class="lede">From first email to presentation day, the process takes about two weeks. We handle content, materials, and presenter coordination — you just provide the classroom.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step" data-reveal>
+        <div class="num">01</div>
+        <h3>Reach Out</h3>
+        <p>Submit the booking form below with your school, audience, and preferred dates. Takes less than three minutes.</p>
+      </div>
+      <div class="step" data-reveal>
+        <div class="num">02</div>
+        <h3>Tailor Together</h3>
+        <p>We schedule a 15-minute call to understand your students' needs and pick the right focus and presenter.</p>
+      </div>
+      <div class="step" data-reveal>
+        <div class="num">03</div>
+        <h3>We Present</h3>
+        <p>Our presenter drives out to your school and delivers the session in your classroom — interactive, real, and on time.</p>
+      </div>
+      <div class="step" data-reveal>
+        <div class="num">04</div>
+        <h3>Follow-Up</h3>
+        <p>Students leave with a printed roadmap, access to our resource library, and an invite to our curated course tracks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHERE WE GO ===================== -->
+<section class="band band-cream" id="area">
+  <div class="shell">
+    <div class="area-wrap">
+      <div data-reveal>
+        <span class="eyebrow">Where we go</span>
+        <h2 class="h-lg">Michigan only.
+<em>In person, always.</em></h2>
+        <p class="lede" style="margin-top:18px">Clinically is based in Metro Detroit, and every session is delivered face-to-face in your building. We don't run virtual or online presentations — the conversations that change a student's mind happen in the room.</p>
+        <div class="area-badge">
+          <svg class="ico"><use href="#i-pin"></use></svg>
+          Southeast Michigan
+        </div>
+      </div>
+
+      <div class="area-panel" data-reveal>
+        <h4>Counties &amp; communities we serve</h4>
+        <div class="pins">
+          <span>Wayne County</span>
+          <span>Oakland County</span>
+          <span>Macomb County</span>
+          <span>Washtenaw County</span>
+          <span>Detroit</span>
+          <span>Dearborn</span>
+          <span>Southfield</span>
+          <span>Warren</span>
+          <span>Novi</span>
+          <span>Wixom</span>
+          <span>Ann Arbor</span>
+          <span>Sterling Heights</span>
+        </div>
+        <p class="area-note">
+          <svg class="ico"><use href="#i-car"></use></svg>
+          Outside this list but still in Michigan? Reach out anyway — if we can drive to you, we will.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="band band-paper">
+  <div class="shell">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">From the classroom</span>
+      <h2 class="h-lg">What teachers and <em>students say.</em></h2>
+    </div>
+
+    <div class="says">
+      <article class="say" data-reveal>
+        <div class="stars">★★★★★</div>
+        <blockquote>Our students kept asking questions for 20 minutes after the bell rang. The presenter was honest about how hard the path is — but also made it feel genuinely possible. That's rare.</blockquote>
+        <div class="who">
+          <span class="av">DT</span>
+          <div class="txt"><b>Daniel Torres</b><small>Biology Teacher · Wayne County</small></div>
+        </div>
+      </article>
+
+      <article class="say" data-reveal>
+        <div class="stars">★★★★★</div>
+        <blockquote>I'd been told my whole life that I should be a doctor, but nobody ever explained what that actually meant. Clinically was the first time someone drew the path out for me, step by step.</blockquote>
+        <div class="who">
+          <span class="av">SP</span>
+          <div class="txt"><b>Sara P.</b><small>11th grade · Oakland County</small></div>
+        </div>
+      </article>
+
+      <article class="say" data-reveal>
+        <div class="stars">★★★★★</div>
+        <blockquote>We've hosted three Clinically sessions this year. Each one is well-structured, age-appropriate, and grounded. They've become a fixture of our health careers program.</blockquote>
+        <div class="who">
+          <span class="av">LM</span>
+          <div class="txt"><b>Linda Mwangi</b><small>Counselor · Macomb County</small></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="band band-mint" id="contact">
+  <div class="shell">
+    <div class="contact-wrap">
+      <div data-reveal>
+        <span class="eyebrow">Bring us in</span>
+        <h2 class="h-lg">Book a Clinically session for your school.</h2>
+        <p class="lede" style="margin-top:18px">Fill out the form and we'll be in touch within 48 hours. Presentations are free for Michigan schools — we just need a classroom and a curious audience.</p>
+
+        <div class="meta">
+          <div class="meta-row">
+            <span class="bx"><svg class="ico"><use href="#i-mail"></use></svg></span>
+            <div class="txt">
+              <span class="k">Email us</span>
+              <a class="v" href="mailto:clinicallymichigan@gmail.com">clinicallymichigan@gmail.com</a>
+            </div>
+          </div>
+          <div class="meta-row">
+            <span class="bx"><svg class="ico"><use href="#i-clock"></use></svg></span>
+            <div class="txt">
+              <span class="k">Response time</span>
+              <span class="v">Within 48 hours, weekdays</span>
+            </div>
+          </div>
+          <div class="meta-row">
+            <span class="bx"><svg class="ico"><use href="#i-pin"></use></svg></span>
+            <div class="txt">
+              <span class="k">Service area</span>
+              <span class="v">Metro Detroit, Michigan · In-person only</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" id="bookingForm" novalidate data-reveal>
+        <div class="form-head">
+          <h3>School Booking Request</h3>
+          <p>All fields marked with <i style="color:var(--coral); font-style:normal">*</i> are required.</p>
+        </div>
+
+        <div class="pair">
+          <div class="field">
+            <label for="f-school">School name <i>*</i></label>
+            <input id="f-school" name="school" type="text" placeholder="e.g. Novi High School" required>
+          </div>
+          <div class="field">
+            <label for="f-name">Contact name <i>*</i></label>
+            <input id="f-name" name="name" type="text" placeholder="Your full name" required>
+          </div>
+        </div>
+
+        <div class="pair">
+          <div class="field">
+            <label for="f-email">Email <i>*</i></label>
+            <input id="f-email" name="email" type="email" placeholder="you@school.edu" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone (optional)</label>
+            <input id="f-phone" name="phone" type="tel" placeholder="(248) 000-0000">
+          </div>
+        </div>
+
+        <div class="pair">
+          <div class="field">
+            <label for="f-role">Your role <i>*</i></label>
+            <select id="f-role" name="role" required>
+              <option value="">Select your role</option>
+              <option>Teacher</option>
+              <option>Counselor</option>
+              <option>Administrator</option>
+              <option>Parent / PTA</option>
+              <option>Student leader</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-grade">Audience grade <i>*</i></label>
+            <select id="f-grade" name="grade" required>
+              <option value="">Select grade range</option>
+              <option>9th grade</option>
+              <option>10th grade</option>
+              <option>11th grade</option>
+              <option>12th grade</option>
+              <option>Mixed (9–12)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pair">
+          <div class="field">
+            <label for="f-city">School city <i>*</i></label>
+            <input id="f-city" name="city" type="text" placeholder="e.g. Wixom, MI" required>
+          </div>
+          <div class="field">
+            <label for="f-size">Estimated audience size</label>
+            <input id="f-size" name="size" type="number" min="1" placeholder="e.g. 30">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-dates">Preferred dates or timeframe</label>
+          <input id="f-dates" name="dates" type="text" placeholder="e.g. late October, 3rd hour">
+        </div>
+
+        <div class="field">
+          <label for="f-msg">Anything else? (optional)</label>
+          <textarea id="f-msg" name="message" placeholder="What you'd like covered, special context, specific student questions, etc."></textarea>
+        </div>
+
+        <!-- honeypot: hidden from humans, catches bots -->
+        <div class="field" aria-hidden="true" style="position:absolute; left:-9999px; top:-9999px;">
+          <label for="f-company">Company (leave blank)</label>
+          <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn btn-ink submit">
+          Submit Booking Request
+          <svg class="ico" style="font-size:17px"><use href="#i-arrow"></use></svg>
+        </button>
+
+        <p class="form-note">We'll respond within 48 hours to schedule a brief planning call.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="shell">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" aria-label="Clinically — home"><img src="logo.svg" alt="Clinically"></a>
+        <p>A youth-led initiative bringing premed education into Metro Detroit classrooms — making the path to medicine clear, honest, and possible for every student.</p>
+        <div class="social">
+          <a href="https://www.instagram.com/clin_ically/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Clinically on Instagram"><svg class="ico"><use href="#i-ig"></use></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg class="ico"><use href="#i-li"></use></svg></a>
+          <a href="#" aria-label="TikTok"><svg class="ico"><use href="#i-tt"></use></svg></a>
+          <a href="#" aria-label="YouTube"><svg class="ico"><use href="#i-yt"></use></svg></a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#what">In-School Talks</a></li>
+          <li><a href="#what">Course Tracks</a></li>
+          <li><a href="#what">Resource Library</a></li>
+          <li><a href="#what">Med Student Panels</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="#contact">Book a session</a></li>
+          <li><a href="mailto:clinicallymichigan@gmail.com">clinicallymichigan@gmail.com</a></li>
+          <li><a href="#area">Service area</a></li>
+          <li><a href="#contact">Partner with us</a></li>
+          <li><a href="#contact">Volunteer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-mark">
+      <span>Clinically — a nonprofit educational initiative serving Metro Detroit, Michigan.</span>
+      <span>Made with care for the next generation of doctors.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">
+  <span class="bx"><svg class="ico" id="toastIcon" style="font-size:14px"><use href="#i-check"></use></svg></span>
+  <span id="toastText">Request received — we'll be in touch within 48 hours.</span>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- reveal on scroll (no library) ---------------- */
+  var revealables = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var siblings = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
+        el.style.transitionDelay = Math.min(siblings, 4) * 90 + 'ms';
+        el.classList.add('seen');
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealables.forEach(function (el) { io.observe(el); });
+  } else {
+    revealables.forEach(function (el) { el.classList.add('seen'); });
+  }
+
+  /* ---------------- masthead state + mobile drawer ---------------- */
+  var masthead = document.getElementById('masthead');
+  var burger = document.getElementById('burger');
+  var burgerIcon = document.getElementById('burgerIcon');
+
+  var setStuck = function () {
+    masthead.classList.toggle('is-stuck', window.scrollY > 24);
+  };
+  setStuck();
+
+  var closeDrawer = function () {
+    masthead.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burgerIcon.innerHTML = '<use href="#i-menu"></use>';
+  };
+  burger.addEventListener('click', function () {
+    var open = masthead.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burgerIcon.innerHTML = open ? '<use href="#i-close"></use>' : '<use href="#i-menu"></use>';
+  });
+
+  /* ---------------- scroll progress ---------------- */
+  var bar = document.getElementById('bar');
+  var onScroll = function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, Math.max(0, (window.scrollY / h) * 100)) : 0) + '%';
+    setStuck();
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------------- marquee: seamless rAF scroll ---------------- */
+  var strip = document.querySelector('.strip');
+  var stripTrack = document.getElementById('stripTrack');
+  if (strip && stripTrack) {
+    var WORDS = ['MCAT', 'Shadowing', 'Clinical Hours', 'Research', 'Premed', 'Medical School', 'Residency', 'Volunteering', 'Metro Detroit'];
+    var SPEED = 72;
+    var offset = 0;
+    var lastTs = 0;
+    var paused = false;
+    var loopAt = 0;
+
+    var makeGroup = function () {
+      var ul = document.createElement('ul');
+      ul.className = 'strip-group';
+      WORDS.forEach(function (word) {
+        var li = document.createElement('li');
+        li.textContent = word;
+        ul.appendChild(li);
+      });
+      return ul;
+    };
+
+    var rebuild = function () {
+      stripTrack.innerHTML = '';
+      var group = makeGroup();
+      stripTrack.appendChild(group);
+      var guard = 0;
+      while (group.getBoundingClientRect().width < strip.clientWidth + 80 && guard < 16) {
+        WORDS.forEach(function (word) {
+          var li = document.createElement('li');
+          li.textContent = word;
+          group.appendChild(li);
+        });
+        guard++;
+      }
+      stripTrack.appendChild(group.cloneNode(true));
+      loopAt = group.getBoundingClientRect().width;
+      if (offset <= -loopAt) offset = 0;
+      stripTrack.style.transform = 'translate3d(' + offset + 'px,0,0)';
+    };
+
+    rebuild();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(rebuild).catch(function () {});
+    }
+    window.addEventListener('load', rebuild);
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuild, 120);
+    }, { passive: true });
+
+    strip.addEventListener('mouseenter', function () { paused = true; });
+    strip.addEventListener('mouseleave', function () { paused = false; });
+    strip.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+    strip.addEventListener('touchend', function () { paused = false; });
+
+    var step = function (now) {
+      if (!lastTs) lastTs = now;
+      var dt = Math.min(0.05, (now - lastTs) / 1000);
+      lastTs = now;
+      if (!paused && loopAt > 0) {
+        offset -= SPEED * dt;
+        if (offset <= -loopAt) offset += loopAt;
+        stripTrack.style.transform = 'translate3d(' + offset.toFixed(2) + 'px,0,0)';
+      }
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* ---------------- smooth anchors ---------------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (!id || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      closeDrawer();
+      var top = target.getBoundingClientRect().top + window.scrollY - (masthead.offsetHeight + 14);
+      window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------------- toast ---------------- */
+  var toast = document.getElementById('toast');
+  var toastText = document.getElementById('toastText');
+  var toastIcon = document.getElementById('toastIcon');
+  var toastTimer;
+  function popToast(msg, bad) {
+    toastText.textContent = msg;
+    toast.classList.toggle('bad', !!bad);
+    toastIcon.innerHTML = bad ? '<use href="#i-alert"></use>' : '<use href="#i-check"></use>';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 4200);
+  }
+
+  /* ---------------- booking form ---------------- */
+  var form = document.getElementById('bookingForm');
+  // Backend: Google Apps Script web app (see form-backend/README.md).
+  // If you ever switch backends: Formspree → FORM_JSON = false (FormData body).
+  var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwgnja3E0yG3HMRnpOoV9Q_oLBDWXuxRU4cQ5meof4qBqyK-rhO4AwiIaAQKB0UQv1olg/exec';
+  var FORM_JSON = true;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var bad = null;
+    form.querySelectorAll('[required]').forEach(function (f) {
+      if (!f.value.trim()) {
+        f.style.borderColor = 'var(--coral)';
+        if (!bad) bad = f;
+      } else {
+        f.style.borderColor = '';
+      }
+    });
+    var email = form.querySelector('[name="email"]');
+    if (!bad && email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
+      email.style.borderColor = 'var(--coral)';
+      bad = email;
+      popToast('That email address looks incomplete.', true);
+      bad.focus();
+      return;
+    }
+    if (bad) {
+      popToast('Please fill in all required fields.', true);
+      bad.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+      bad.focus({ preventScroll: true });
+      return;
+    }
+    // honeypot — silently drop bot submissions
+    if (form.company && form.company.value) { form.reset(); return; }
+
+    if (!FORM_ENDPOINT) {
+      popToast('This form is not connected to a backend yet — email clinicallymichigan@gmail.com.', true);
+      return;
+    }
+
+    var payload = {};
+    new FormData(form).forEach(function (v, k) { payload[k] = v; });
+    var btn = form.querySelector('.submit');
+    btn.disabled = true;
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: FORM_JSON ? {} : { 'Accept': 'application/json' },
+      body: FORM_JSON ? JSON.stringify(payload) : new FormData(form)
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json().catch(function () { return {}; }); // Apps Script replies {"ok":true|false}
+      })
+      .then(function (res) {
+        if (res && res.ok === false) throw new Error(res.error || 'Request rejected');
+        popToast('Request received from ' + payload.school + " — we'll be in touch within 48 hours.");
+        form.reset();
+      })
+      .catch(function () {
+        popToast('Could not send — please email clinicallymichigan@gmail.com.', true);
+      })
+      .then(function () { btn.disabled = false; });
+  });
+  form.querySelectorAll('input, select, textarea').forEach(function (f) {
+    var clear = function () { f.style.borderColor = ''; };
+    f.addEventListener('input', clear);
+    f.addEventListener('change', clear);
+  });
+
+  /* ---------------- magnetic buttons ---------------- */
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (fine && !reduced) {
+    var magnets = [];
+    document.querySelectorAll('.btn, .nav-cta').forEach(function (el) {
+      el.classList.add('magnetic');
+      var inner = document.createElement('span');
+      inner.className = 'magnetic-inner';
+      while (el.firstChild) { inner.appendChild(el.firstChild); }
+      el.appendChild(inner);
+      magnets.push({ el: el, inner: inner, pulled: false });
+    });
+
+    var px = -9999, py = -9999, queued = false;
+    var PAD_X = 70, PAD_Y = 45, PULL = 0.32, MAX = 16;
+    var clamp = function (v) { return Math.max(-MAX, Math.min(MAX, v)); };
+    var release = function (m) {
+      if (!m.pulled) return;
+      m.pulled = false;
+      m.el.classList.remove('is-pulled');
+      m.el.style.transform = '';
+      m.inner.style.transform = '';
+    };
+    var tick = function () {
+      queued = false;
+      magnets.forEach(function (m) {
+        var r = m.el.getBoundingClientRect();
+        if (!r.width || r.bottom < -200 || r.top > window.innerHeight + 200) { release(m); return; }
+        var dx = px - (r.left + r.width / 2);
+        var dy = py - (r.top + r.height / 2);
+        var rx = r.width / 2 + PAD_X;
+        var ry = r.height / 2 + PAD_Y;
+        var d = Math.sqrt((dx / rx) * (dx / rx) + (dy / ry) * (dy / ry));
+        if (d <= 1) {
+          var fall = 1 - d * 0.45;
+          var tx = clamp(dx * PULL * fall);
+          var ty = clamp(dy * PULL * fall);
+          if (!m.pulled) { m.pulled = true; m.el.classList.add('is-pulled'); }
+          m.el.style.transform = 'translate3d(' + tx.toFixed(2) + 'px,' + (ty - 2).toFixed(2) + 'px,0)';
+          m.inner.style.transform = 'translate3d(' + (tx * 0.32).toFixed(2) + 'px,' + (ty * 0.32).toFixed(2) + 'px,0)';
+        } else {
+          release(m);
+        }
+      });
+    };
+    var queue = function () { if (!queued) { queued = true; requestAnimationFrame(tick); } };
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      px = e.clientX; py = e.clientY;
+      queue();
+    }, { passive: true });
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue, { passive: true });
+    document.addEventListener('pointerleave', function () { px = -9999; py = -9999; queue(); });
+    window.addEventListener('blur', function () { px = -9999; py = -9999; queue(); });
+  }
+})();
+</script>
 </body>
 </html>
-
- 
